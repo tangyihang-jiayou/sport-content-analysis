@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>内容池需求分析 · 完整版 v4</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Helvetica Neue',sans-serif;background:#f5f6fa;color:#111827;line-height:1.6;font-size:14px}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0f172a 100%);color:#fff;padding:48px 60px 44px}
+.hero h1{font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px}
+.hero .meta{opacity:.5;font-size:13px;margin-bottom:18px}
+.hero .lead{font-size:14px;line-height:1.8;opacity:.85;max-width:900px}
+.kpi-row{display:flex;gap:36px;margin-top:24px;flex-wrap:wrap}
+.kpi .num{font-size:28px;font-weight:800;color:#93c5fd}
+.kpi .lbl{font-size:11px;opacity:.55;margin-top:2px}
+.wrap{max-width:1340px;margin:0 auto;padding:36px 32px}
+h2.sec{font-size:17px;font-weight:700;color:#111;margin:48px 0 16px;padding-left:12px;border-left:4px solid #3b82f6;display:flex;align-items:center;gap:8px}
+h2.sec span{font-size:12px;font-weight:400;color:#9ca3af}
+.method-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:10px;padding:14px 18px;font-size:13px;color:#1e40af;line-height:1.7;margin-bottom:20px}
+.legend-row{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:#6b7280;margin-bottom:12px;align-items:center}
+.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>运动内容池 · 需求覆盖完整分析</h1>
+  <div class="meta">新批次 18,131 条 · 45 个运动分类 · 需求倍数 = avg播放 ÷ 全库中位播放(105K) · 2026-05-26</div>
+  <div class="lead">
+    旧版"其他"37% → 本版扩展正则至 45 个运动类别，识别出<strong>太极/武术、泰拳、匹克球、板球、跑酷、台球、冰球、举重竞技</strong>等此前未统计项目。
+    每条需求结论均由实际播放数据驱动，<strong>需求倍数高 × 条数少 = 真实缺口</strong>。
+  </div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="num">18,131</div><div class="lbl">total topics</div></div>
+    <div class="kpi"><div class="num">45</div><div class="lbl">运动分类</div></div>
+    <div class="kpi"><div class="num">37%</div><div class="lbl">通用/未分类</div></div>
+    <div class="kpi"><div class="num">105K</div><div class="lbl">全库中位播放</div></div>
+    <div class="kpi"><div class="num">3.9亿</div><div class="lbl">单条最高播放</div></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- SUMMARY -->
+<h2 class="sec" style="margin-top:36px">总结 <span>基于实际数据，无推测</span></h2>
+
+<div style="background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(0,0,0,.08);padding:32px 36px;margin-bottom:28px">
+  <h3 style="font-size:18px;font-weight:800;color:#111;margin-bottom:6px">核心结论摘要</h3>
+  <p style="font-size:13px;color:#6b7280;margin-bottom:24px">基于 18,131 条 topic 实际播放数据得出，每条结论均有具体数字支撑</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+    <div style="background:#fef2f2;border-radius:10px;padding:18px 20px;border-left:4px solid #dc2626">
+      <div style="font-size:12px;font-weight:700;color:#dc2626;margin-bottom:8px;letter-spacing:.5px">缺口最大：瑜伽减脂/产后</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        瑜伽减脂内容仅 <strong>5条</strong>，但均播 <strong>7.3M</strong>，最高单条 <strong>31.8M</strong>——是全库中位的 <strong>69x</strong>。
+        产后/C-section 瑜伽仅 1 条，同类内容最高 3180 万播放证明需求真实存在。
+      </p>
+    </div>
+
+    <div style="background:#fff8f0;border-radius:10px;padding:18px 20px;border-left:4px solid #ea580c">
+      <div style="font-size:12px;font-weight:700;color:#ea580c;margin-bottom:8px;letter-spacing:.5px">缺口第二：力量训练 · 女性臀腿</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        女性臀腿相关 <strong>7条</strong>，但均播 <strong>9.4M</strong>，需求倍数 <strong>89x</strong>。
+        头部 topic "A glute workout built for bad knees" 单条 <strong>3780 万</strong>播放。
+        这是内容池中需求倍数最高的子类之一，但供给极薄。
+      </p>
+    </div>
+
+    <div style="background:#fffbeb;border-radius:10px;padding:18px 20px;border-left:4px solid #d97706">
+      <div style="font-size:12px;font-weight:700;color:#d97706;margin-bottom:8px;letter-spacing:.5px">完全空白：女性拳击 / 女性MMA / 网球青少年</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        这三个方向在 18,131 条中均为 <strong>0条</strong>。拳击初学者 55 条平均播 133 万证明拳击需求强烈，女性拳击却完全空白；
+        网球有 961 条但青少年/儿童网球一条没有。
+      </p>
+    </div>
+
+    <div style="background:#f0fdf4;border-radius:10px;padding:18px 20px;border-left:4px solid #16a34a">
+      <div style="font-size:12px;font-weight:700;color:#16a34a;margin-bottom:8px;letter-spacing:.5px">被低估的高需求：冥想/呼吸法 · 板球</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        冥想/呼吸仅 <strong>24条</strong>，但均播 <strong>2.2M···</strong> 实为 <strong>2.2M avg</strong>，
+        Wim Hof 一条 <strong>1.1 亿</strong>播放。板球 <strong>121条</strong>，均播 <strong>661K</strong>，最高 <strong>7.4M</strong>——是亚裔/南亚用户群的高频运动。
+      </p>
+    </div>
+
+    <div style="background:#f8f0ff;border-radius:10px;padding:18px 20px;border-left:4px solid #7c3aed">
+      <div style="font-size:12px;font-weight:700;color:#7c3aed;margin-bottom:8px;letter-spacing:.5px">供给充足无需追加：跑步大类 / 拳击初学</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        跑步姿势 (95条 5x)、速度训练 (104条 6.5x)、零基础入门 (24条 2x)——三者条数充足，供需基本匹配。
+        拳击初学者 55条、在家练拳 47条，<strong>不需要继续大量补充</strong>。
+        追加资源应集中在女性 / 老年 / 产后等空白方向。
+      </p>
+    </div>
+
+    <div style="background:#f0f9ff;border-radius:10px;padding:18px 20px;border-left:4px solid #0284c7">
+      <div style="font-size:12px;font-weight:700;color:#0284c7;margin-bottom:8px;letter-spacing:.5px">结构性规律：37% 未归类</div>
+      <p style="font-size:13px;color:#374151;line-height:1.7">
+        "其他·通用体能" <strong>6,765条（37%）</strong>，均播 376K（3.6x 全库中位）——说明这里藏着有价值的内容，
+        但缺乏明确运动标签（如"5 bodyweight exercises for explosive speed"、"力量训练 push day" 等跨运动通用内容）。
+        未来采集应明确 topic 归属运动，减少灰色地带。
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- DISTRIBUTION -->
+<h2 class="sec">一、运动项目完整分布 <span>条数 · 需求倍数(avg÷中位) · 最高播放</span></h2>
+<div style="background:#fff;border-radius:12px;box-shadow:0 1px 10px rgba(0,0,0,.06);padding:20px 24px;margin-bottom:20px">
+  <div class="legend-row">
+    <div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:#dc2626"></div> 需求倍数≥15x</div>
+    <div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:#ea580c"></div> ≥8x</div>
+    <div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:#d97706"></div> ≥4x</div>
+    <div style="display:flex;align-items:center;gap:5px"><div class="legend-dot" style="background:#65a30d"></div> ≥2x</div>
+    <span style="color:#9ca3af">需求倍数越高=内容越受用户欢迎</span>
+  </div>
+  
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">其他·通用体能/综合</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:100.0%;background:#d1d5db;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">6,765</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">40.6M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">网球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:14.2%;background:#ef4444;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">961</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">68.8M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">跑步</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:13.5%;background:#f97316;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">916</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">5x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">28.7M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">拳击</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:12.8%;background:#eab308;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">869</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">23.6M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">篮球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:9.4%;background:#3b82f6;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">636</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">5x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">60.3M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">综合格斗/BJJ</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:8.8%;background:#84cc16;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">594</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">22.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">力量训练</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:8.6%;background:#d97706;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">580</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">14x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">59.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">瑜伽</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:8.3%;background:#ec4899;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">559</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#dc2626;font-weight:600;font-size:11px">18x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">55.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">高尔夫</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:8.0%;background:#8b5cf6;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">540</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">15.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">游泳</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:7.5%;background:#06b6d4;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">505</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">13x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">389.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">拉伸恢复</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:6.6%;background:#14b8a6;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">446</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">9x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">101.6M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">太极/武术/功夫</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:6.5%;background:#78716c;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">437</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">5x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">31.0M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">骑行</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:6.1%;background:#10b981;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">416</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">5x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">19.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">足球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:5.8%;background:#16a34a;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">394</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">9x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">24.7M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">羽毛球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:5.5%;background:#6366f1;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">372</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">7x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">111.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">棒球/垒球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:4.8%;background:#f43f5e;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">325</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">29.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">排球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:4.3%;background:#0ea5e9;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">291</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">16.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">体操</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:3.9%;background:#a855f7;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">265</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">12x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">71.9M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">匹克球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:3.3%;background:#0891b2;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">224</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#6b7280;font-weight:600;font-size:11px">1x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">1.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">攀岩</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:3.2%;background:#059669;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">219</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">13.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">滑板</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:3.0%;background:#9333ea;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">206</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">8x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">36.2M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">潜水/水上</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:2.6%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">173</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">6x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">55.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">泰拳/踢拳击</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:2.4%;background:#c2410c;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">163</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">8.6M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">台球/斯诺克</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.8%;background:#57534e;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">125</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">12.8M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">冲浪</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.7%;background:#0284c7;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">116</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">7x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">51.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">跑酷/自由体技</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.7%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">115</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">4.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">铁人三项</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.6%;background:#64748b;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">105</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">2x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">7.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">滑雪</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.4%;background:#7dd3fc;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">98</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">3x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">2.2M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">有氧/HIIT</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.4%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">94</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">9x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">20.4M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">徒步登山</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.4%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">93</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">7x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">54.8M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">橄榄球(Rugby/NFL)</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.2%;background:#92400e;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">80</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">7x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">17.2M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">板球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.1%;background:#166534;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">77</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">8x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">7.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">舞蹈</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.1%;background:#db2777;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">74</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">13x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">19.0M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">CrossFit/壶铃/街健</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:1.1%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">72</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">4.1M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">滑冰</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.8%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">57</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">5.7M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">冰球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.6%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">41</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">5x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">8.8M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">飞盘</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.5%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">35</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#6b7280;font-weight:600;font-size:11px">2x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">2.0M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">举重(竞技)</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.5%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">35</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">4x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">5.2M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">冥想/呼吸</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.4%;background:#7c3aed;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">24</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#dc2626;font-weight:600;font-size:11px">62x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">112.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">赛艇/划桨</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.2%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">16</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#6b7280;font-weight:600;font-size:11px">1x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">439K</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">普拉提</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.2%;background:#e11d48;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">11</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#d97706;font-weight:600;font-size:11px">8x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">2.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">乒乓球</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.0%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">3</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#ea580c;font-weight:600;font-size:11px">12x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">3.5M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">田径</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.0%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">2</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#65a30d;font-weight:600;font-size:11px">2x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">304K</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">马术</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.0%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">1</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#dc2626;font-weight:600;font-size:11px">26x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">2.7M</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;padding:3px 0">
+      <div style="min-width:130px;font-size:12px;font-weight:500;color:#374151;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">壁球/Squash</div>
+      <div style="flex:1;height:14px;background:#f3f4f6;border-radius:3px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;height:100%;width:0.0%;background:#9ca3af;border-radius:3px"></div>
+      </div>
+      <div style="min-width:45px;font-size:12px;font-weight:600;color:#111">1</div>
+      <div style="min-width:60px;text-align:right"><span style="color:#6b7280;font-weight:600;font-size:11px">1x</span></div>
+      <div style="min-width:50px;font-size:11px;color:#9ca3af;text-align:right">89K</div>
+    </div>
+</div>
+
+<!-- SUB-TOPIC DEMAND -->
+<h2 class="sec">二、核心项目子需求覆盖 <span>需求倍数 = 子类avg播放 ÷ 全库中位105K · 红底=高需求但供给不足</span></h2>
+
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">瑜伽</span>
+        <span style="font-size:12px;color:#9ca3af">543条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">减脂/belly fat</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">A yoga-based belly fat and weight loss flow designed for beginners and p</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">5条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">69x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">7.3M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">31.8M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">初学者入门</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">49条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">36x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">3.8M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">55.4M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">焦虑/减压/冥想</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">23条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">10x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.0M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">6.8M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">柔韧/劈叉/下腰</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">55条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">21x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">2.2M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">32.1M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">睡眠/床上流</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">32条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">16x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.6M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">21.9M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">早晨流/vinyasa</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">278条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">17x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.8M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">39.6M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">男性专项</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">61条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">22x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">2.3M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">30.2M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">老年/椅子瑜伽</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Chair yoga as a full mobility practice: why seated movement can be just </div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">6条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">19x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">2.0M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">3.8M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">产后/C-section</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why postpartum core recovery needs a different approach: a yoga-pilates </div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">203K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">203K</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">力量训练</span>
+        <span style="font-size:12px;color:#9ca3af">511条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">女性臀腿塑形</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">11条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">59x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">6.2M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">37.8M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">卧推技术细分</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#ea580c">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">18条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">48x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">5.1M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">59.1M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">硬拉技术细分</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">37条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">19x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">2.0M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">15.8M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">深蹲技术细分</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">24条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">9x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">986K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">12.3M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">核心/腹肌</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">A dumbbell ab workout built for beginners: why adding load from day one </div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">2条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">24x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">2.6M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">3.3M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">居家无器械</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">A dumbbell-only upper body workout you can do at home with no bench and </div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">8条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#dc2626">18x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.8M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">5.3M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">初学者</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">12条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">15x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.6M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">7.6M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">女性增肌(非臀腿)</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">What beginner women get wrong when they first try to deadlift: setup cue</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">2条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">100K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">150K</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">老年力量训练</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why strength training for older adults isn't about aesthetics—it's about</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">35K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">35K</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">跑步</span>
+        <span style="font-size:12px;color:#9ca3af">908条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">零基础5k入门</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">23条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">200K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.1M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">跑姿技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">71条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">5x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">552K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">4.4M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">速度/间歇训练</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">60条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">11x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.1M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">20.4M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">伤病预防</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">24条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">6x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">629K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">5.1M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">全马备赛</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">47条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">208K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.4M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">半马备赛</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">12条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">221K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">589K</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">跑步营养</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why marathon race-day fueling needs to be more frequent than your long t</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">7条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">3x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">339K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.4M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">跑步减脂</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">0条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">—</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">游泳</span>
+        <span style="font-size:12px;color:#9ca3af">478条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">自由泳技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">98条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">5x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">546K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">10.5M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">速度提升</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">22条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">214K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.5M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">蛙/仰/蝶泳</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">108条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">4x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">464K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">4.3M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">成人零基础/恐水</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">The 4 swim strokes ranked by difficulty: why adult beginners hit a wall </div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">3条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">54K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">117K</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">减脂游泳</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why swimming can make weight loss harder than expected: the hunger and h</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">9x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">898K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">898K</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">开放水域</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">15条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">201K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">858K</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">篮球</span>
+        <span style="font-size:12px;color:#9ca3af">636条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">投篮技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">11条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">12x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.3M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">4.6M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">控球运球</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">38条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">7x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">740K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">6.9M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">防守技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">14条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">4x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">404K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.9M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">三分投篮</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why 40% is a misleading benchmark for judging elite three-point shooting</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">2条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">257K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">400K</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">青少年/儿童</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">21条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">3x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">326K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">2.0M</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">网球</span>
+        <span style="font-size:12px;color:#9ca3af">948条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">正手技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">20条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">258K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">1.2M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">反手技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">25条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">186K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">556K</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">发球技术</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why returning a first serve is a completely different skill from any oth</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">6条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">120K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">385K</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">上旋/切球</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">115条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">9x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">916K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">68.8M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">战术/战略</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">37条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">167K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">666K</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">双打战术</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">Why doubles serving in table tennis is more complicated than singles: th</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">3x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">319K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">319K</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">青少年/儿童</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">0条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">—</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">高尔夫</span>
+        <span style="font-size:12px;color:#9ca3af">360条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">挥杆技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">17条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">218K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">852K</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">推杆</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">10条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">4x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">435K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">2.0M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">距离提升</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">The single swing hack that adds distance to every golfer's drive</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">6条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">7x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">709K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">3.6M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">短杆/切杆</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">The chipping technique that took one golfer's up-and-down conversion rat</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">166K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">166K</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">初学者</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">30条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">4x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">463K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">3.0M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">女性高尔夫</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">What women beginners actually need to know before their first golf lesso</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">1条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">118K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">118K</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">拳击</span>
+        <span style="font-size:12px;color:#9ca3af">806条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">基础技术/组合拳</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">49条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">5x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">565K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">14.7M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">在家/shadowbox</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">53条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#d97706">6x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">651K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">8.9M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">初学者入门</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">52条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">13x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.4M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">23.6M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">防守/步法</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">59条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">9x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">938K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">23.6M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">女性拳击</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">0条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">—</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#fff;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.06);margin-bottom:18px;overflow:hidden">
+      <div style="padding:13px 20px 12px;border-bottom:1px solid #f3f4f6;display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:15px;font-weight:700">综合格斗/BJJ</span>
+        <span style="font-size:12px;color:#9ca3af">590条</span>
+      </div>
+      <table style="width:100%;border-collapse:collapse">
+        <thead>
+          <tr style="background:#f9fafb">
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">用户需求</th>
+            <th style="padding:6px 12px;text-align:left;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">状态</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">需求倍数</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">均播放</th>
+            <th style="padding:6px 12px;text-align:right;font-size:11px;font-weight:600;color:#9ca3af;border-bottom:1px solid #e5e7eb;letter-spacing:.3px">最高播放</th>
+          </tr>
+        </thead>
+        <tbody><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">BJJ技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">417条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">3x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">291K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">8.0M</td>
+        </tr><tr style="background:#fff">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">摔跤/抱摔</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#f0fdf4;color:#16a34a">充足</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">153条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#65a30d">4x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">414K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">22.1M</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">打击技术</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">43条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280">2x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">181K</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">729K</td>
+        </tr><tr style="background:#fffdf0">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">初学者入门</span>
+            <div style="font-size:11px;color:#9ca3af;margin-top:2px;font-style:italic">What a UFC legend actually teaches a complete beginner in their first MM</div>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fffbeb;color:#d97706">偏少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">7条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#ea580c">11x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">1.2M</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">6.5M</td>
+        </tr><tr style="background:#fff8f8">
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5">
+            <span style="font-size:13px;font-weight:500">女性MMA</span>
+            
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;white-space:nowrap">
+            <span style="display:inline-block;padding:1px 8px;border-radius:100px;font-size:11px;font-weight:600;background:#fef2f2;color:#dc2626">空白/极少</span>
+            <span style="font-size:12px;color:#374151;margin-left:4px">0条</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right">
+            <span style="font-size:13px;font-weight:700;color:#6b7280"><1x</span>
+          </td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;color:#6b7280">—</td>
+          <td style="padding:8px 12px;border-bottom:1px solid #f5f5f5;text-align:right;font-size:12px;font-weight:600;color:#374151">—</td>
+        </tr></tbody>
+      </table>
+    </div>
+
+</div>
+</body>
+</html>
