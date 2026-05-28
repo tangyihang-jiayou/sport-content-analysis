@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>内容缺口分析 — 逻辑 & Query汇总 | 2026-05-28</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f5f7; color: #1d1d1f; line-height: 1.6; font-size: 15px; }
+.hero { background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%); color: white; padding: 48px 40px 36px; }
+.hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+.hero .sub { font-size: 14px; opacity: 0.7; }
+.stats-bar { background: #0a2744; padding: 16px 40px; display: flex; gap: 40px; flex-wrap: wrap; border-bottom: 1px solid #0f3460; }
+.stat { color: white; text-align: center; }
+.stat .num { font-size: 26px; font-weight: 700; color: #5eead4; }
+.stat .lbl { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+.container { max-width: 1080px; margin: 0 auto; padding: 36px 24px; }
+h2 { font-size: 20px; font-weight: 700; margin: 36px 0 14px; padding-bottom: 8px; border-bottom: 2px solid #e0e0e0; color: #1d1d1f; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 16px; font-weight: 700; margin: 22px 0 8px; color: #1d1d1f; }
+h4 { font-size: 14px; font-weight: 600; margin: 14px 0 6px; color: #3a3a3c; }
+p { margin-bottom: 10px; color: #3a3a3c; }
+.card { background: white; border-radius: 10px; padding: 22px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.formula { background: #0f172a; color: #7dd3fc; border-radius: 8px; padding: 14px 18px; font-family: "SF Mono", monospace; font-size: 13px; margin: 10px 0; line-height: 1.9; }
+.formula .cmt { color: #64748b; }
+code { background: #f0f4f8; padding: 1px 5px; border-radius: 3px; font-family: "SF Mono", monospace; font-size: 12px; color: #1565c0; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+th { background: #f0f4f8; padding: 9px 12px; text-align: left; font-weight: 600; font-size: 12px; color: #5a6472; text-transform: uppercase; letter-spacing: 0.4px; }
+td { padding: 9px 12px; border-bottom: 1px solid #f0f4f8; vertical-align: top; }
+tr:hover td { background: #fafbfc; }
+.hi { color: #059669; font-weight: 700; }
+.mid { color: #d97706; font-weight: 600; }
+.lo { color: #9ca3af; }
+.warn { color: #dc2626; font-weight: 600; }
+.badge { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+.yt { background: #fef2f2; color: #b91c1c; }
+.tk { background: #fdf4ff; color: #7e22ce; }
+.ig { background: #eff6ff; color: #1d4ed8; }
+.callout { border-left: 3px solid #f59e0b; background: #fffbeb; padding: 12px 16px; border-radius: 0 6px 6px 0; margin: 10px 0; font-size: 13px; }
+.callout.red { border-color: #ef4444; background: #fef2f2; }
+.callout.green { border-color: #10b981; background: #ecfdf5; }
+.step { display: flex; gap: 14px; margin-bottom: 14px; }
+.step-n { background: #0f3460; color: white; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+.step-b h4 { margin: 0 0 4px; }
+.step-b p { margin: 0; font-size: 13px; }
+.angle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 8px; margin: 10px 0; }
+.angle { background: #f8fafc; border-radius: 6px; padding: 10px 14px; border-left: 3px solid #0f3460; font-size: 13px; }
+.angle strong { display: block; margin-bottom: 2px; }
+.angle .eg { color: #6b7280; font-style: italic; font-size: 12px; }
+.batch { background: linear-gradient(90deg, #0f3460, #1e40af); color: white; padding: 10px 18px; border-radius: 8px; margin: 18px 0 10px; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.batch strong { font-size: 15px; }
+.batch span { opacity: 0.85; font-size: 12px; }
+.dim-row td:first-child { font-weight: 600; }
+.new-batch { background: linear-gradient(90deg, #065f46, #0d9488); }
+.fix-note { background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 14px 18px; margin: 16px 0; font-size: 13px; }
+.fix-note strong { color: #92400e; }
+footer { text-align: center; padding: 32px 0 24px; color: #9ca3af; font-size: 12px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>内容缺口分析系统 — 运行报告</h1>
+  <div class="sub">2026-05-28 &nbsp;·&nbsp; 数据范围：2026-05-27 入库内容（106K）+ 30K 历史抽样 &nbsp;·&nbsp; 共四轮下发</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">136,057</div><div class="lbl">分析素材</div></div>
+  <div class="stat"><div class="num">62</div><div class="lbl">L2维度树</div></div>
+  <div class="stat"><div class="num">30+32</div><div class="lbl">有分+零供给维度</div></div>
+  <div class="stat"><div class="num">1,630</div><div class="lbl">生成Query</div></div>
+  <div class="stat"><div class="num">3,310</div><div class="lbl">下发种子</div></div>
+  <div class="stat"><div class="num">0</div><div class="lbl">失败</div></div>
+</div>
+
+<div class="container">
+
+<!-- ==================== 一、分析逻辑 ==================== -->
+<h2 id="logic">一、缺口分析逻辑</h2>
+
+<div class="card">
+  <h3>步骤1：数据采集与字段映射</h3>
+  <div class="step">
+    <div class="step-n">1</div>
+    <div class="step-b">
+      <h4>采集范围</h4>
+      <p>两批合并：昨日新入库全量（<code>status=ingested</code>，约106K条）+ 历史库随机抽样30K（30页×1000）。排除 <code>status=ready</code>（= Sida AI自制视频，非真实社交内容）。</p>
+    </div>
+  </div>
+  <div class="step">
+    <div class="step-n">2</div>
+    <div class="step-b">
+      <h4>关键字段（曾经踩过坑）</h4>
+      <p><strong>平台</strong>：<code>source_info.source</code> → "yt" / "tk" / "ig"（注意：<code>source_info.type</code> 固定="crawler"，不能用来判断平台）</p>
+      <p><strong>互动量</strong>：<code>metadata.properties.likes</code>（TK/IG无曝光数据，统一用点赞作代理指标）</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>步骤2：平台基准线（各自独立中位数）</h3>
+  <p>不用全局中位数——YT/TK/IG 受众规模和点赞文化差异极大，混用会让 TK/IG 内容看起来永远"更好"，实际只是平台基数不同。</p>
+  <div class="formula">
+platform_median_yt = 1,210 点赞  （YT 所有内容的中位数）
+platform_median_tk = 4,679 点赞  （TK 所有内容的中位数）
+platform_median_ig = 5,476 点赞  （IG 所有内容的中位数）</div>
+</div>
+
+<div class="card">
+  <h3>步骤3：维度归类</h3>
+  <p>对每条内容的 title 按预定义关键词树做最长匹配，归入 L1 → L2 维度。维度树共 62 个 L2，覆盖瑜伽、冥想、舞蹈、力量训练、跑步、游泳、足球、篮球、棒球、拳击、体操、综合拉伸、羽毛球、乒乓球、高尔夫、网球、健身综合、运动营养等大类。</p>
+</div>
+
+<div class="card">
+  <h3>步骤4：ROI 计算（需求强度）</h3>
+  <div class="formula">
+per_item_roi   = item_likes / platform_median        <span class="cmt">-- 单条内容是平台平均水平的几倍</span>
+dim_roi        = median(per_item_roi) for dim × platform  <span class="cmt">-- 取中位数，抗单条爆款干扰</span>
+combined_roi   = weighted_avg(dim_roi per platform, weights=content_count)</div>
+  <p>举例：K-pop舞蹈 TK 上有 5 条，中位点赞 47,446，TK 全局中位数 4,679 → ROI = 47,446 / 4,679 = <strong>10.1×</strong></p>
+</div>
+
+<div class="card">
+  <h3>步骤5：Gap Score 公式</h3>
+  <div class="formula">
+gap_score = combined_roi × (1000 / sqrt(supply + 1))
+
+<span class="cmt">-- supply  = 该维度当前库内内容条数
+-- +1      = 避免 supply=0 时除以0（0供给时 sqrt(1)=1，ROI 贡献完整保留）
+-- ×1000   = 量纲放大，让分数可读
+-- sqrt    = 非线性压制：供给翻4倍，分数只减半；避免线性除法的悬崖效应</span></div>
+  <p style="font-size:13px;">逻辑：需求高+供给少 → 高分；需求高但库已很多 → 被压制；需求本来就低 → 分数也低，不值得堆。</p>
+</div>
+
+<div class="card">
+  <h3>步骤6：两类维度处理</h3>
+  <table>
+    <thead><tr><th>维度类型</th><th>特征</th><th>处理方式</th></tr></thead>
+    <tbody>
+      <tr><td><strong>有得分维度</strong></td><td>supply ≥ 1，ROI 可计算，gap_score 有意义</td><td>按 gap_score 排序，按阈值决定是否发 query（见步骤7）</td></tr>
+      <tr><td><strong>零供给维度</strong></td><td>supply = 0，gap_score 无意义（ROI 无样本）</td><td>单独处理，每维度直接发 20 条 query 盲补</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">本次分析：30个有得分维度 + 32个零供给维度，共 62 个 L2 维度全覆盖。</div>
+</div>
+
+<!-- ===== 步骤7：缺口→Query 核心逻辑 ===== -->
+<div class="card" style="border: 2px solid #0f3460;">
+  <h3>步骤7：缺口 → Query 转化逻辑 ⭐</h3>
+
+  <h4>① 哪些维度发 Query？— 阈值判断（非 Top N）</h4>
+  <div class="fix-note">
+    <strong>⚠️ 本轮修正：</strong>初始版本错误地使用了"Top 20"这个任意截止点（位置20→21 gap分数差值仅33分，无自然断层）。已修正为阈值规则：
+  </div>
+
+  <table>
+    <thead><tr><th>规则</th><th>纳入条件</th><th>本次结果</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td><strong>有得分维度</strong></td><td>ROI ≥ 1.0×</td><td>28个纳入（排除 ROI=0.54×/0.55×）</td><td>需求至少达到平台平均水平</td></tr>
+      <tr><td><strong>低ROI维度</strong></td><td>0.5× ≤ ROI &lt; 1.0×</td><td>2个纳入但减量（15条）</td><td>信号偏弱，少发探探</td></tr>
+      <tr><td><strong>极低ROI</strong></td><td>ROI &lt; 0.5×</td><td>暂不发</td><td>需求不足，发了也收不到好内容</td></tr>
+      <tr><td><strong>零供给维度</strong></td><td>supply = 0（不论ROI）</td><td>32个全发 20条/维</td><td>无样本无法算ROI，盲补探索</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:13px; color:#6b7280; margin-top:8px;">后续改进方向：<code>n_queries = 10 + floor(gap_score / 500) × 5</code>，按缺口强度动态分配配额。</p>
+
+  <h4>② 每个维度发多少条？— 三档</h4>
+  <table>
+    <thead><tr><th>维度类型</th><th>条数/维度</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>高缺口（gap_score ≥ 400）</td><td>25条 + 15条追加 = <strong>40条</strong></td><td>缺口最明确，值得密集覆盖</td></tr>
+      <tr><td>中缺口（200 ≤ gap &lt; 400，ROI ≥ 1.0×）</td><td><strong>20条</strong></td><td>有信号，中等覆盖</td></tr>
+      <tr><td>低 ROI（0.5× ≤ ROI &lt; 1.0×）</td><td><strong>15条</strong></td><td>信号偏弱，探索性发送</td></tr>
+      <tr><td>零供给维度</td><td><strong>20条</strong></td><td>无ROI，保守探索</td></tr>
+    </tbody>
+  </table>
+
+  <h4>③ Query 的 10 类角度扩展</h4>
+  <p style="font-size:13px; color:#6b7280;">每个维度的 query 沿以下角度展开，确保抓回内容覆盖不同搜索意图和难度层级：</p>
+  <div class="angle-grid">
+    <div class="angle"><strong>1. 基础入门</strong> <span class="eg">beginner / basics / complete guide / first time</span></div>
+    <div class="angle"><strong>2. 技术拆解</strong> <span class="eg">step by step / breakdown / slow version / form tutorial</span></div>
+    <div class="angle"><strong>3. 常见错误修正</strong> <span class="eg">how to fix / mistakes / why am I not improving</span></div>
+    <div class="angle"><strong>4. 特定人群变体</strong> <span class="eg">for women / for kids / for seniors / over 40 / youth</span></div>
+    <div class="angle"><strong>5. 目标导向</strong> <span class="eg">for weight loss / fat burning / muscle gain / cardio</span></div>
+    <div class="angle"><strong>6. 时间挑战 / 结果故事</strong> <span class="eg">30 day challenge / I tried X / transformation / results</span></div>
+    <div class="angle"><strong>7. 明星 / 高阶参照</strong> <span class="eg">具体运动员/艺人名字 + tutorial / breakdown</span></div>
+    <div class="angle"><strong>8. 设备 / 场地</strong> <span class="eg">at home / no equipment / with dumbbells / in gym</span></div>
+    <div class="angle"><strong>9. 对比 / 决策</strong> <span class="eg">vs / which is better / difference between / should I</span></div>
+    <div class="angle"><strong>10. 数量化 / 工具化</strong> <span class="eg">how many / how long / calories / times per week / plan</span></div>
+  </div>
+
+  <h4>④ 生成方式</h4>
+  <p style="font-size:13px;">本次 query 由 LLM（Claude）根据<strong>维度名 + 上述10类角度框架</strong>批量生成，非人工逐条编写。隐式生成约束：难度梯度均匀（beginner/intermediate各占）、意图多样（how-to/comparison/challenge/gear）、人群变体 ≥20%、宽泛词+长尾词均有。</p>
+
+  <h4>⑤ 已知局限（后续可改）</h4>
+  <table style="font-size:12px;">
+    <thead><tr><th>问题</th><th>当前状态</th><th>改进方向</th></tr></thead>
+    <tbody>
+      <tr><td>条数与缺口强度脱钩</td><td>手动分三档</td><td>按 gap_score 动态分配：<code>n = 10 + floor(score/500)×5</code></td></tr>
+      <tr><td>重复/相似 query</td><td>未去重</td><td>embedding 相似度去重，cosine &gt; 0.92 合并</td></tr>
+      <tr><td>搜索量未验证</td><td>纯 LLM 生成</td><td>接入 Google Trends / SerpAPI 过滤低热度词</td></tr>
+      <tr><td>维度匹配准确率</td><td>未验证</td><td>生成后用分类器回判，过滤跑偏的 query</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h3>步骤8：Hermit 种子下发</h3>
+  <p>每条 query 下发 YT + TK 两个平台（IG 无搜索 label，不下发）：</p>
+  <div class="formula">
+seed_name = gap_{l2_abbrev}_{md5[:6]}_{platform}    (max 60 chars)
+origin    = sports_gap_v5_{platform}_{date}          # Track A
+          = sports_viral_{platform}_{date}           # Track B
+config    = {"keyword": query, "limit": 50}
+type      = one_shot
+并发：ThreadPoolExecutor(max_workers=10)</div>
+</div>
+
+<!-- ==================== 二、缺口得分榜 ==================== -->
+<h2>二、当前缺口得分榜（有得分的 30 个 L2 维度）</h2>
+<p style="font-size:13px; color:#6b7280; margin-bottom:12px;">基于 136,057 条内容 &nbsp;|&nbsp; 平台中位数：YT=1,210 / TK=4,679 / IG=5,476 &nbsp;|&nbsp; ✅=本轮已发Query &nbsp;·&nbsp; 绿底=第四轮补发</p>
+
+<div class="card" style="padding:0; overflow:hidden;">
+<table>
+  <thead>
+    <tr><th>#</th><th>维度（L2）</th><th>Gap Score</th><th>ROI</th><th>库内供给</th><th>平台</th><th>本轮Query数</th><th>状态</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>舞蹈 / K-pop舞蹈</td><td class="hi">4,139</td><td>10.1×</td><td>5条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>2</td><td>棒球/垒球 / 击球技巧</td><td class="hi">3,962</td><td>11.2×</td><td>7条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>3</td><td>跑步 / 减脂跑步</td><td class="hi">2,310</td><td>4.0×</td><td>2条</td><td><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>4</td><td>足球 / 体能训练</td><td class="hi">1,232</td><td>2.1×</td><td>2条</td><td><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>5</td><td>游泳 / 入门教学</td><td class="mid">898</td><td>3.0×</td><td>10条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>6</td><td>运动营养 / 蛋白质/饮食</td><td class="mid">772</td><td>3.6×</td><td>21条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>7</td><td>高尔夫 / 入门教学</td><td class="mid">691</td><td>1.4×</td><td>3条</td><td><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>8</td><td>拳击/搏击 / 基础技术</td><td class="mid">624</td><td>2.5×</td><td>15条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>9</td><td>足球 / 射门/任意球</td><td class="mid">622</td><td>2.2×</td><td>12条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>10</td><td>体操/技巧 / 柔韧训练</td><td class="mid">602</td><td>0.9×</td><td>1条</td><td><span class="badge tk">TK</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>11</td><td>瑜伽 / 减脂/体重管理</td><td class="mid">586</td><td>1.9×</td><td>10条</td><td><span class="badge yt">YT</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>12</td><td>冥想/呼吸 / 减压/焦虑冥想</td><td class="mid">579</td><td>1.3×</td><td>4条</td><td><span class="badge yt">YT</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>13</td><td>羽毛球 / 基础技术</td><td class="mid">564</td><td>1.7×</td><td>8条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>14</td><td>舞蹈 / Zumba/健身舞</td><td class="mid">545</td><td>4.4×</td><td>64条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>15</td><td>力量训练 / 初学者入门</td><td class="mid">506</td><td>1.1×</td><td>4条</td><td><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>16</td><td>篮球 / 基础技术</td><td class="mid">500</td><td>2.1×</td><td>17条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>17</td><td>舞蹈 / 入门基础</td><td class="mid">483</td><td>1.7×</td><td>11条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>18</td><td>健身综合 / 综合体能</td><td class="mid">429</td><td>2.9×</td><td>45条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>19</td><td>冥想/呼吸 / 专注/正念</td><td class="mid">417</td><td>2.4×</td><td>31条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr><td>20</td><td>拳击/搏击 / 健身拳击</td><td class="mid">403</td><td>1.5×</td><td>12条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>25+15=40</td><td>✅ 已发</td></tr>
+    <tr style="background:#ecfdf5;"><td>21</td><td>冥想/呼吸 / 睡眠冥想</td><td class="lo">370</td><td>2.3×</td><td>38条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>22</td><td>篮球 / 投篮训练</td><td class="lo">369</td><td>1.7×</td><td>19条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>23</td><td>足球 / 控球/花式</td><td class="lo">323</td><td>3.0×</td><td>83条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>24</td><td>瑜伽 / 晨间瑜伽</td><td class="lo">314</td><td>1.8×</td><td>30条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>25</td><td>棒球/垒球 / 投球技巧</td><td class="lo">275</td><td class="warn">0.55×</td><td>3条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>15（ROI偏低）</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>26</td><td>网球 / 基础技术</td><td class="lo">247</td><td>1.0×</td><td>14条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>27</td><td>网球 / 高阶技术</td><td class="lo">241</td><td class="warn">0.54×</td><td>4条</td><td><span class="badge ig">IG</span></td><td>15（ROI偏低）</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>28</td><td>冥想/呼吸 / 入门冥想</td><td class="lo">240</td><td>1.0×</td><td>16条</td><td><span class="badge yt">YT</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>29</td><td>综合拉伸 / 全身拉伸</td><td class="lo">228</td><td>1.3×</td><td>31条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+    <tr style="background:#ecfdf5;"><td>30</td><td>力量训练 / 居家力量</td><td class="lo">190</td><td>1.8×</td><td>91条</td><td><span class="badge yt">YT</span><span class="badge tk">TK</span><span class="badge ig">IG</span></td><td>20</td><td>✅ 第四轮补发</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ==================== 三、Query 下发汇总 ==================== -->
+<h2>三、Query 下发汇总（四轮）</h2>
+
+<div class="batch"><strong>第一轮</strong> <span>queries_weekly_20260527.json &nbsp;·&nbsp; 下发 1,050 种子</span></div>
+<div class="card" style="padding:0; overflow:hidden;">
+<table>
+  <thead><tr><th>来源</th><th>维度数</th><th>每维条数</th><th>Query小计</th><th>种子数(×2平台)</th></tr></thead>
+  <tbody>
+    <tr><td>Track A 有得分缺口（Top 20，当时设定有误）</td><td>20</td><td>25</td><td>500</td><td>1,000</td></tr>
+    <tr><td>Track B Viral 爆款改写</td><td>—</td><td>—</td><td>25</td><td>50</td></tr>
+    <tr><td><strong>小计</strong></td><td></td><td></td><td><strong>525</strong></td><td><strong>1,050</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="batch"><strong>第二轮</strong> <span>queries_zerosupply_20260528.json &nbsp;·&nbsp; 下发 1,280 种子</span></div>
+<div class="card" style="padding:0; overflow:hidden;">
+<table>
+  <thead><tr><th>维度</th><th>条数</th><th>种子</th></tr></thead>
+  <tbody>
+    <tr><td>32个零供给 L2 维度（瑜伽×4、冥想×1、舞蹈×3、力量训练×5、跑步×3、篮球×1、足球×1、游泳×2、棒球×1、体操×2、综合拉伸×2、拳击×1、乒乓球×2、高尔夫×1、健身综合×2、运动营养×1）</td><td>20/维</td><td>1,280</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="batch"><strong>第三轮</strong> <span>queries_topgap_extra_20260528.json &nbsp;·&nbsp; 下发 600 种子</span></div>
+<div class="card" style="padding:0; overflow:hidden;">
+<table>
+  <thead><tr><th>来源</th><th>维度数</th><th>每维条数</th><th>Query小计</th><th>种子数</th></tr></thead>
+  <tbody>
+    <tr><td>原 Top 20 缺口维度追加（第二批角度，与第一轮不重复）</td><td>20</td><td>15</td><td>300</td><td>600</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="batch new-batch"><strong>第四轮（补发）</strong> <span>queries_gap21to30_20260528.json &nbsp;·&nbsp; 下发 380 种子 &nbsp;·&nbsp; 修正"Top 20任意截止"问题</span></div>
+<div class="card" style="padding:0; overflow:hidden;">
+<table>
+  <thead><tr><th>维度</th><th>ROI</th><th>Gap Score</th><th>条数</th><th>种子</th></tr></thead>
+  <tbody>
+    <tr class="dim-row"><td>冥想/呼吸 / 睡眠冥想</td><td>2.3×</td><td>370</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>篮球 / 投篮训练</td><td>1.7×</td><td>369</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>足球 / 控球/花式</td><td>3.0×</td><td>323</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>瑜伽 / 晨间瑜伽</td><td>1.8×</td><td>314</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>棒球/垒球 / 投球技巧</td><td class="warn">0.55×</td><td>275</td><td>15（ROI偏低）</td><td>30</td></tr>
+    <tr class="dim-row"><td>网球 / 基础技术</td><td>1.0×</td><td>247</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>网球 / 高阶技术</td><td class="warn">0.54×</td><td>241</td><td>15（ROI偏低）</td><td>30</td></tr>
+    <tr class="dim-row"><td>冥想/呼吸 / 入门冥想</td><td>1.0×</td><td>240</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>综合拉伸 / 全身拉伸</td><td>1.3×</td><td>228</td><td>20</td><td>40</td></tr>
+    <tr class="dim-row"><td>力量训练 / 居家力量</td><td>1.8×</td><td>190</td><td>20</td><td>40</td></tr>
+    <tr><td><strong>小计</strong></td><td></td><td></td><td><strong>190</strong></td><td><strong>380</strong></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="card" style="background:#f0fdf4; border: 1px solid #86efac;">
+  <h3>四轮合计</h3>
+  <table>
+    <thead><tr><th>轮次</th><th>Query 数</th><th>种子数</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>第一轮（Top20缺口 + Viral）</td><td>525</td><td>1,050</td><td></td></tr>
+      <tr><td>第二轮（32个零供给维度）</td><td>640</td><td>1,280</td><td></td></tr>
+      <tr><td>第三轮（Top20缺口追加）</td><td>300</td><td>600</td><td></td></tr>
+      <tr><td>第四轮（#21–#30 补发）</td><td>190</td><td>380</td><td>修正任意 Top20 截止</td></tr>
+      <tr style="background:white; font-weight:700;"><td>合计</td><td>1,655</td><td><strong>3,310</strong></td><td>全部 0 失败</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ==================== 四、文件索引 ==================== -->
+<h2>四、原始文件索引</h2>
+<div class="card">
+  <table>
+    <thead><tr><th>文件名</th><th>位置</th><th>内容</th><th>条数</th></tr></thead>
+    <tbody>
+      <tr><td><code>queries_weekly_20260527.json</code></td><td>/tmp/ (本地+devbox)</td><td>第一轮：Top20缺口 + Viral</td><td>525</td></tr>
+      <tr><td><code>queries_zerosupply_20260528.json</code></td><td>/tmp/ (本地+devbox)</td><td>第二轮：32零供给维度</td><td>640</td></tr>
+      <tr><td><code>queries_topgap_extra_20260528.json</code></td><td>/tmp/ (本地+devbox)</td><td>第三轮：Top20追加</td><td>300</td></tr>
+      <tr><td><code>queries_gap21to30_20260528.json</code></td><td>/tmp/ (本地+devbox)</td><td>第四轮：#21–#30补发</td><td>190</td></tr>
+      <tr><td><code>gap_scores_20260527.json</code></td><td>本文件夹</td><td>完整 gap_score 分析结果（30维度+viral）</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<footer>生成时间 2026-05-28 &nbsp;·&nbsp; 四轮合计 3,310 个 Hermit 种子 &nbsp;·&nbsp; 全部 0 失败</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>视频质量基线扫描报告 — 1000 条样本 · 2026-05-28</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  max-width: 1100px; margin: 40px auto; padding: 0 30px;
+  color: #1a1a1a; line-height: 1.7; background: #fafafa;
+}
+h1 { font-size: 28px; border-bottom: 3px solid #1a1a1a; padding-bottom: 12px; margin-bottom: 6px; }
+h2 { font-size: 22px; margin-top: 42px; color: #c0392b; border-left: 5px solid #c0392b; padding-left: 12px; }
+h3 { font-size: 18px; margin-top: 28px; color: #2c3e50; }
+.meta { color: #7f8c8d; font-size: 14px; margin-bottom: 30px; }
+.key-finding {
+  background: #fff5f5; border: 2px solid #e74c3c; border-radius: 8px;
+  padding: 20px; margin: 25px 0; font-size: 16px;
+}
+.key-finding strong { color: #c0392b; font-size: 20px; }
+.callout {
+  background: #fffbf0; border-left: 5px solid #f39c12; padding: 16px 20px;
+  margin: 20px 0; border-radius: 4px;
+}
+.callout-success {
+  background: #f0f9f3; border-left: 5px solid #27ae60; padding: 16px 20px;
+  margin: 20px 0; border-radius: 4px;
+}
+table {
+  width: 100%; border-collapse: collapse; margin: 20px 0;
+  background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid #ecf0f1; }
+th { background: #34495e; color: white; font-weight: 600; font-size: 13px; }
+tr:hover { background: #f8f9fa; }
+.pass { color: #27ae60; font-weight: 600; }
+.fail { color: #e74c3c; font-weight: 600; }
+.warn { color: #f39c12; font-weight: 600; }
+.bar-cell { position: relative; padding: 0; }
+.bar { height: 100%; background: #3498db; opacity: 0.18; position: absolute; left: 0; top: 0; }
+.bar-text { position: relative; padding: 11px 14px; z-index: 2; }
+.mono { font-family: "SF Mono", Monaco, Menlo, Consolas, monospace; font-size: 13px; }
+.summary-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0;
+}
+.summary-card {
+  background: white; padding: 18px; border-radius: 8px;
+  border-top: 4px solid #3498db; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.summary-card .num { font-size: 32px; font-weight: 700; color: #2c3e50; }
+.summary-card .label { font-size: 13px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; }
+.summary-card.danger { border-top-color: #e74c3c; }
+.summary-card.danger .num { color: #c0392b; }
+.summary-card.warn { border-top-color: #f39c12; }
+.summary-card.warn .num { color: #d68910; }
+.summary-card.success { border-top-color: #27ae60; }
+.summary-card.success .num { color: #229954; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.footnote { font-size: 13px; color: #95a5a6; margin-top: 50px; border-top: 1px solid #ecf0f1; padding-top: 15px; }
+</style>
+</head>
+<body>
+
+<h1>视频质量基线扫描报告</h1>
+<div class="meta">扫描日期：2026-05-28 ｜ 样本量：1000 条随机分层采样 ｜ 实际成功探测：992 条 ｜ 工具：ffprobe（远程 URL 直探，零下载）</div>
+
+<div class="key-finding">
+<strong>核心结论：0/992</strong><br>
+按照<b>「Premium Baseline 全 5 维度」</b>（1080P + H.265/AV1 + 30fps + 4Mbps + 10-bit）严格判定，<b>样本库中 0 条素材通过</b>。<br>
+<br>
+最致命的卡点是 <strong style="color:#c0392b">10-bit 色深</strong>——992 条样本里 <span class="mono">yuv420p (8-bit)</span> 占 99.5%，10-bit 含量为 <b>0</b>。这是 UGC 内容的客观特性（手机默认 8-bit 录制 + 平台二压一律转 8-bit），<b>不是数据采集错了，而是基线在 UGC 语境下不现实</b>。
+</div>
+
+<h2>一、扫描方法与样本构成</h2>
+
+<h3>方法</h3>
+<ul>
+<li><b>采样池</b>：asset-center 中 <span class="mono">status=ingested, asset_type=video</span> 总计 <b>683,697 条</b> 爬虫采集素材</li>
+<li><b>分层采样</b>：在 0–683,677 范围内随机生成 offset，每个 offset 拉 20 条页，每页随机抽 1 条 → 强制散布，避免按入库顺序取连续段</li>
+<li><b>URL 解析</b>：调用 <span class="mono">asset-center content playback</span> 获取签名播放 URL（每条 ~1 小时有效期）</li>
+<li><b>质量探测</b>：<span class="mono">ffprobe -show_streams -show_format URL</span>，<b>只读容器头部（每条 ~10-50KB）</b>，不下载整段视频</li>
+<li><b>并发</b>：URL 解析 20 并发 / ffprobe 30 并发</li>
+<li><b>总耗时</b>：约 5 分钟（含采样+解析+探测）</li>
+</ul>
+
+<h3>样本平台分布</h3>
+<table>
+<tr><th>来源</th><th>样本数</th><th>占比</th><th>备注</th></tr>
+<tr><td>Instagram</td><td>326</td><td>32.9%</td><td>Reels 短视频</td></tr>
+<tr><td>YouTube</td><td>298</td><td>30.0%</td><td>Shorts + 常规视频</td></tr>
+<tr><td>TikTok</td><td>282</td><td>28.4%</td><td>短视频</td></tr>
+<tr><td>Douyin</td><td>49</td><td>4.9%</td><td>短视频</td></tr>
+<tr><td>小红书</td><td>31</td><td>3.1%</td><td>笔记视频</td></tr>
+<tr><td>Bilibili</td><td>4</td><td>0.4%</td><td>样本太少不参与统计</td></tr>
+<tr><td>其他</td><td>2</td><td>0.2%</td><td></td></tr>
+</table>
+
+<h2>二、五个维度的客观分布</h2>
+
+<h3>① 分辨率分布</h3>
+<table>
+<tr><th>分档</th><th>条数</th><th>占比</th><th>判定</th></tr>
+<tr><td class="mono">4K (≥2160P)</td><td>2</td><td>0.2%</td><td class="pass">✅ 优</td></tr>
+<tr><td class="mono">1440P</td><td>3</td><td>0.3%</td><td class="pass">✅ 优</td></tr>
+<tr><td class="mono">1080P</td><td>451</td><td>45.5%</td><td class="pass">✅ 及格</td></tr>
+<tr><td class="mono">720P</td><td>451</td><td>45.5%</td><td class="fail">❌ 不及格</td></tr>
+<tr><td class="mono">480P</td><td>57</td><td>5.7%</td><td class="fail">❌ 不及格</td></tr>
+<tr><td class="mono">&lt;480P</td><td>28</td><td>2.8%</td><td class="fail">❌ 极差</td></tr>
+</table>
+<div class="callout"><b>分辨率维度通过率：46.0% (456/992)</b>。1080P 和 720P 几乎对半开 —— UGC 库的"高分辨率"内容占比远不如想象。</div>
+
+<h3>② 视频编码分布</h3>
+<table>
+<tr><th>编码</th><th>条数</th><th>占比</th><th>判定</th></tr>
+<tr><td class="mono">H.264 (AVC)</td><td>719</td><td>72.5%</td><td class="fail">❌ 落后产能</td></tr>
+<tr><td class="mono">HEVC (H.265)</td><td>271</td><td>27.3%</td><td class="pass">✅ 现代编码</td></tr>
+<tr><td class="mono">AV1</td><td>1</td><td>0.1%</td><td class="pass">✅ 现代编码</td></tr>
+<tr><td class="mono">VP9</td><td>1</td><td>0.1%</td><td class="pass">✅ 现代编码</td></tr>
+</table>
+<div class="callout"><b>现代编码通过率：27.5%</b>。HEVC 几乎全部来自 TikTok（它在推流端转码使用 HEVC），其他平台仍以 H.264 为主。</div>
+
+<h3>③ 帧率分布</h3>
+<table>
+<tr><th>帧率</th><th>条数</th><th>占比</th><th>判定</th></tr>
+<tr><td class="mono">60fps+</td><td>83</td><td>8.4%</td><td class="pass">✅ 优</td></tr>
+<tr><td class="mono">50fps</td><td>16</td><td>1.6%</td><td class="pass">✅</td></tr>
+<tr><td class="mono">30fps</td><td>711</td><td>71.7%</td><td class="pass">✅ 及格</td></tr>
+<tr><td class="mono">25fps</td><td>89</td><td>9.0%</td><td class="warn">⚠️ 临界</td></tr>
+<tr><td class="mono">24fps</td><td>87</td><td>8.8%</td><td class="fail">❌ 廉价感</td></tr>
+<tr><td class="mono">&lt;24fps</td><td>6</td><td>0.6%</td><td class="fail">❌ 异常</td></tr>
+</table>
+<div class="callout-success"><b>帧率维度通过率：81.7% (≥30fps)</b>。这是 5 个维度里"最不差"的一项，但 <b>60fps 高刷比例仅 8.4%</b>，对需要丝滑感的动态运动内容来说还是太少。</div>
+
+<h3>④ 码率分布</h3>
+<table>
+<tr><th>码率</th><th>条数</th><th>占比</th><th>判定</th></tr>
+<tr><td class="mono">≥8 Mbps</td><td>9</td><td>0.9%</td><td class="pass">✅ 优</td></tr>
+<tr><td class="mono">5–8 Mbps</td><td>19</td><td>1.9%</td><td class="pass">✅</td></tr>
+<tr><td class="mono">4–5 Mbps</td><td>34</td><td>3.4%</td><td class="pass">✅ 及格</td></tr>
+<tr><td class="mono">2–4 Mbps</td><td>214</td><td>21.6%</td><td class="warn">⚠️ 偏低</td></tr>
+<tr><td class="mono">1–2 Mbps</td><td>316</td><td>31.9%</td><td class="fail">❌ 低</td></tr>
+<tr><td class="mono">&lt;1 Mbps</td><td>400</td><td>40.3%</td><td class="fail">❌ 极低</td></tr>
+</table>
+<div class="callout"><b>码率达标率：20.1%</b>（按分辨率成比例的阈值，1080P 要求 ≥4Mbps）。<b>72% 的素材码率 &lt;2Mbps</b>，平台在分发端做了重压缩——这是 UGC 库画质损失的最大来源。</div>
+
+<h3>⑤ 色深 / pix_fmt 分布</h3>
+<table>
+<tr><th>pix_fmt</th><th>条数</th><th>占比</th><th>判定</th></tr>
+<tr><td class="mono">yuv420p</td><td>987</td><td>99.5%</td><td class="fail">❌ 8-bit</td></tr>
+<tr><td class="mono">yuvj420p</td><td>4</td><td>0.4%</td><td class="fail">❌ 8-bit (JPEG range)</td></tr>
+<tr><td class="mono">unknown</td><td>1</td><td>0.1%</td><td>—</td></tr>
+</table>
+<div class="key-finding">
+<strong>10-bit 通过率：0.0%（0/992）</strong><br>
+所有平台、所有来源、所有分辨率档位的样本——<b>无一例外都是 8-bit</b>。这是 UGC 内容的物理特性（手机录制默认 8-bit + 平台不保留 10-bit），属于"基线本身定义不合理"，不是数据问题。
+</div>
+
+<h2>三、各来源对比（最关键的分析）</h2>
+
+<table>
+<tr><th>来源</th><th>样本</th><th>1080P+</th><th>现代编码 (HEVC/AV1)</th><th>≥30fps</th><th>三维全过 (1080P+modern+30fps)</th></tr>
+<tr>
+  <td><b>TikTok</b></td><td>282</td>
+  <td class="pass">192 (68%)</td>
+  <td class="pass">249 (88%)</td>
+  <td class="pass">256 (91%)</td>
+  <td class="pass"><b>176 (62.4%)</b></td>
+</tr>
+<tr>
+  <td><b>YouTube</b></td><td>298</td>
+  <td class="pass">234 (79%)</td>
+  <td class="fail">0 (0%)</td>
+  <td class="warn">183 (61%)</td>
+  <td class="fail">0 (0.0%)</td>
+</tr>
+<tr>
+  <td><b>Instagram</b></td><td>326</td>
+  <td class="fail">4 (1%)</td>
+  <td class="fail">1 (0%)</td>
+  <td class="pass">298 (91%)</td>
+  <td class="fail">1 (0.3%)</td>
+</tr>
+<tr>
+  <td><b>Douyin</b></td><td>49</td>
+  <td class="warn">16 (33%)</td>
+  <td class="warn">12 (24%)</td>
+  <td class="pass">45 (92%)</td>
+  <td class="warn">8 (16.3%)</td>
+</tr>
+<tr>
+  <td><b>小红书</b></td><td>31</td>
+  <td class="warn">9 (29%)</td>
+  <td class="warn">9 (29%)</td>
+  <td class="pass">26 (84%)</td>
+  <td class="warn">7 (22.6%)</td>
+</tr>
+</table>
+
+<div class="callout-success">
+<b>关键洞察 — 各平台画质画像</b>
+<ul>
+<li><b>TikTok 是唯一"现代"的源</b>：HEVC 占 88%、1080P 占 68%、30fps 占 91%，三维联合通过率 <b>62.4%</b>，远超其他平台。原因：TikTok 在转码侧统一上 HEVC + 1080P 默认分发。</li>
+<li><b>YouTube 分辨率高但编码老</b>：79% 是 1080P+，但 100% 是 H.264。如果不卡编码，YouTube 是最大的 1080P 资产池。</li>
+<li><b>Instagram 是画质重灾区</b>：只有 1% 达到 1080P+，绝大多数 Reels 被压缩到 720P 或更低。<b>不建议用作高质量内容源</b>。</li>
+<li><b>Douyin / 小红书</b>：样本量小，但中文平台整体画质类似 IG（重压缩），需要更大样本验证。</li>
+</ul>
+</div>
+
+<h2>四、基线宽紧敏感度分析</h2>
+
+<p>同一份 992 条样本，在不同基线下的通过率：</p>
+
+<table>
+<tr><th>基线条件</th><th>通过率</th><th>评价</th></tr>
+<tr><td>原始 Premium Baseline（全 5 维严格）</td><td class="fail">0/992 (0.0%)</td><td>10-bit 是 dealbreaker</td></tr>
+<tr><td>放宽 10-bit（剩 4 维：1080P + 现代编码 + 30fps + 4Mbps）</td><td class="fail">6/992 (0.6%)</td><td>码率门槛太高</td></tr>
+<tr><td>再放宽到 2Mbps</td><td class="fail">23/992 (2.3%)</td><td>仍极少</td></tr>
+<tr><td>三维：1080P + 现代编码 + 30fps（无码率约束）</td><td class="warn">192/992 (19.4%)</td><td>TikTok-dominant</td></tr>
+<tr><td>二维：1080P + 30fps</td><td class="warn">342/992 (34.5%)</td><td>务实下限</td></tr>
+<tr><td>单维：1080P+</td><td class="pass">456/992 (46.0%)</td><td>纯分辨率筛选</td></tr>
+<tr><td>单维：≥720P</td><td class="pass">907/992 (91.4%)</td><td>排除明显低质</td></tr>
+</table>
+
+<h2>五、建议的多档实用基线</h2>
+
+<div class="summary-grid">
+<div class="summary-card success">
+<div class="label">S 级 · 旗舰</div>
+<div class="num">~2%</div>
+<div>1080P + HEVC/AV1 + 30fps + ≥2Mbps + 8-bit OK</div>
+</div>
+<div class="summary-card warn">
+<div class="label">A 级 · 推荐</div>
+<div class="num">~19%</div>
+<div>1080P + 现代编码 + 30fps（不卡码率）</div>
+</div>
+<div class="summary-card">
+<div class="label">B 级 · 可用</div>
+<div class="num">~35%</div>
+<div>1080P + 30fps（任何编码）</div>
+</div>
+</div>
+
+<div class="callout">
+<b>提案：放弃单一基线，改用 S/A/B 三档</b>
+<ul>
+<li><b>S 级（旗舰位）</b>：仅用于 hero 位置/精选推荐 — TikTok 高码率内容 + 抽样 1080P+HEVC 内容，约 2% 库存</li>
+<li><b>A 级（主力推荐池）</b>：1080P + 现代编码 + 30fps，TikTok 占 92% + 少量 Douyin/XHS，约 19% 库存</li>
+<li><b>B 级（补充池）</b>：1080P + 30fps（含 H.264），YouTube + TikTok 联合，约 35% 库存</li>
+<li><b>淘汰</b>：&lt;720P 或 &lt;24fps 的素材，约 9%</li>
+</ul>
+<b>10-bit 这一项强烈建议从基线移除</b> —— 在 UGC 语境下它不是"高标准"，而是"不可达"。</div>
+
+<h2>六、行动建议</h2>
+
+<h3>短期（1 周内）</h3>
+<ul>
+<li><b>把 ffprobe 探测写进 ingestion pipeline</b>：每条新入库素材自动跑一次 ffprobe（~3秒/条），把 width/height/codec/fps/bit_rate 写进 metadata.properties</li>
+<li><b>对存量 683K 条 ingested 资产补扫</b>：按当前速率（30/秒）约需 6-7 小时跑完，零成本</li>
+<li><b>按 S/A/B 三档打 quality_tier 标签</b>：写入 ItemFeatures.quality_score 或新增字段</li>
+</ul>
+
+<h3>中期（2-4 周）</h3>
+<ul>
+<li><b>推荐系统加权</b>：S 级权重 ×1.5，A 级 ×1.2，B 级 ×1.0，&lt;B 级降权或下架</li>
+<li><b>来源策略调整</b>：扩大 TikTok 采集比例（当前占 28%，建议提到 45%+，它是 A 级及以上的主要供给）</li>
+<li><b>对 Instagram 内容做差异化处理</b>：要么放弃画质要求（用内容质量为主）、要么直接降权</li>
+</ul>
+
+<h3>长期</h3>
+<ul>
+<li><b>SIDA 生成视频升级</b>：当前 103,800 条 ready 资产全是 720×1280 H.264 24fps（同一探测确认），需要升级 Seedance 生成参数到 1080P + 30fps</li>
+<li><b>引入 VMAF 评分</b>：纯 ffprobe 拿不到 VMAF，需要单独跑 vmaf 模型。可对 S 级抽样跑（量小），ROI 高</li>
+</ul>
+
+<h2>七、本次扫描成本核算</h2>
+
+<table>
+<tr><th>项目</th><th>实际开销</th></tr>
+<tr><td>采样耗时</td><td>~30 秒（15 并发 list）</td></tr>
+<tr><td>URL 解析</td><td>~50 秒（20 并发 playback）</td></tr>
+<tr><td>ffprobe 探测</td><td>~60 秒（30 并发 探 992 个 URL）</td></tr>
+<tr><td>总耗时</td><td><b>约 3 分钟</b></td></tr>
+<tr><td>带宽消耗</td><td>~30 MB（每条读 30KB 容器头）</td></tr>
+<tr><td>LLM / API 成本</td><td><b>¥0</b></td></tr>
+<tr><td>devbox CPU</td><td>极低（IO 密集，无解码）</td></tr>
+<tr><td>结果文件</td><td>probe_results_1000_20260528.json (~400KB)</td></tr>
+</table>
+
+<h2>八、产出文件</h2>
+<ul>
+<li><span class="mono">~/Desktop/内容缺口分析系统/probe_results_1000_20260528.json</span> — 992 条原始 ffprobe 结果</li>
+<li><span class="mono">~/Desktop/内容缺口分析系统/视频质量基线扫描报告_20260528.html</span> — 本报告</li>
+<li><span class="mono">devbox:/tmp/probe_ingested_1000.py</span> — 采样+探测脚本（可复用）</li>
+<li><span class="mono">devbox:/tmp/analyze_probe.py</span> — 聚合分析脚本</li>
+</ul>
+
+<div class="footnote">
+扫描时间：2026-05-28 ｜ 工具链：asset-center-cli + ffprobe 7.x ｜ 探测方式：HTTP Range Request 读容器头部，零下载<br>
+脚本可复用至全量扫描（683,697 条），预估 6-7 小时完成，依然零金钱成本。
+</div>
+
+</body>
+</html>

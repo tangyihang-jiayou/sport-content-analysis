@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动内容缺口分析 · L1/L2维度 · 20260528</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "SF Pro Display", Arial, sans-serif; background: #f0f2f5; color: #1a1a2e; line-height: 1.5; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 40px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .subtitle { color: #a8b2d8; font-size: 14px; }
+  .header .meta { display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap; }
+  .header .meta-item { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 20px; }
+  .header .meta-item .label { font-size: 11px; color: #7986cb; text-transform: uppercase; letter-spacing: 0.8px; }
+  .header .meta-item .value { font-size: 24px; font-weight: 700; color: #e0f7fa; }
+
+  .container { max-width: 1400px; margin: 0 auto; padding: 32px; }
+
+  .section { background: white; border-radius: 12px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .section-title { font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e8eaf6; display: flex; align-items: center; gap: 8px; }
+
+  /* Tier legend */
+  .legend { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Gap table */
+  .gap-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .gap-table th { background: #f5f5f7; color: #666; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 10px 12px; text-align: left; border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 10; }
+  .gap-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  .gap-table tr:hover td { background: #fafafa; }
+
+  .tier-s { background: linear-gradient(135deg, #ff1744 0%, #ff6b35 100%); }
+  .tier-a { background: linear-gradient(135deg, #ff9100 0%, #ffca28 100%); }
+  .tier-b { background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%); }
+  .tier-c { background: linear-gradient(135deg, #2196f3 0%, #03a9f4 100%); }
+  .tier-x { background: #9e9e9e; }
+
+  .tier-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; color: white; }
+  .tier-badge.S { background: linear-gradient(135deg, #ff1744, #ff6b35); }
+  .tier-badge.A { background: linear-gradient(135deg, #ff9100, #f9a825); }
+  .tier-badge.B { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+  .tier-badge.C { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+  .tier-badge.X { background: #9e9e9e; }
+  .tier-badge.new { background: linear-gradient(135deg, #6a1b9a, #ab47bc); }
+
+  .l1-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; background: #e8eaf6; color: #3949ab; }
+  .roi-val { font-weight: 700; }
+  .roi-high { color: #e53935; }
+  .roi-mid { color: #f57c00; }
+  .roi-low { color: #43a047; }
+  .roi-none { color: #9e9e9e; }
+
+  .supply-bar { display: inline-flex; align-items: center; gap: 6px; }
+  .supply-num { font-size: 12px; font-weight: 600; min-width: 24px; text-align: right; }
+
+  .q-count { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+  .q-high { background: #e8f5e9; color: #2e7d32; }
+  .q-mid { background: #fff3e0; color: #e65100; }
+  .q-low { background: #fce4ec; color: #b71c1c; }
+  .q-zero { background: #f5f5f5; color: #9e9e9e; }
+
+  .gap-bar-container { width: 100px; height: 6px; background: #e0e0e0; border-radius: 3px; display: inline-block; vertical-align: middle; }
+  .gap-bar { height: 100%; border-radius: 3px; }
+
+  /* Horizontal scroll */
+  .table-wrapper { overflow-x: auto; }
+
+  /* Summary cards */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); border-left: 4px solid #3949ab; }
+  .card .card-label { font-size: 11px; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .card .card-value { font-size: 28px; font-weight: 800; color: #1a1a2e; }
+  .card .card-sub { font-size: 11px; color: #666; margin-top: 4px; }
+  .card.red { border-left-color: #e53935; }
+  .card.orange { border-left-color: #ff9100; }
+  .card.green { border-left-color: #43a047; }
+  .card.purple { border-left-color: #7b1fa2; }
+
+  /* L1 section group */
+  .l1-group { margin-bottom: 4px; }
+  .l1-header { background: #e8eaf6; padding: 8px 12px; font-size: 13px; font-weight: 700; color: #3949ab; border-radius: 4px; margin: 8px 0 4px 0; }
+
+  /* Status chips */
+  .status-chip { display: inline-block; padding: 2px 7px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .chip-dispatched { background: #e8f5e9; color: #2e7d32; }
+  .chip-pending { background: #fff8e1; color: #f57f17; }
+  .chip-missing { background: #fce4ec; color: #c62828; }
+
+  /* Top 10 highlight */
+  .top-row td { font-weight: 600; }
+  .rank-badge { display: inline-block; width: 22px; height: 22px; border-radius: 50%; text-align: center; line-height: 22px; font-size: 11px; font-weight: 800; }
+  .rank-1 { background: #FFD700; color: #5d4037; }
+  .rank-2 { background: #C0C0C0; color: #424242; }
+  .rank-3 { background: #CD7F32; color: white; }
+  .rank-other { background: #e0e0e0; color: #616161; }
+
+  .progress-section { background: linear-gradient(135deg, #0f3460, #16213e); color: white; border-radius: 12px; padding: 28px; margin-bottom: 24px; }
+  .progress-title { font-size: 17px; font-weight: 700; margin-bottom: 20px; color: #e0f7fa; }
+  .progress-bar-outer { background: rgba(255,255,255,0.15); border-radius: 20px; height: 20px; margin: 8px 0; overflow: hidden; }
+  .progress-bar-inner { height: 100%; border-radius: 20px; background: linear-gradient(90deg, #26c6da, #4fc3f7); transition: width 0.5s; display: flex; align-items: center; padding: 0 10px; }
+  .progress-label { font-size: 11px; font-weight: 700; color: white; }
+  .progress-stats { display: flex; gap: 24px; margin-top: 16px; flex-wrap: wrap; }
+  .progress-stat { text-align: center; }
+  .progress-stat .p-val { font-size: 22px; font-weight: 800; color: #e0f7fa; }
+  .progress-stat .p-label { font-size: 11px; color: #80deea; }
+
+  .note { background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: #856404; margin: 12px 0; }
+
+  /* Sticky first column */
+  .gap-table td:first-child, .gap-table th:first-child { position: sticky; left: 0; background: white; z-index: 5; }
+  .gap-table th:first-child { background: #f5f5f7; z-index: 11; }
+
+  @media (max-width: 768px) {
+    .container { padding: 16px; }
+    .header { padding: 24px; }
+    .header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏋️ 运动内容缺口分析 · L1/L2维度</h1>
+  <div class="subtitle">基于供需分析的内容稀缺度评估 · 生成日期：2026-05-28 · 已升级至 Round 6</div>
+  <div class="meta">
+    <div class="meta-item"><div class="label">覆盖 L1 分类</div><div class="value">36</div></div>
+    <div class="meta-item"><div class="label">覆盖 L2 维度</div><div class="value">131</div></div>
+    <div class="meta-item"><div class="label">高ROI重点维度</div><div class="value">27</div></div>
+    <div class="meta-item"><div class="label">总 Query 数</div><div class="value">~23,074</div></div>
+    <div class="meta-item"><div class="label">三平台总 Seeds</div><div class="value">~69,222</div></div>
+    <div class="meta-item"><div class="label">覆盖平台</div><div class="value">YT · TK · IG</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Dispatch progress -->
+  <div class="progress-section">
+    <div class="progress-title">📡 Round 5 + Round 6 并行 Dispatch · 20260528</div>
+    <div style="font-size:13px;color:#80deea;margin-bottom:12px;">两个批次同时进行：广覆盖（R5）+ 高ROI深度（R6），max_workers=20 × 2 = 40 并发</div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:12px;color:#b2ebf2;margin-bottom:6px;">Round 5：v7 全量 batch（10,393 queries × 2 = 20,786 seeds，覆盖131个L2）</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" style="width:73%"><span class="progress-label">~73% (15,188/20,786)</span></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <div style="font-size:12px;color:#b2ebf2;margin-bottom:6px;">Round 6：v8 高ROI深度 batch（11,026 queries × 2 = 22,052 seeds，聚焦27个高ROI L2）</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" style="width:5%;background:linear-gradient(90deg,#ff6b35,#ffca28);"><span class="progress-label">启动中</span></div>
+      </div>
+    </div>
+
+    <div class="progress-stats">
+      <div class="progress-stat"><div class="p-val">1,654</div><div class="p-label">R1-R4 已发</div></div>
+      <div class="progress-stat"><div class="p-val">10,393</div><div class="p-label">R5 (广覆盖)</div></div>
+      <div class="progress-stat" style="background:rgba(255,193,7,0.2);border-radius:8px;padding:4px 8px;"><div class="p-val">11,026</div><div class="p-label">R6 (高ROI 1万)</div></div>
+      <div class="progress-stat"><div class="p-val">23,074</div><div class="p-label">总 queries</div></div>
+      <div class="progress-stat"><div class="p-val">69,222</div><div class="p-label">三平台总 seeds</div></div>
+    </div>
+
+    <div style="margin-top:20px;padding:14px;background:rgba(255,107,53,0.18);border-radius:10px;border:1px solid rgba(255,170,100,0.4);">
+      <div style="font-size:13px;font-weight:700;color:#fff5d5;margin-bottom:8px;">📸 IG平台补全（Round 7 平台补全）</div>
+      <div style="font-size:12px;color:#ffe4b5;margin-bottom:8px;">之前 R1-R6 只创建了 YouTube + TikTok seeds，遗漏了 Instagram 平台。本次为全部 23K queries 补创 IG seeds。</div>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" style="width:3%;background:linear-gradient(90deg,#e1306c,#fd1d1d,#f56040,#fcaf45);"><span class="progress-label">~3% (启动中)</span></div>
+      </div>
+      <div style="display:flex;gap:14px;margin-top:10px;font-size:12px;color:#ffe4b5;">
+        <span>label: <code style="background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:3px;">instagram_search</code></span>
+        <span>平台: <code style="background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:3px;">ig</code></span>
+        <span>目标: 23,074 seeds</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- High-ROI Round 6 deep breakdown -->
+  <div class="section" style="background:linear-gradient(135deg,#fff5f0,#ffffff);border-left:6px solid #ff6b35;">
+    <div class="section-title">🔥 Round 6 · 高ROI深度补充（11,026 queries → 27个L2维度）</div>
+    <p style="font-size:13px;color:#666;margin-bottom:16px">
+      针对ROI≥1.0×的内容缺口维度做深度补充。每个维度按ROI权重分配 query 量：
+      <strong>S级800条 · A级 600/450条 · B级 250条</strong>
+    </p>
+    <div class="table-wrapper">
+    <table class="gap-table">
+      <thead><tr><th>L1</th><th>L2</th><th>ROI</th><th>R6 query</th><th>累计query</th><th>说明</th></tr></thead>
+      <tbody>
+        <!-- S 级 -->
+        <tr style="background:#fff5f5"><td><span class="l1-tag">棒球/垒球</span></td><td><strong>击球技巧</strong></td><td><span class="roi-val roi-high">11.21×</span></td><td><span class="q-count q-high">800</span></td><td><strong>840</strong></td><td>击球技术、力学、各种球路、星级选手</td></tr>
+        <tr style="background:#fff5f5"><td><span class="l1-tag">舞蹈</span></td><td><strong>K-pop舞蹈</strong></td><td><span class="roi-val roi-high">10.14×</span></td><td><span class="q-count q-high">796</span></td><td><strong>836</strong></td><td>30个K-pop团体 × 多角度教学</td></tr>
+        <!-- A 级 3-5x -->
+        <tr><td><span class="l1-tag">跑步</span></td><td>减脂跑步</td><td><span class="roi-val roi-high">4.0×</span></td><td><span class="q-count q-high">600</span></td><td>720</td><td>Zone 2、HIIT、12-3-30、各人群</td></tr>
+        <tr><td><span class="l1-tag">舞蹈</span></td><td>Zumba/健身舞</td><td><span class="roi-val roi-high">4.4×</span></td><td><span class="q-count q-high">594</span></td><td>729</td><td>各种舞步 × 人群 × 时长</td></tr>
+        <tr><td><span class="l1-tag">运动营养</span></td><td>蛋白质/饮食</td><td><span class="roi-val roi-high">3.62×</span></td><td><span class="q-count q-high">600</span></td><td>630</td><td>蛋白来源、时机、人群、配餐</td></tr>
+        <tr><td><span class="l1-tag">游泳</span></td><td>入门教学</td><td><span class="roi-val roi-high">2.98×</span></td><td><span class="q-count q-high">599</span></td><td>629</td><td>四种泳姿基础、克服恐水</td></tr>
+        <!-- A 级 2-3x -->
+        <tr><td><span class="l1-tag">足球</span></td><td>控球/花式</td><td><span class="roi-val roi-high">2.96×</span></td><td><span class="q-count q-high">600</span></td><td>630</td><td>13个球星签名动作、各种过人</td></tr>
+        <tr><td><span class="l1-tag">健身综合</span></td><td>综合体能</td><td><span class="roi-val roi-high">2.91×</span></td><td><span class="q-count q-high">600</span></td><td>630</td><td>HIIT、Circuit、AMRAP、EMOM</td></tr>
+        <tr><td><span class="l1-tag">拳击/搏击</span></td><td>基础技术</td><td><span class="roi-val roi-high">2.5×</span></td><td><span class="q-count q-high">450</span></td><td>480</td><td>jab/cross/hook + 防守 + 站架</td></tr>
+        <tr><td><span class="l1-tag">冥想/呼吸</span></td><td>专注/正念</td><td><span class="roi-val roi-high">2.36×</span></td><td><span class="q-count q-high">450</span></td><td>490</td><td>正念技法 × 人群 × Headspace/Calm 风格</td></tr>
+        <tr><td><span class="l1-tag">冥想/呼吸</span></td><td>睡眠冥想</td><td><span class="roi-val roi-high">2.31×</span></td><td><span class="q-count q-high">448</span></td><td>548</td><td>Yoga Nidra、4-7-8、睡眠故事</td></tr>
+        <tr><td><span class="l1-tag">足球</span></td><td>射门/任意球</td><td><span class="roi-val roi-high">2.24×</span></td><td><span class="q-count q-high">445</span></td><td>505</td><td>各种射门 + 任意球大师签名球</td></tr>
+        <tr><td><span class="l1-tag">足球</span></td><td>体能训练</td><td><span class="roi-val roi-high">2.13×</span></td><td><span class="q-count q-high">426</span></td><td>456</td><td>位置专项 + 季节性计划</td></tr>
+        <tr><td><span class="l1-tag">篮球</span></td><td>基础技术</td><td><span class="roi-val roi-high">2.12×</span></td><td><span class="q-count q-high">443</span></td><td>473</td><td>运球/传球/上篮/防守站架</td></tr>
+        <!-- B 级 1.5-2x -->
+        <tr><td><span class="l1-tag">瑜伽</span></td><td>减脂/体重管理</td><td><span class="roi-val roi-mid">1.94×</span></td><td><span class="q-count q-mid">250</span></td><td>270</td><td>Power yoga、Hot yoga、PCOS等</td></tr>
+        <tr><td><span class="l1-tag">力量训练</span></td><td>居家力量</td><td><span class="roi-val roi-mid">1.82×</span></td><td><span class="q-count q-mid">246</span></td><td>306</td><td>自重 × 哑铃 × 弹力带</td></tr>
+        <tr><td><span class="l1-tag">瑜伽</span></td><td>晨间瑜伽</td><td><span class="roi-val roi-mid">1.75×</span></td><td><span class="q-count q-mid">250</span></td><td>310</td><td>5-30分钟序列、床上瑜伽</td></tr>
+        <tr><td><span class="l1-tag">羽毛球</span></td><td>基础技术</td><td><span class="roi-val roi-mid">1.69×</span></td><td><span class="q-count q-mid">245</span></td><td>265</td><td>握拍/步伐/各类击球</td></tr>
+        <tr><td><span class="l1-tag">舞蹈</span></td><td>入门基础</td><td><span class="roi-val roi-mid">1.67×</span></td><td><span class="q-count q-mid">246</span></td><td>266</td><td>节奏、isolation、基础舞步</td></tr>
+        <tr><td><span class="l1-tag">篮球</span></td><td>投篮训练</td><td><span class="roi-val roi-mid">1.65×</span></td><td><span class="q-count q-mid">242</span></td><td>262</td><td>BEEF、Curry/Lillard 风格</td></tr>
+        <tr><td><span class="l1-tag">拳击/搏击</span></td><td>健身拳击</td><td><span class="roi-val roi-mid">1.45×</span></td><td><span class="q-count q-mid">249</span></td><td>269</td><td>Shadow boxing cardio、HIIT、Tabata</td></tr>
+        <tr><td><span class="l1-tag">高尔夫</span></td><td>入门教学</td><td><span class="roi-val roi-mid">1.38×</span></td><td><span class="q-count q-mid">246</span></td><td>266</td><td>握杆/站姿/挥杆全流程</td></tr>
+        <tr><td><span class="l1-tag">综合拉伸</span></td><td>全身拉伸</td><td><span class="roi-val roi-mid">1.29×</span></td><td><span class="q-count q-mid">231</span></td><td><strong>231</strong></td><td>之前完全漏掉，本轮补齐</td></tr>
+        <tr><td><span class="l1-tag">冥想/呼吸</span></td><td>减压/焦虑冥想</td><td><span class="roi-val roi-mid">1.29×</span></td><td><span class="q-count q-mid">235</span></td><td>295</td><td>4-7-8、5-4-3-2-1 grounding、PMR</td></tr>
+        <tr><td><span class="l1-tag">力量训练</span></td><td>初学者入门</td><td><span class="roi-val roi-mid">1.13×</span></td><td><span class="q-count q-mid">249</span></td><td>289</td><td>5x5、Starting Strength、Stronglifts</td></tr>
+        <tr><td><span class="l1-tag">冥想/呼吸</span></td><td>入门冥想</td><td><span class="roi-val roi-low">0.99×</span></td><td><span class="q-count q-mid">242</span></td><td>377</td><td>1-30分钟入门、各种应用风格</td></tr>
+        <tr><td><span class="l1-tag">网球</span></td><td>基础技术</td><td><span class="roi-val roi-low">0.96×</span></td><td><span class="q-count q-mid">244</span></td><td>263</td><td>各种握法、所有泳姿基础技术</td></tr>
+        <tr style="background:#fff5e6;font-weight:700"><td colspan="3">总计</td><td>11,026</td><td>—</td><td>27个高ROI L2维度，平均408条/维度</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Summary cards -->
+  <div class="cards">
+    <div class="card red">
+      <div class="card-label">🔴 S级缺口（ROI≥5x）</div>
+      <div class="card-value">2</div>
+      <div class="card-sub">棒球击球技巧 11.2x · K-pop舞蹈 10.1x</div>
+    </div>
+    <div class="card orange">
+      <div class="card-label">🟠 A级缺口（ROI 2-5x）</div>
+      <div class="card-value">12</div>
+      <div class="card-sub">Zumba 4.4x · 减脂跑步 4.0x · 蛋白质饮食 3.6x ...</div>
+    </div>
+    <div class="card green">
+      <div class="card-label">🟡 B级缺口（ROI 1-2x）</div>
+      <div class="card-value">16</div>
+      <div class="card-sub">基础技术 / 入门教学类维度</div>
+    </div>
+    <div class="card purple">
+      <div class="card-label">🔵 待爬取（supply=-1）</div>
+      <div class="card-value">101</div>
+      <div class="card-sub">尚无数据，已补充 query 引导采集</div>
+    </div>
+  </div>
+
+  <!-- Key gap dimensions - top 30 scored -->
+  <div class="section">
+    <div class="section-title">🎯 Top-30 高缺口维度（已有ROI数据）</div>
+    <div class="legend">
+      <div class="legend-item"><div class="dot" style="background:linear-gradient(135deg,#ff1744,#ff6b35)"></div>S级 ROI≥5x</div>
+      <div class="legend-item"><div class="dot" style="background:linear-gradient(135deg,#ff9100,#f9a825)"></div>A级 ROI 2-5x</div>
+      <div class="legend-item"><div class="dot" style="background:linear-gradient(135deg,#2e7d32,#4caf50)"></div>B级 ROI 1-2x</div>
+      <div class="legend-item"><div class="dot" style="background:linear-gradient(135deg,#1565c0,#42a5f5)"></div>C级 ROI&lt;1x</div>
+    </div>
+    <div class="table-wrapper">
+    <table class="gap-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>L1</th>
+          <th>L2</th>
+          <th>ROI</th>
+          <th>现存供给</th>
+          <th>Gap分</th>
+          <th>Gap条形</th>
+          <th>本轮Query</th>
+          <th>缺口分析</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- S级 -->
+        <tr class="top-row" style="background:#fff5f5">
+          <td><span class="rank-badge rank-1">1</span></td>
+          <td><span class="l1-tag">舞蹈</span></td>
+          <td><strong>K-pop舞蹈</strong></td>
+          <td><span class="roi-val roi-high">10.14×</span></td>
+          <td><span class="supply-num">5</span></td>
+          <td><strong>4,139</strong></td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:100%;background:linear-gradient(90deg,#ff1744,#ff6b35)"></div></div></td>
+          <td><span class="q-count q-high">40 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>TikTok 独家爆发，仅5条存量，需求信号极强</td>
+        </tr>
+        <tr class="top-row" style="background:#fff5f5">
+          <td><span class="rank-badge rank-2">2</span></td>
+          <td><span class="l1-tag">棒球/垒球</span></td>
+          <td><strong>击球技巧</strong></td>
+          <td><span class="roi-val roi-high">11.21×</span></td>
+          <td><span class="supply-num">7</span></td>
+          <td><strong>3,962</strong></td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:96%;background:linear-gradient(90deg,#ff1744,#ff6b35)"></div></div></td>
+          <td><span class="q-count q-high">40 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>IG爆款ROI 16.6×，全平台均有需求，供给极少</td>
+        </tr>
+        <!-- A级 -->
+        <tr>
+          <td><span class="rank-badge rank-3">3</span></td>
+          <td><span class="l1-tag">跑步</span></td>
+          <td>减脂跑步</td>
+          <td><span class="roi-val roi-high">4.00×</span></td>
+          <td><span class="supply-num">2</span></td>
+          <td>2,310</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:56%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">120 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>IG only，减脂跑步需求旺盛，仅2条现存</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">4</span></td>
+          <td><span class="l1-tag">足球</span></td>
+          <td>体能训练</td>
+          <td><span class="roi-val roi-high">2.13×</span></td>
+          <td><span class="supply-num">2</span></td>
+          <td>1,232</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:30%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>IG only，运动员体能专项，极低供给</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">5</span></td>
+          <td><span class="l1-tag">游泳</span></td>
+          <td>入门教学</td>
+          <td><span class="roi-val roi-high">2.98×</span></td>
+          <td><span class="supply-num">10</span></td>
+          <td>898</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:22%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台需求，TK roi=11.8× 爆款特征明显</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">6</span></td>
+          <td><span class="l1-tag">运动营养</span></td>
+          <td>蛋白质/饮食</td>
+          <td><span class="roi-val roi-high">3.62×</span></td>
+          <td><span class="supply-num">21</span></td>
+          <td>772</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:19%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台高ROI，营养类内容需求持续旺盛</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">7</span></td>
+          <td><span class="l1-tag">高尔夫</span></td>
+          <td>入门教学</td>
+          <td><span class="roi-val roi-mid">1.38×</span></td>
+          <td><span class="supply-num">3</span></td>
+          <td>691</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:17%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>TK+IG，入门需求强，供给极少，转化潜力高</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">8</span></td>
+          <td><span class="l1-tag">拳击/搏击</span></td>
+          <td>基础技术</td>
+          <td><span class="roi-val roi-high">2.50×</span></td>
+          <td><span class="supply-num">15</span></td>
+          <td>624</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:15%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，基础技术需求强，健身格斗大众化趋势</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">9</span></td>
+          <td><span class="l1-tag">足球</span></td>
+          <td>射门/任意球</td>
+          <td><span class="roi-val roi-high">2.24×</span></td>
+          <td><span class="supply-num">12</span></td>
+          <td>622</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:15%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">60 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台均衡需求，射门类内容观看黏性强</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">10</span></td>
+          <td><span class="l1-tag">体操/技巧</span></td>
+          <td>柔韧训练</td>
+          <td><span class="roi-val roi-low">0.85×</span></td>
+          <td><span class="supply-num">1</span></td>
+          <td>602</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:15%;background:#9e9e9e"></div></div></td>
+          <td><span class="q-count q-zero">0 queries</span> <span class="status-chip chip-missing">缺失</span></td>
+          <td>ROI低于1×阈值，暂不补充；TK only，样本量极小</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">11</span></td>
+          <td><span class="l1-tag">瑜伽</span></td>
+          <td>减脂/体重管理</td>
+          <td><span class="roi-val roi-mid">1.94×</span></td>
+          <td><span class="supply-num">10</span></td>
+          <td>586</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:14%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>YT+IG，瑜伽减脂细分，女性用户高需求</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">12</span></td>
+          <td><span class="l1-tag">冥想/呼吸</span></td>
+          <td>减压/焦虑冥想</td>
+          <td><span class="roi-val roi-mid">1.29×</span></td>
+          <td><span class="supply-num">4</span></td>
+          <td>579</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:14%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-high">60 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>YT only，焦虑冥想细分需求强，心理健康趋势</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">13</span></td>
+          <td><span class="l1-tag">羽毛球</span></td>
+          <td>基础技术</td>
+          <td><span class="roi-val roi-mid">1.69×</span></td>
+          <td><span class="supply-num">8</span></td>
+          <td>564</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:14%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，亚裔用户高需求，基础教学空白大</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">14</span></td>
+          <td><span class="l1-tag">舞蹈</span></td>
+          <td>Zumba/健身舞</td>
+          <td><span class="roi-val roi-high">4.40×</span></td>
+          <td><span class="supply-num">64</span></td>
+          <td>545</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:13%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">135 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台爆款，虽有64条存量但需求巨大仍有缺口</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">15</span></td>
+          <td><span class="l1-tag">力量训练</span></td>
+          <td>初学者入门</td>
+          <td><span class="roi-val roi-mid">1.13×</span></td>
+          <td><span class="supply-num">4</span></td>
+          <td>506</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:12%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-high">40 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>TK+IG，初学者最高需求点，入门力训内容稀缺</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">16</span></td>
+          <td><span class="l1-tag">篮球</span></td>
+          <td>基础技术</td>
+          <td><span class="roi-val roi-high">2.12×</span></td>
+          <td><span class="supply-num">17</span></td>
+          <td>500</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:12%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，篮球基础需求稳定，供给相对不足</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">17</span></td>
+          <td><span class="l1-tag">舞蹈</span></td>
+          <td>入门基础</td>
+          <td><span class="roi-val roi-mid">1.67×</span></td>
+          <td><span class="supply-num">11</span></td>
+          <td>482</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:12%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，舞蹈入门通用需求，用户基础广</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">18</span></td>
+          <td><span class="l1-tag">健身综合</span></td>
+          <td>综合体能</td>
+          <td><span class="roi-val roi-high">2.91×</span></td>
+          <td><span class="supply-num">45</span></td>
+          <td>429</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:10%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，综合体能型内容ROI高，需求广泛</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">19</span></td>
+          <td><span class="l1-tag">冥想/呼吸</span></td>
+          <td>专注/正念</td>
+          <td><span class="roi-val roi-high">2.36×</span></td>
+          <td><span class="supply-num">31</span></td>
+          <td>417</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:10%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">40 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，正念冥想趋势向上，31条已不够</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">20</span></td>
+          <td><span class="l1-tag">拳击/搏击</span></td>
+          <td>健身拳击</td>
+          <td><span class="roi-val roi-mid">1.45×</span></td>
+          <td><span class="supply-num">12</span></td>
+          <td>403</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:10%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，非竞技健身拳击大众化需求</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">21</span></td>
+          <td><span class="l1-tag">冥想/呼吸</span></td>
+          <td>睡眠冥想</td>
+          <td><span class="roi-val roi-high">2.31×</span></td>
+          <td><span class="supply-num">38</span></td>
+          <td>370</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:9%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">100 queries</span> <span class="status-chip chip-dispatched">R4已发</span></td>
+          <td>全平台，睡眠内容需求持续增长</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">22</span></td>
+          <td><span class="l1-tag">篮球</span></td>
+          <td>投篮训练</td>
+          <td><span class="roi-val roi-mid">1.65×</span></td>
+          <td><span class="supply-num">19</span></td>
+          <td>368</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:9%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-mid">20 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，投篮练习细分需求稳定</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">23</span></td>
+          <td><span class="l1-tag">足球</span></td>
+          <td>控球/花式</td>
+          <td><span class="roi-val roi-high">2.96×</span></td>
+          <td><span class="supply-num">83</span></td>
+          <td>323</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:8%;background:linear-gradient(90deg,#ff9100,#f9a825)"></div></div></td>
+          <td><span class="q-count q-high">30 queries</span> <span class="status-chip chip-pending">R5中</span></td>
+          <td>全平台，控球技巧观看量巨大，83条仍有缺口</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">24</span></td>
+          <td><span class="l1-tag">瑜伽</span></td>
+          <td>晨间瑜伽</td>
+          <td><span class="roi-val roi-mid">1.75×</span></td>
+          <td><span class="supply-num">30</span></td>
+          <td>314</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:8%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-high">60 queries</span> <span class="status-chip chip-dispatched">R4已发</span></td>
+          <td>全平台，晨间习惯型内容留存率高</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">25</span></td>
+          <td><span class="l1-tag">棒球/垒球</span></td>
+          <td>投球技巧</td>
+          <td><span class="roi-val roi-low">0.55×</span></td>
+          <td><span class="supply-num">3</span></td>
+          <td>275</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:7%;background:#9e9e9e"></div></div></td>
+          <td><span class="q-count q-zero">0 queries</span> <span class="status-chip chip-missing">低ROI跳过</span></td>
+          <td>ROI 0.55×，低于1×阈值，暂不采集</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">26</span></td>
+          <td><span class="l1-tag">网球</span></td>
+          <td>基础技术</td>
+          <td><span class="roi-val roi-low">0.96×</span></td>
+          <td><span class="supply-num">14</span></td>
+          <td>247</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:6%;background:#9e9e9e"></div></div></td>
+          <td><span class="q-count q-low">19 queries</span> <span class="status-chip chip-dispatched">R4已发</span></td>
+          <td>略低于1×阈值，但接近，已少量采集</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">27</span></td>
+          <td><span class="l1-tag">网球</span></td>
+          <td>高阶技术</td>
+          <td><span class="roi-val roi-low">0.54×</span></td>
+          <td><span class="supply-num">4</span></td>
+          <td>241</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:6%;background:#9e9e9e"></div></div></td>
+          <td><span class="q-count q-zero">0 queries</span> <span class="status-chip chip-missing">低ROI跳过</span></td>
+          <td>ROI 0.54×，低于1×阈值，暂不采集</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">28</span></td>
+          <td><span class="l1-tag">冥想/呼吸</span></td>
+          <td>入门冥想</td>
+          <td><span class="roi-val roi-low">0.99×</span></td>
+          <td><span class="supply-num">16</span></td>
+          <td>240</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:6%;background:#9e9e9e"></div></div></td>
+          <td><span class="q-count q-high">135 queries</span> <span class="status-chip chip-dispatched">R3已发</span></td>
+          <td>接近1×，冥想入门基础型内容，已有采集</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">29</span></td>
+          <td><span class="l1-tag">综合拉伸</span></td>
+          <td>全身拉伸</td>
+          <td><span class="roi-val roi-mid">1.29×</span></td>
+          <td><span class="supply-num">31</span></td>
+          <td>228</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:6%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-zero">0 queries</span> <span class="status-chip chip-missing">⚠️漏掉</span></td>
+          <td>ROI 1.29x，已漏！v6有柔韧性训练/筋膜放松但无全身拉伸</td>
+        </tr>
+        <tr>
+          <td><span class="rank-badge rank-other">30</span></td>
+          <td><span class="l1-tag">力量训练</span></td>
+          <td>居家力量</td>
+          <td><span class="roi-val roi-mid">1.82×</span></td>
+          <td><span class="supply-num">91</span></td>
+          <td>190</td>
+          <td><div class="gap-bar-container"><div class="gap-bar" style="width:5%;background:linear-gradient(90deg,#4caf50,#8bc34a)"></div></div></td>
+          <td><span class="q-count q-high">60 queries</span> <span class="status-chip chip-dispatched">R4已发</span></td>
+          <td>全平台，居家健身是长青需求类目</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="note">⚠️ <strong>注意：综合拉伸/全身拉伸（ROI 1.29x）在现有 query 集中漏掉</strong>，v6 虽有"柔韧性训练"和"筋膜放松"但不是"全身拉伸"。建议 Round 6 补充 20 条。</div>
+  </div>
+
+  <!-- Full L1/L2 coverage map -->
+  <div class="section">
+    <div class="section-title">📊 全量 L1/L2 维度覆盖图（131个维度，按L1分组）</div>
+    <p style="font-size:13px;color:#666;margin-bottom:16px">
+      supply=-1 表示尚未被爬取到（需通过 query 引导 hermit 采集数据）；
+      supply≥0 表示已有爬取数据并进入 ROI 分析。
+    </p>
+
+    <!-- 舞蹈 -->
+    <div class="l1-header">🕺 舞蹈（4个L2，已有query覆盖：235条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>K-pop舞蹈</td><td><span class="roi-val roi-high">10.14×</span></td><td>5</td><td>4,139</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>Zumba/健身舞</td><td><span class="roi-val roi-high">4.40×</span></td><td>64</td><td>545</td><td><span class="q-count q-high">135</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>入门基础</td><td><span class="roi-val roi-mid">1.67×</span></td><td>11</td><td>482</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>拉丁/交谊舞</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">90</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>流行舞/K-pop</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>编舞/完整舞蹈</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">61</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>街舞/Hip-hop</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">110</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 棒球/垒球 -->
+    <div class="l1-header">⚾ 棒球/垒球（3个L2，已有query：140条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>击球技巧</td><td><span class="roi-val roi-high">11.21×</span></td><td>7</td><td>3,962</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>投球技巧</td><td><span class="roi-val roi-low">0.55×</span></td><td>3</td><td>275</td><td><span class="q-count q-zero">0</span></td><td><span class="status-chip chip-missing">低ROI</span></td></tr>
+        <tr><td>入门基础</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">80</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>进阶技术</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 跑步 -->
+    <div class="l1-header">🏃 跑步（5个L2，已有query：428条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>减脂跑步</td><td><span class="roi-val roi-high">4.00×</span></td><td>2</td><td>2,310</td><td><span class="q-count q-high">120</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>损伤预防/恢复</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>马拉松备赛</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 足球 -->
+    <div class="l1-header">⚽ 足球（6个L2，已有query：350条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>体能训练</td><td><span class="roi-val roi-high">2.13×</span></td><td>2</td><td>1,232</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>射门/任意球</td><td><span class="roi-val roi-high">2.24×</span></td><td>12</td><td>622</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>控球/花式</td><td><span class="roi-val roi-high">2.96×</span></td><td>83</td><td>323</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>初学者基础</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>守门员</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>控球技术/花式</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>体能/速度</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 游泳 -->
+    <div class="l1-header">🏊 游泳（8个L2，已有query：426条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>入门教学</td><td><span class="roi-val roi-high">2.98×</span></td><td>10</td><td>898</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>初学者入门</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>自由泳技术</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>蛙泳/仰泳/蝶泳</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>游泳健身/减脂</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>翻身/专项技术</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>开放水域/铁三</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 健身综合 -->
+    <div class="l1-header">💪 健身综合（11个L2，已有query：1,090条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>综合体能</td><td><span class="roi-val roi-high">2.91×</span></td><td>45</td><td>429</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>HIIT有氧</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">79</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>体重管理</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>健康生活方式</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">80</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>功能性训练</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">80</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 力量训练 -->
+    <div class="l1-header">🏋️ 力量训练（8个L2，已有query：844条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>初学者入门</td><td><span class="roi-val roi-mid">1.13×</span></td><td>4</td><td>506</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>居家力量</td><td><span class="roi-val roi-mid">1.82×</span></td><td>91</td><td>190</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-dispatched">R4已发</span></td></tr>
+        <tr><td>核心/腹部</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">100</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>腿部/臀部</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>胸部训练</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">80</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>背部训练</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>肩部/手臂</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>女性力量/塑形</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">59</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 冥想/呼吸 -->
+    <div class="l1-header">🧘 冥想/呼吸（6个L2，已有query：668条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>减压/焦虑冥想</td><td><span class="roi-val roi-mid">1.29×</span></td><td>4</td><td>579</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>专注/正念</td><td><span class="roi-val roi-high">2.36×</span></td><td>31</td><td>417</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>睡眠冥想</td><td><span class="roi-val roi-high">2.31×</span></td><td>38</td><td>370</td><td><span class="q-count q-high">100</span></td><td><span class="status-chip chip-dispatched">R4已发</span></td></tr>
+        <tr><td>入门冥想</td><td><span class="roi-val roi-low">0.99×</span></td><td>16</td><td>240</td><td><span class="q-count q-high">135</span></td><td><span class="status-chip chip-dispatched">R3已发</span></td></tr>
+        <tr><td>呼吸技巧</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">150</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 篮球 -->
+    <div class="l1-header">🏀 篮球（6个L2，已有query：311条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>基础技术</td><td><span class="roi-val roi-high">2.12×</span></td><td>17</td><td>500</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>投篮训练</td><td><span class="roi-val roi-mid">1.65×</span></td><td>19</td><td>368</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>NBA明星技术解析</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">80</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>控球/运球</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>防守技术</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>投篮/三分</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 瑜伽 -->
+    <div class="l1-header">🧘‍♀️ 瑜伽（7个L2，已有query：592条）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>减脂/体重管理</td><td><span class="roi-val roi-mid">1.94×</span></td><td>10</td><td>586</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>晨间瑜伽</td><td><span class="roi-val roi-mid">1.75×</span></td><td>30</td><td>314</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-dispatched">R4已发</span></td></tr>
+        <tr><td>初学者入门</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">120</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>柔韧性/拉伸</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>力量/平衡</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">60</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>孕期/产后瑜伽</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-high">40</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td>睡前/放松瑜伽</td><td>—</td><td>-1</td><td>—</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 高尔夫/拳击/羽毛球/网球 quick tables -->
+    <div class="l1-header">🏌️ 高尔夫 / 🥊 拳击/搏击 / 🏸 羽毛球 / 🎾 网球</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>L1</th><th>L2</th><th>ROI</th><th>Supply</th><th>Gap分</th><th>Query数</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td><span class="l1-tag">高尔夫</span></td><td>入门教学</td><td><span class="roi-val roi-mid">1.38×</span></td><td>3</td><td>691</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td><span class="l1-tag">拳击/搏击</span></td><td>基础技术</td><td><span class="roi-val roi-high">2.50×</span></td><td>15</td><td>624</td><td><span class="q-count q-high">30</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td><span class="l1-tag">拳击/搏击</span></td><td>健身拳击</td><td><span class="roi-val roi-mid">1.45×</span></td><td>12</td><td>403</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td><span class="l1-tag">羽毛球</span></td><td>基础技术</td><td><span class="roi-val roi-mid">1.69×</span></td><td>8</td><td>564</td><td><span class="q-count q-mid">20</span></td><td><span class="status-chip chip-pending">R5中</span></td></tr>
+        <tr><td><span class="l1-tag">网球</span></td><td>基础技术</td><td><span class="roi-val roi-low">0.96×</span></td><td>14</td><td>247</td><td><span class="q-count q-low">19</span></td><td><span class="status-chip chip-dispatched">R4已发</span></td></tr>
+        <tr><td><span class="l1-tag">网球</span></td><td>高阶技术</td><td><span class="roi-val roi-low">0.54×</span></td><td>4</td><td>241</td><td><span class="q-count q-zero">0</span></td><td><span class="status-chip chip-missing">低ROI跳过</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <!-- 其他运动 -->
+    <div class="l1-header">🎱 乒乓球 / 🏐 排球 / 🎿 骑行 / 🥋 武术 / 其他（共计101个未爬取L2）</div>
+    <p style="font-size:12px;color:#666;padding:8px 0;">这些维度全部为 supply=-1（未爬取），已通过 Round 5 batch 全量补充 query，等待 Hermit 采集后再做 ROI 评估。覆盖：乒乓球(8) · 排球(3) · 骑行(4) · 武术/太极(3) · 攀岩(5) · 普拉提(1) · 曲棍球(1) · 板球(1) · 椭圆机(1) · 橄榄球(1) · 跳绳(1) · 运动康复(1) · 运动心理(1) · 运动营养(1) · 滑冰/滑雪(2) 等</p>
+  </div>
+
+  <!-- Dispatch rounds summary -->
+  <div class="section">
+    <div class="section-title">🚀 全量 Dispatch 进度汇总（截至 2026-05-28）</div>
+    <div class="table-wrapper"><table class="gap-table">
+      <thead><tr><th>轮次</th><th>文件</th><th>Query数</th><th>Seeds数</th><th>覆盖内容</th><th>状态</th></tr></thead>
+      <tbody>
+        <tr><td>Round 1</td><td>queries_weekly_20260527.json</td><td>525</td><td>1,050</td><td>top-gap维度 + 病毒视频改写</td><td><span class="status-chip chip-dispatched">✅ 完成</span></td></tr>
+        <tr><td>Round 2</td><td>queries_zerosupply_20260528.json</td><td>640</td><td>1,280</td><td>32个zero-supply L2维度</td><td><span class="status-chip chip-dispatched">✅ 完成</span></td></tr>
+        <tr><td>Round 3</td><td>queries_topgap_extra_20260528.json</td><td>300</td><td>600</td><td>Top-20 gap维度扩展</td><td><span class="status-chip chip-dispatched">✅ 完成</span></td></tr>
+        <tr><td>Round 4</td><td>queries_gap21to30_20260528.json</td><td>190</td><td>380</td><td>Gap维度#21-#30（修复Top20截止点错误）</td><td><span class="status-chip chip-dispatched">✅ 完成</span></td></tr>
+        <tr style="background:#e8f5e9"><td><strong>Round 5</strong></td><td>queries_full_batch_20260528.json</td><td><strong>10,393</strong></td><td><strong>20,786</strong></td><td>全量131维度扩展（v4+v5+v6 delta + targeted）</td><td><span class="status-chip chip-pending">⏳ 73%</span></td></tr>
+        <tr style="background:#fff5e6"><td><strong>Round 6</strong></td><td>queries_highroi_10k_20260528.json</td><td><strong>11,026</strong></td><td><strong>22,052</strong></td><td>🔥 高ROI深度补充（27个L2维度，加权~408条/维度）</td><td><span class="status-chip chip-pending">⏳ 启动</span></td></tr>
+        <tr style="background:#f5f5f5;font-weight:700"><td>合计</td><td>—</td><td>23,074</td><td>46,148</td><td>覆盖36个L1 · 131个L2维度 · 高ROI重点维度11K queries</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note">✅ <strong>Round 6 已包含「综合拉伸/全身拉伸」</strong>（231条query，27个高ROI L2维度统一深度补充）。</div>
+  </div>
+
+  <!-- Logic note -->
+  <div class="section">
+    <div class="section-title">📐 Query 覆盖策略说明</div>
+    <table class="gap-table" style="max-width:700px">
+      <thead><tr><th>ROI 区间</th><th>判断</th><th>Query数量</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><span class="roi-val roi-high">≥ 5×</span></td><td>S级顶级</td><td>40条</td><td>最高采集密度，全角度覆盖</td></tr>
+        <tr><td><span class="roi-val roi-high">2× ~ 5×</span></td><td>A级高缺口</td><td>30条</td><td>重点采集，多角度展开</td></tr>
+        <tr><td><span class="roi-val roi-mid">1× ~ 2×</span></td><td>B级中缺口</td><td>20条</td><td>标准采集</td></tr>
+        <tr><td><span class="roi-val roi-low">0.5× ~ 1×</span></td><td>C级低缺口</td><td>15条（or 跳过）</td><td>视情况采集</td></tr>
+        <tr><td><span class="roi-val roi-none">supply = -1</span></td><td>待爬取</td><td>20~80条</td><td>先引导采集，获得ROI信号后再评估</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="text-align:center;color:#999;font-size:12px;padding:24px">
+    生成时间：2026-05-28 · 缺口分析系统 v5 · Round 5 Dispatch 进行中
+  </div>
+</div>
+
+</body>
+</html>
