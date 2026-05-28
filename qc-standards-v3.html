@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Topic 质检标准 v3 — Gemini 批量质检版</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; background: #f7f8fa; color: #1a1a2e; font-size: 14px; line-height: 1.6; }
+
+  /* ── Header ── */
+  .header { background: #0f172a; color: #fff; padding: 40px 48px 32px; }
+  .header-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .header h1 { font-size: 24px; font-weight: 700; letter-spacing: -.3px; }
+  .header .meta { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .version-badge { background: #3b82f6; color: white; border-radius: 6px; padding: 4px 12px; font-size: 12px; font-weight: 700; letter-spacing: .3px; white-space: nowrap; }
+  .header-stats { display: flex; gap: 32px; margin-top: 24px; flex-wrap: wrap; }
+  .hstat { }
+  .hstat .val { font-size: 28px; font-weight: 700; color: #60a5fa; }
+  .hstat .lbl { font-size: 11px; color: #64748b; margin-top: 2px; text-transform: uppercase; letter-spacing: .4px; }
+
+  /* ── Layout ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 32px 24px 64px; }
+
+  /* ── Section ── */
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #64748b; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #e5e7eb; }
+
+  /* ── has_issue table ── */
+  .verdict-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 32px; }
+  .verdict-card { border-radius: 10px; padding: 16px; text-align: center; }
+  .verdict-card.n  { background: #f0fdf4; border: 1.5px solid #86efac; }
+  .verdict-card.y  { background: #fef2f2; border: 1.5px solid #fca5a5; }
+  .verdict-card.b  { background: #fffbeb; border: 1.5px solid #fcd34d; }
+  .verdict-card .code { font-family: 'SF Mono', monospace; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+  .verdict-card.n .code { color: #16a34a; }
+  .verdict-card.y .code { color: #dc2626; }
+  .verdict-card.b .code { color: #d97706; }
+  .verdict-card .desc { font-size: 12px; color: #555; line-height: 1.4; }
+
+  /* ── Rule cards ── */
+  .rule-card { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.06); margin-bottom: 16px; overflow: hidden; }
+  .rule-header { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid #f1f5f9; }
+  .rule-num { width: 28px; height: 28px; border-radius: 7px; background: #0f172a; color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .rule-name { font-family: 'SF Mono', monospace; font-size: 13px; font-weight: 600; color: #1e40af; flex: 1; }
+  .rule-zh { font-size: 13px; color: #374151; }
+  .prec-tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+  .prec-perfect { background: #dcfce7; color: #15803d; }
+  .prec-good    { background: #fef9c3; color: #854d0e; }
+  .prec-na      { background: #f1f5f9; color: #64748b; }
+  .rule-body { padding: 16px 20px; }
+  .rule-def { font-size: 13px; color: #374151; margin-bottom: 14px; line-height: 1.65; }
+  .rule-def strong { color: #0f172a; }
+
+  /* ── Examples ── */
+  .ex-group { margin: 10px 0; }
+  .ex-group-label { font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+  .ex { background: #f8fafc; border-radius: 6px; padding: 7px 12px; margin-bottom: 5px; font-size: 12px; border-left: 3px solid #e2e8f0; font-family: 'SF Mono', monospace; line-height: 1.5; }
+  .ex.ok   { border-left-color: #22c55e; background: #f0fdf4; }
+  .ex.bad  { border-left-color: #ef4444; background: #fef2f2; }
+  .ex .tag { font-weight: 700; margin-right: 6px; }
+  .ex.ok  .tag { color: #16a34a; }
+  .ex.bad .tag { color: #dc2626; }
+  .ex .reason { color: #64748b; font-style: italic; margin-left: 4px; }
+
+  /* ── Whitelist grid ── */
+  .wl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .wl-item { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 7px; padding: 10px 12px; font-size: 12px; }
+  .wl-item .wl-cat { font-weight: 600; color: #15803d; margin-bottom: 3px; }
+  .wl-item .wl-ex  { color: #555; font-size: 11px; }
+
+  /* ── Never-flag inside 'other' ── */
+  .allow-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; }
+  .allow-item { background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 9px 12px; font-size: 12px; }
+  .allow-item .cat { font-weight: 600; color: #0369a1; font-size: 12px; }
+  .allow-item .ex  { color: #555; font-size: 11px; margin-top: 2px; }
+  .block-item { background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 9px 12px; font-size: 12px; }
+  .block-item .cat { font-weight: 600; color: #dc2626; font-size: 12px; }
+  .block-item .ex  { color: #555; font-size: 11px; margin-top: 2px; }
+
+  /* ── Deleted rules ── */
+  .deleted-card { background: #fff; border-radius: 12px; border: 1.5px dashed #fca5a5; margin-bottom: 12px; overflow: hidden; opacity: .85; }
+  .deleted-header { display: flex; align-items: center; gap: 10px; padding: 12px 20px; background: #fef2f2; }
+  .del-badge { background: #fee2e2; color: #dc2626; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+  .deleted-body { padding: 12px 20px; font-size: 12px; color: #555; line-height: 1.65; }
+
+  /* ── Table ── */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  th { background: #f8fafc; padding: 10px 14px; text-align: left; font-weight: 600; color: #64748b; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; border-bottom: 2px solid #e5e7eb; }
+  td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ── issue_detail box ── */
+  .detail-box { background: #f8fafc; border-radius: 8px; padding: 14px; font-size: 12px; font-family: 'SF Mono', monospace; }
+  .detail-box .ok-ex  { color: #16a34a; margin-bottom: 4px; }
+  .detail-box .bad-ex { color: #dc2626; margin-bottom: 4px; }
+
+  /* ── Version history ── */
+  .version-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f1f5f9; }
+  .version-row:last-child { border-bottom: none; }
+  .v-tag { background: #1e293b; color: #f1f5f9; border-radius: 5px; padding: 2px 8px; font-size: 11px; font-weight: 700; font-family: monospace; white-space: nowrap; align-self: flex-start; margin-top: 2px; }
+  .v-tag.current { background: #2563eb; }
+  .v-desc { font-size: 13px; color: #374151; line-height: 1.5; }
+
+  @media (max-width: 640px) {
+    .header { padding: 24px 20px; }
+    .wl-grid, .allow-grid { grid-template-columns: 1fr; }
+    .verdict-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>Topic 质检标准</h1>
+      <div class="meta">Gemini 批量自动质检版 · 基于822条人工标注数据迭代</div>
+    </div>
+    <div class="version-badge">v3 · 2026-05-28</div>
+  </div>
+  <div class="header-stats">
+    <div class="hstat"><div class="val">7</div><div class="lbl">现行规则数</div></div>
+    <div class="hstat"><div class="val">65.6%</div><div class="lbl">当前AI精度</div></div>
+    <div class="hstat"><div class="val">822</div><div class="lbl">人工标注样本</div></div>
+    <div class="hstat"><div class="val">2</div><div class="lbl">已删除规则</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- has_issue -->
+  <div class="section">
+    <div class="section-title">has_issue 三档定义</div>
+    <div class="verdict-grid">
+      <div class="verdict-card n">
+        <div class="code">N</div>
+        <div class="desc">无问题<br>正常入库</div>
+      </div>
+      <div class="verdict-card y">
+        <div class="code">Y</div>
+        <div class="desc">明确有问题<br>人工抽查后去除</div>
+      </div>
+      <div class="verdict-card b">
+        <div class="code">border</div>
+        <div class="desc">边界案例<br>全量人工复核</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rules -->
+  <div class="section">
+    <div class="section-title">7 条现行规则</div>
+
+    <!-- R1 sport_unspecified -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">1</div>
+        <div class="rule-name">sport_unspecified</div>
+        <div class="rule-zh">未指明运动项目</div>
+        <span class="prec-tag prec-perfect">精度 99.6% ✓</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          Topic 使用了通用运动动词/名词，但整个文本中<strong>没有出现任何具体运动名称</strong>。<br>
+          触发词（单独出现时）：<code>the swing / the drill / the kick / the pass / the stance / the turn / players / footwork / dribbling</code> 等
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 放行（有运动名称）</div>
+          <div class="ex ok"><span class="tag">N</span>"the swing in golf"<span class="reason">— golf 已命名</span></div>
+          <div class="ex ok"><span class="tag">N</span>"basketball spin move"<span class="reason">— basketball 已命名</span></div>
+          <div class="ex ok"><span class="tag">N</span>"the goalkeeper pass-back rule"<span class="reason">— goalkeeper 暗示足球，放行</span></div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y（无运动名称）</div>
+          <div class="ex bad"><span class="tag">Y</span>"Why beginners stop thinking about the swing"<span class="reason">— 哪个运动的挥杆？</span></div>
+          <div class="ex bad"><span class="tag">Y</span>"How a solo player can build dribbling from beginner to pro"<span class="reason">— 哪个运动的运球？</span></div>
+          <div class="ex bad"><span class="tag">Y</span>"The miss pass: how skipping a receiver stretches a defensive line"<span class="reason">— 哪个运动？</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R2 too_many_items -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">2</div>
+        <div class="rule-name">too_many_items</div>
+        <div class="rule-zh">列举项目过多（≥8项）</div>
+        <span class="prec-tag prec-perfect">精度 100% ✓</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          Topic 明确列举 <strong>≥8 个</strong>独立的技术/动作/练习/器材。<br>
+          <strong>永远不标：</strong>训练计划时长（<code>7-day plan / 30-day challenge</code>）、配速数字（<code>180 steps/min</code>）
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y</div>
+          <div class="ex bad"><span class="tag">Y</span>"A 19-technique boxing combo built one move at a time"</div>
+          <div class="ex bad"><span class="tag">Y</span>"The bodyweight barbell complex that chains 11 movements"</div>
+          <div class="ex bad"><span class="tag">Y</span>"15 pickleball paddles on-court tested and ranked"</div>
+          <div class="ex bad"><span class="tag">Y</span>"A beginner yoga flow built around 17 steps toward a peak pose"</div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 放行</div>
+          <div class="ex ok"><span class="tag">N</span>"7 tips for tennis serve"<span class="reason">— 7条，不超</span></div>
+          <div class="ex ok"><span class="tag">N</span>"A 30-day running challenge for beginners"<span class="reason">— 时间周期，不算</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R3 person_too_narrow -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">3</div>
+        <div class="rule-name">person_too_narrow</div>
+        <div class="rule-zh">过窄的具名无名小人物</div>
+        <span class="prec-tag prec-na">历史稳定</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          Topic 以<strong>完全匿名的无名小人物</strong>（圈内都不认识的普通从业者/小博主）为唯一主角。<br>
+          <strong>有疑问时：不标，宁可放行。</strong>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 永远放行</div>
+          <div class="ex ok"><span class="tag">N</span>任何专业运动员、知名教练、球队、赛事</div>
+          <div class="ex ok"><span class="tag">N</span>"a swim coach's foundation for beginners"<span class="reason">— 匿名定位，放行</span></div>
+          <div class="ex ok"><span class="tag">N</span>Jeff Nippard / Peter Attia / Yoga With Adriene 等大V</div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y</div>
+          <div class="ex bad"><span class="tag">Y</span>"Katy Appleton's 11-minute beginner yoga sequence"<span class="reason">— 瑜伽圈无名从业者</span></div>
+          <div class="ex bad"><span class="tag">Y</span>"Coach Andy Chong's fundamentals for the badminton serve"<span class="reason">— 圈内不算顶流</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R4 unclear_value -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">4</div>
+        <div class="rule-name">unclear_value</div>
+        <div class="rule-zh">完全无选题价值</div>
+        <span class="prec-tag prec-perfect">精度 100% ✓</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          Topic 里<strong>完全没有</strong>可识别的运动名称、动作名称、技术名称——只有空洞的形容词/副词。<br>
+          判断：看完后能知道「这个视频在教什么」吗？不知道 → Y
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y</div>
+          <div class="ex bad"><span class="tag">Y</span>"Getting better at sports"</div>
+          <div class="ex bad"><span class="tag">Y</span>"Why athletes succeed"</div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 放行</div>
+          <div class="ex ok"><span class="tag">N</span>"Why your front foot position changes everything in a golf downswing"<span class="reason">— 有golf+downswing，方向清晰</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R5 empty_or_no_value -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">5</div>
+        <div class="rule-name">empty_or_no_value</div>
+        <div class="rule-zh">纯点击诱饵，无任何内容信息</div>
+        <span class="prec-tag prec-na">合理规则</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">Pure click-bait，没有任何关于「将学到什么」的暗示。</div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y</div>
+          <div class="ex bad"><span class="tag">Y</span>"You won't believe what this coach said"</div>
+          <div class="ex bad"><span class="tag">Y</span>"This changed everything for me"</div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 放行</div>
+          <div class="ex ok"><span class="tag">N</span>"Why most beginner runners overstride — and the drill that fixes it in one session"<span class="reason">— 有具体内容方向</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R6 other -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">6</div>
+        <div class="rule-name">other</div>
+        <div class="rule-zh">非运动/健身内容</div>
+        <span class="prec-tag prec-good">精度 28.6% → 收紧中</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          只在内容与运动/健身/体能/户外活动<strong>完全无关</strong>时标 Y。<strong>要极其保守，宁可放行。</strong>
+        </div>
+
+        <div class="ex-group-label" style="margin-bottom:8px;font-size:11px;font-weight:600;color:#0369a1;text-transform:uppercase;">✅ 以下一律放行（这些都是运动相关内容）</div>
+        <div class="allow-grid">
+          <div class="allow-item">
+            <div class="cat">摩托车/机动车运动</div>
+            <div class="ex">group rides、离合器操控、sport bike骑姿</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">气功/太极/冥想/呼吸练习</div>
+            <div class="ex">摆臂气功、调息、昆达里尼、Ayurvedic breathwork</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">所有形式的舞蹈</div>
+            <div class="ex">House dance、Bachata、现代舞、芭蕾、慢舞</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">自行车运动（含装备维护）</div>
+            <div class="ex">刹车线更换、MTB维修、变速调整、骑行装备</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">徒步/登山/露营/背包</div>
+            <div class="ex">路线导航、帐篷搭建、背包减重、高海拔技术</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">潜水/水下运动</div>
+            <div class="ex">洞穴潜水、自由潜水、鲨鱼互动、水下摄影</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">自卫/武器训练</div>
+            <div class="ex">蝴蝶刀练习、近身防卫、棍术</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">户外生存/安全技能</div>
+            <div class="ex">荒野导航、野生动物安全（户外运动背景）</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">面部/眼部训练</div>
+            <div class="ex">面部瑜伽、眼部肌肉训练</div>
+          </div>
+          <div class="allow-item">
+            <div class="cat">运动医学/运动科学</div>
+            <div class="ex">肩袖损伤、运动康复、运动营养、运动生理</div>
+          </div>
+        </div>
+
+        <div class="ex-group-label" style="margin-top:14px;margin-bottom:8px;font-size:11px;font-weight:600;color:#dc2626;text-transform:uppercase;">❌ 这些才标 Y（真正非运动）</div>
+        <div class="allow-grid">
+          <div class="block-item">
+            <div class="cat">纯摄影/摄像</div>
+            <div class="ex">相机设备选购、镜头对比（无运动背景）</div>
+          </div>
+          <div class="block-item">
+            <div class="cat">电子游戏</div>
+            <div class="ex">Cricket 24游戏操作、FIFA模式攻略</div>
+          </div>
+          <div class="block-item">
+            <div class="cat">烹饪/饮食（无运动关联）</div>
+            <div class="ex">食谱制作、厨房技巧</div>
+          </div>
+          <div class="block-item">
+            <div class="cat">金融/法律</div>
+            <div class="ex">滑雪场法律免责、理财建议</div>
+          </div>
+          <div class="block-item">
+            <div class="cat">纯灵性/宗教（无健身关联）</div>
+            <div class="ex">查克拉能量学、塔罗牌</div>
+          </div>
+          <div class="block-item">
+            <div class="cat">家居修缮/工程</div>
+            <div class="ex">水管修理、装修建议、物理实验</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- R7 mixed -->
+    <div class="rule-card">
+      <div class="rule-header">
+        <div class="rule-num">7</div>
+        <div class="rule-name">mixed_unrelated_points</div>
+        <div class="rule-zh">主题混杂，完全无关</div>
+        <span class="prec-tag prec-good">精度 71.4%</span>
+      </div>
+      <div class="rule-body">
+        <div class="rule-def">
+          Topic 强行组合了<strong>完全无关的多个主题</strong>，导致内容方向混乱。<br>
+          若两个话题有运动逻辑上的自然关联（热身+防伤、技术+心理）→ <strong>不标</strong>。
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✗ 标 Y</div>
+          <div class="ex bad"><span class="tag">Y</span>"How to improve your tennis serve AND why the stock market affects athlete contracts"</div>
+        </div>
+        <div class="ex-group">
+          <div class="ex-group-label">✓ 放行（有关联）</div>
+          <div class="ex ok"><span class="tag">N</span>"Pre-workout mobility + post-workout recovery"<span class="reason">— 相关，放行</span></div>
+          <div class="ex ok"><span class="tag">N</span>"The psychology of choking AND the breathing technique to reset"<span class="reason">— 相关，放行</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Deleted rules -->
+  <div class="section">
+    <div class="section-title">已删除规则（禁止再用）</div>
+
+    <div class="deleted-card">
+      <div class="deleted-header">
+        <span class="del-badge">已删除</span>
+        <span style="font-family:monospace;font-size:13px;font-weight:600;color:#991b1b;text-decoration:line-through;">too_professional_or_medical</span>
+        <span style="font-size:12px;color:#991b1b;margin-left:4px;">精度 0%，连续2轮人工复核，70+条全部误杀</span>
+      </div>
+      <div class="deleted-body">
+        <strong>删除原因</strong>：模型将运动医学/运动康复/运动生理全部错误标记为「过于医疗」。
+        肩袖损伤、潜水减压病、网球肘处理、气功清肺、耳压平衡——这些全是合法运动内容。<br>
+        <strong>结论</strong>：运动教学内容池中，「运动伤病+运动康复+运动生理」永远合法，此规则逻辑上不成立。
+      </div>
+    </div>
+
+    <div class="deleted-card">
+      <div class="deleted-header">
+        <span class="del-badge">已删除</span>
+        <span style="font-family:monospace;font-size:13px;font-weight:600;color:#991b1b;text-decoration:line-through;">exaggerated_or_factual_risk</span>
+        <span style="font-size:12px;color:#991b1b;margin-left:4px;">精度 0%，连续2轮人工复核，30+条全部误杀</span>
+      </div>
+      <div class="deleted-body">
+        <strong>删除原因</strong>：LLM 无法区分「有争议的运动科学观点」和「真正危险的错误信息」。
+        被误杀的全部是合法内容：<em>runners can skip water mid-run / beginner can land backflip in one session / ease off the front brake on MTB / breathing raises natural EPO</em>。<br>
+        <strong>结论</strong>：Topic 层不判断内容科学性，这是视频本身的责任。
+      </div>
+    </div>
+  </div>
+
+  <!-- Global whitelist -->
+  <div class="section">
+    <div class="section-title">全局白名单（无论触发哪条规则，一律不标）</div>
+    <div class="wl-grid">
+      <div class="wl-item">
+        <div class="wl-cat">训练计划时长</div>
+        <div class="wl-ex">7-day / 4-week / 30-day / 12-week</div>
+      </div>
+      <div class="wl-item">
+        <div class="wl-cat">配速/表现数字</div>
+        <div class="wl-ex">sub-3-hour marathon / 180 steps/min cadence / 5K pace</div>
+      </div>
+      <div class="wl-item">
+        <div class="wl-cat">具名专业运动员/教练/球队/赛事</div>
+        <div class="wl-ex">LeBron / Messi / Serena / Klopp / NBA / 奥运会...</div>
+      </div>
+      <div class="wl-item">
+        <div class="wl-cat">运动物理/生物力学/技术分析</div>
+        <div class="wl-ex">哪怕术语复杂或结论有争议，一律放行</div>
+      </div>
+      <div class="wl-item">
+        <div class="wl-cat">运动医学/运动伤病/康复</div>
+        <div class="wl-ex">肩袖、髌骨、脱臼、网球肘、减压病...</div>
+      </div>
+      <div class="wl-item">
+        <div class="wl-cat">反常识但合理的运动建议</div>
+        <div class="wl-ex">"skip water mid-run" / "ease off the front brake"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- issue_detail spec -->
+  <div class="section">
+    <div class="section-title">issue_detail 写法规范</div>
+    <div class="rule-card">
+      <div class="rule-body">
+        <div class="rule-def">指出<strong>具体词/短语</strong>，不要泛泛而谈。简洁，1-2句英文。格式：[具体词] + [违反规则原因]</div>
+        <div class="detail-box">
+          <div class="ok-ex">✓ "Topic discusses 'the swing' and 'the drill' without naming any sport."</div>
+          <div class="ok-ex">✓ "Lists 19 distinct techniques (≥8 threshold)."</div>
+          <div class="ok-ex">✓ "Topic subject 'Katy Appleton' is not a recognized figure in yoga/fitness."</div>
+          <div style="margin-top:8px;">
+          <div class="bad-ex">✗ "This topic has an issue."</div>
+          <div class="bad-ex">✗ "Too many items listed."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Version history -->
+  <div class="section">
+    <div class="section-title">版本历史</div>
+    <div class="rule-card">
+      <div class="rule-body" style="padding:12px 20px;">
+        <div class="version-row">
+          <span class="v-tag">v1</span>
+          <span class="v-desc">初版，6类规则，整体精度低</span>
+        </div>
+        <div class="version-row">
+          <span class="v-tag">v2</span>
+          <span class="v-desc">新增 sport_unspecified；放宽 too_professional_or_medical / exaggerated / person_too_narrow 门槛；整体精度 20.1%（5.26人工复核）</span>
+        </div>
+        <div class="version-row">
+          <span class="v-tag current">v3</span>
+          <span class="v-desc"><strong>删除 too_professional_or_medical（0%精度，2轮连续误杀）；删除 exaggerated_or_factual_risk（0%精度，2轮连续误杀）；大幅扩展 other 白名单（+摩托车/气功/舞蹈/潜水/自行车维修/徒步露营等8类）；整体精度 65.6%（5.27人工复核，448条）</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Perf summary -->
+  <div class="section">
+    <div class="section-title">实测精度汇总</div>
+    <table>
+      <tr>
+        <th>批次</th>
+        <th>人工复核数</th>
+        <th>AI整体精度</th>
+        <th>最大误杀源</th>
+        <th>主力TP规则</th>
+      </tr>
+      <tr>
+        <td>5.26（1.9万批次）</td>
+        <td>374条</td>
+        <td style="color:#dc2626;font-weight:700;">20.1%</td>
+        <td>too_professional_or_medical（0%）</td>
+        <td>person_too_narrow</td>
+      </tr>
+      <tr>
+        <td>5.27（1.2万批次）</td>
+        <td>448条</td>
+        <td style="color:#16a34a;font-weight:700;">65.6%</td>
+        <td>too_professional_or_medical（0%）+ other（28.6%）</td>
+        <td>sport_unspecified（99.6%，占TP 84%）</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="text-align:center;color:#94a3b8;font-size:11px;padding-top:16px;">
+    Topic 质检标准 v3 · Gemini 批量质检版 · 2026-05-28
+  </div>
+
+</div>
+</body>
+</html>
