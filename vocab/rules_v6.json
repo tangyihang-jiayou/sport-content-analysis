@@ -1,0 +1,961 @@
+{
+  "l1": [
+    [
+      "冥想/呼吸",
+      "\\bmeditation\\b|\\bmindfulness\\b|\\bbreathwork\\b|wim.?hof|\\bpranayama\\b|box breathing|\\bbreathing\\b.*technique|\\bbreath.*exercise\\b|\\bbreath.?work\\b|\\btrataka\\b|\\bhypnosis\\b|\\bhypnotherapy\\b|\\bsleep.*hypnosis\\b|\\bsound.*healing\\b|\\bsinging.*bowl\\b|\\bsound.*bath\\b|\\bASMR\\b|\\baffirmation[s]?\\b|\\bmanifest(?:ation)?\\b|\\bsubconscious\\b|\\btheta.*wave[s]?\\b|\\bbinaural\\b|\\bsubliminal\\b|\\blaw.*attraction\\b|\\bself.?hypnosis\\b|\\bguided.*meditation\\b|\\bflowstate\\b|\\bflow.*state\\b|\\bflow.*hack\\b|\\bbinaural\\b|\\btheta.*brain\\b|\\bnervous.*system.*reset\\b|\\bstress.*relief\\b.*(?:meditat|breath|calm|mind)\\b|\\bcalm.*(?:down|mind|anxiet)\\b|\\binner.*peace\\b|\\bButeyko\\b|\\bcoherent breathing\\b|\\bnasal breathing\\b|\\bdiaphragmatic\\b|\\bbelly breathing\\b|\\b478 breathing\\b|\\b4.?7.?8 breath\\b|\\bcoherent breath\\b|\\bnervous system regulation\\b|\\bvagal\\b.*nerve|\\bpolyvagal\\b|\\bsomatic\\b.*breath|\\bsomatic\\b.*exercise|\\bsomatic\\b.*release"
+    ],
+    [
+      "普拉提",
+      "\\bpilates\\b"
+    ],
+    [
+      "瑜伽",
+      "\\byoga\\b|\\byogi\\b|\\basana\\b|\\bvinyasa\\b|\\bhatha\\b|warrior pose|downward dog|sun salutation|chaturanga|savasana|\\bforward fold\\b|yoga(?:flow|practice|routine|challenge|class|session|mat|tip[s]?|pose[s]?|workout|beginner)|morningyoga|eveningyoga|bedtimeyoga|yin.*yoga|restorative.*yoga"
+    ],
+    [
+      "气功/太极",
+      "\\bqigong\\b|\\bqi gong\\b|\\bbaduanjin\\b|\\bba duan jin\\b|\\btai chi\\b|\\btaichi\\b|\\bshaolin.*qi\\b|8.?piece.*brocade"
+    ],
+    [
+      "篮球",
+      "\\bbasketball\\b|\\bnba\\b|\\bdribbling\\b|\\bdribble\\b|\\bcrossover\\b|\\blayup[s]?\\b|three.?point|free.?throw|\\bkobe\\b|\\bcurry\\b.*shot|\\bjordan\\b.*move|pick.and.roll|alley.?oop|\\bhoops\\b|\\bjump shot\\b|\\bball handling\\b|\\bbackboard\\b|\\bfull court\\b|\\bshooting form\\b|\\btraveling\\b.*(?:legal|accidental|footwork|basketball|dribble)"
+    ],
+    [
+      "足球",
+      "\\bsoccer\\b|free kick|corner kick|\\bgoalkeeper\\b|\\bgoalie\\b|cruyff turn|ball mastery|first touch|\\bnutmeg\\b|keep.?up|\\btekkers\\b|ronaldo.*skill|messi.*skill|\\bwinger[s]?\\b|\\bstriker[s]?\\b|\\bknuckleball\\b|football.*boot|boot.*football|football.*(?:shot|tackle|technique|skill)|(?:shot|tackle|technique|skill).*football|off.ball|aerial pass|through ball|set piece|skill.*move.*defender|skill.*real match|power shoot|long.?range.*(?:pass|shoot|shot)|long.?range.*football|\\bfake turn\\b|\\bpanenka[s]?\\b|on the pitch|\\bthe pitch\\b|driven.*floated.*chipped|\\baround.?the.?world\\b|\\bforward\\b.*goalkeeper|\\bgoalkeeper\\b.*forward|\\blong ball[s]?\\b|\\bjuggling\\b.*football|\\bfootball\\b.*juggling|\\bmidfielder[s]?\\b|\\bwing.back[s]?\\b|\\bback three\\b|\\bback five\\b|\\bscissors move\\b|\\bscissor kick\\b|\\b1v1\\b.*(?:attacker|defender|forward|weaker)|\\bsole control\\b|\\bGuardiola\\b|\\bManchester.*(?:City|United)\\b|\\bpositional play\\b|\\brabona\\b|\\btrivela\\b|\\belastico\\b|rainbow.*flick|(?:soccer|football).*skill[s]?|skill.*(?:soccer|football)|\\bscissor.*kick\\b|bicycle.*kick|\\bvolley.*(?:goal|shot)\\b|football.*trick|soccer.*trick|\\bskill.*move\\b|(?:ronaldo|cr7).*(?:chop|move|skill)|modric.*(?:move|skill)|\\bball.*mastery\\b|\\bkeepie.?uppie\\b|\\bkeepy.?uppy\\b"
+    ],
+    [
+      "网球",
+      "\\btennis\\b|\\btennis.*serve\\b|\\bserve.*tennis\\b|tennis.*volley|tennis.*forehand|tennis.*backhand|\\bdjokovic\\b|\\bfederer\\b|\\bnadal\\b|tennis.*mechanic|\\btopspin\\b.*tennis|tennis.*topspin|\\btennis.*(?:tip[s]?|lesson|drill|technique|return|slice|topspin)\\b|\\btennis.*beginner\\b|\\btennis.*elbow\\b|\\btennis.*serve.*tip\\b|\\bgroundstroke\\b|\\btopspin.*forehand\\b|\\bslice.*backhand\\b"
+    ],
+    [
+      "高尔夫",
+      "\\bgolf\\b|\\bgolfer[s]?\\b|\\bgolf.*swing\\b|\\bswing.*golf\\b|\\bputting\\b|\\bchipping\\b|golf.*stance|golf.*grip|bunker shot|\\bwedge\\b.*(?:golf|shot)|\\bbackswing\\b|\\bfairway\\b|\\biron.*shot\\b|\\btee.*shot\\b|\\bgreenside\\b|golf.*iron|golf.*course|\\bdriving distance\\b|\\bswing.*takeaway\\b|\\btakeaway\\b.*swing|\\bswing path\\b|\\bclub.*path\\b|\\boff the tee\\b|\\bdriver.*(?:setup|swing|adjust)\\b|\\bstinger\\b.*(?:shot|swing|ball)|\\bTiger Woods\\b|\\bgolf.*(?:swing|tip[s]?|lesson|drill|practice|course|putt|chip|iron|driver|wedge)\\b|\\bdriver.*golf\\b|\\bputter\\b|\\bgolf.*beginner\\b|\\bgolf.*handicap\\b|\\bgolf.*ball.*(?:flight|spin)\\b"
+    ],
+    [
+      "羽毛球",
+      "\\bbadminton\\b|\\bshuttlecock\\b|\\bshuttle\\b.*(?:net|court|smash|drop|hairpin|forehand|backhand|tight)|(?:net|court|drop|hairpin).*\\bshuttle\\b|\\bbadminton.*smash\\b|\\bsmash\\b.*(?:arm strength|wrist|body rotation|timing)|\\bbadminton.*(?:tip[s]?|trick[s]?|drill|lesson|smash|serve|defense|footwork)\\b|\\bbadminton.*(?:beginner|tutorial)\\b|\\bsmash.*badminton\\b|\\bnet.*kill.*badminton\\b|\\bclear.*badminton\\b|\\bdrop.*shot.*badminton\\b"
+    ],
+    [
+      "乒乓球",
+      "table tennis|ping.?pong"
+    ],
+    [
+      "排球",
+      "\\bvolleyball\\b|beach volleyball|\\bfloat serve\\b|\\bjump serve\\b|spike.*timing|spike.*approach|approach.*spike|\\bsetter\\b.*(?:volleyball|court)|\\blibero\\b|\\blibero\\b|\\bflying.*dig\\b|\\bdolphin.*dive\\b|\\btopspin.*serve\\b|\\boverhand.*serve\\b|\\bunderhand.*serve\\b|\\bvolleyball.*(?:dig|drill|tutorial|tip[s]?|defense)\\b|\\bbounce.*bump\\b|\\bsetter.*tip\\b|back.*row.*(?:attack|hit)\\b"
+    ],
+    [
+      "棒球/垒球",
+      "\\bbaseball\\b|\\bpitching\\b|\\bbatting\\b|\\bsoftball\\b|curveball|fastball|\\bcatcher\\b.*(?:read|signal|throw|play|oppos|team)"
+    ],
+    [
+      "板球",
+      "\\bcricket\\b|\\bcricketer[s]?\\b|\\bleg spin\\b|\\boff spin\\b|\\bleg spinner\\b|T20.*cricket|\\bspin bowling\\b|\\bwicket\\b|\\bcricket\\b.*sport|\\bcricket\\b.*bat|\\bcricket\\b.*bowl|\\bcricket\\b.*field|\\bbowler\\b.*cricket|\\bbatsman\\b|\\bbatting\\b.*cricket|\\bspinner\\b.*cricket|\\bwicket\\b|\\bover\\b.*cricket|\\bcrease\\b.*cricket|\\bIPL\\b|\\bbig hit\\b.*cricket|\\bgully\\b.*cricket"
+    ],
+    [
+      "皮克球",
+      "\\bpickleball\\b|\\bpickleball\\b|\\bpickleball.*paddle\\b|\\bdink\\b|\\bthird shot drop\\b|\\bkitchen\\b.*pickleball|\\bnon.?volley zone\\b"
+    ],
+    [
+      "台球/斯诺克",
+      "\\bbilliards\\b|\\bsnooker\\b|\\bpool table\\b|\\bcue ball\\b|pool.*foul|foul.*pool|\\bpool shot\\b|\\b8.ball\\b|\\b9.ball\\b|\\b10.ball\\b|\\bpool.*rule[s]?\\b|\\bpool.*game\\b|open table.*pool|pool.*break|\\bbreak shot\\b|\\bside spin\\b.*(?:deflect|throw|swerve|aim)|(?:deflect|throw|swerve).*\\bside spin\\b|\\bpool.*(?:trick|shot|technique|aim)\\b|\\bbilliards.*(?:trick|tip|aim)\\b|\\b8.?ball.*pool\\b|\\b9.?ball\\b|\\bcue.*tip\\b|\\bpool.*table.*(?:brush|iron|cloth)\\b|\\bbilliard\\b|\\bsnooker\\b|\\bpool\\b.*(?:shot|cue|table|game)|\\b8.?ball\\b|\\b9.?ball\\b|\\bcue\\b.*(?:stick|technique|grip)|\\bbreak shot\\b|\\bbank shot\\b|\\bcut shot\\b|\\bspin\\b.*pool|\\bEnglish\\b.*pool|\\bfollow\\b.*cue|\\bdraw\\b.*cue"
+    ],
+    [
+      "长曲棍球",
+      "\\blacrosse\\b"
+    ],
+    [
+      "曲棍球",
+      "\\bfield hockey\\b"
+    ],
+    [
+      "飞盘",
+      "\\bfrisbee\\b|\\bdisc golf\\b|\\bultimate frisbee\\b|\\bultimate frisbee\\b|\\bdisc golf\\b|\\bdiscgolf\\b|\\bdisc.*throw\\b|\\bbackhand.*disc\\b|\\bforehand.*disc\\b|\\bhammer throw\\b.*disc|\\bhuck\\b.*disc|\\bcup.*defense\\b|\\bpaul mcbeth\\b|\\bdiscraft\\b|\\binnova\\b"
+    ],
+    [
+      "壁球/手球",
+      "\\bsquash\\b|\\bhandball\\b|\\bracquetball\\b"
+    ],
+    [
+      "橄榄球",
+      "\\brugby\\b|\\bNFL\\b|\\bquarterback\\b|\\btouchdown\\b|\\bamerican football\\b|\\bgridiron\\b|\\brugby\\b|\\bAmerican football\\b|\\bNFL\\b|\\bquarterback\\b|\\bwide receiver\\b|\\brunning back\\b|\\bdefensive end\\b|\\bcornerback\\b|\\blineman\\b|\\btackling\\b|\\bblocking\\b.*football|\\bplay action\\b|\\baudible\\b|\\bpocket\\b.*passing|\\bsnap\\b.*football|\\bpunt\\b|\\bfield goal\\b|\\bextra point\\b|\\bbowl\\b.*game"
+    ],
+    [
+      "武术/太极",
+      "\\bkung fu\\b|\\bkarate\\b|\\bjudo\\b|\\btaekwondo\\b|\\bwushu\\b|\\bjiu.?jitsu\\b|\\bbjj\\b|\\bmartial arts\\b|\\bwrestling\\b|\\bgrappling\\b|\\btakedown\\b|\\btriangle choke\\b|\\barmbar\\b|\\bhip throw\\b|\\barm drag\\b|\\bno.gi\\b|\\bnogi\\b|\\bguard pass\\b|\\bover.under grip\\b|\\bsingle.leg\\b.*take|wing chun|wingchun|\\bseoi.?nage\\b|\\bosoto gari\\b|\\bmorote seoi\\b|\\bippon\\b|\\bkumite\\b|half guard|mount position|butterfly guard|\\bde la riva\\b|\\bkimura\\b|\\brubber guard\\b|\\bkata guruma\\b|\\bkrav maga\\b|\\bgetting mounted\\b|\\bmounted\\b.*escape|\\btornado.*kick\\b|\\breverse.*sweep.*kick\\b|\\bbutterly.*kick\\b|\\bwushu.*(?:form|kick|jump)\\b|\\bkung.?fu.*(?:form|move)\\b|\\bsparring\\b|\\bkata\\b|\\bpoomsae\\b|\\bforms?\\b.*(?:martial|kung|wushu)|\\btai chi\\b|\\btaichi\\b|\\bt.ai chi\\b|\\bqigong\\b|\\bwing chun\\b|\\bxing yi\\b|\\bxingyi\\b|\\bbagua\\b|\\bba gua\\b|\\bkung fu\\b|\\bshaolin\\b|\\bwushu\\b|\\bsanda\\b|\\bsanshou\\b|\\biron palm\\b|\\biron shirt\\b|\\biron body\\b|\\bchi sao\\b|\\bsticky hand\\b|\\bwooden dummy\\b|\\bnunchaku\\b|\\bnunchucks\\b|\\bstaff\\b.*martial|\\bsword\\b.*form|\\bkata\\b.*form"
+    ],
+    [
+      "拳击/搏击",
+      "\\bboxing\\b|\\bboxer[s]?\\b|\\bpunch(?:ing|es|ed)?\\b|\\bjab\\b|\\bleft hook\\b|\\bright hook\\b|\\buppercut\\b|kickboxing|\\bmuay thai\\b|\\bMMA\\b|\\bUFC\\b|self.?defense|\\bsparring\\b|\\bshadowbox\\b|\\bheavy bag\\b|\\bbag work\\b|\\bpunch.*combination\\b|\\bcombination.*punch\\b|\\bfight training\\b|\\bfighting.*class\\b|\\bfight.*gym\\b|\\bpeekaboo\\b.*(?:style|box|foot)|\\bspeedbag\\b|\\bspeed.*bag\\b|\\bheavy.*bag\\b|\\bpunch(?:ing)?\\b.*bag|\\bshadow.*box(?:ing)?\\b|\\bbox(?:ing)?\\b.*drill[s]?|\\bhand.*wrap[s]?\\b|\\bgloves?\\b.*boxing|\\bboxing.*(?:mitt|pad)\\b|\\bgirl.*box(?:ing)?\\b|\\bwomen.*(?:bjj|jiu.?jitsu|self.?defense)\\b|\\bwomen.*empowered\\b.*(?:gjj|bjj|martial)\\b|\\bpull.*counter\\b|\\bspinning.*(?:heel|back).*kick\\b|\\bgrappling\\b|\\bjiu.?jitsu\\b|\\bbjj.*(?:tip|move|drill)\\b|\\bwrestling.*(?:move|takedown|drill)\\b|\\bgrappling.*drill\\b|\\bspar(?:ring)?\\b.*(?:tip|round|session)\\b"
+    ],
+    [
+      "跑步",
+      "\\brunning\\b|\\brunner[s]?\\b|\\bmarathon\\b|\\bmarathoner[s]?\\b|half.marathon|\\b5k\\b|\\b10k\\b|\\bsprint\\b|\\bsprinter[s]?\\b|\\bjogging\\b|run.*form|mile.*pace|treadmill|race.*day|\\boverstriding\\b|\\bfoot strike\\b|\\bwalk.run\\b|\\bshin splint[s]?\\b|\\bultra.?run\\b|\\bultramarathon\\b|\\b100.mile\\b|before.*\\ba run\\b|before.*\\brun\\b.*(?:stretch|warm|dynamic|drill)|\\bcalf.*run\\b|\\brun.*calf\\b|\\ba skip\\b|\\bb skip\\b.*(?:run|drill|pace)|\\bbiomechanics\\b.*run|run.*biomechanics|\\bincline.*walk\\b|\\bwalking.*incline\\b|\\btreadmill.*incline\\b|\\brun.*form\\b|\\brunning.*form\\b|\\brunning.*pace[s]?\\b|\\brun.*tip[s]?\\b|\\bbeginners.*(?:run|jogging)\\b|\\blearn.*run\\b|\\brun.*starter\\b|\\bcouch.*5k\\b"
+    ],
+    [
+      "游泳",
+      "\\bswimming\\b|\\bswimmer[s]?\\b|\\bfreestyle swim\\b|\\bbreaststroke\\b|\\bbackstroke\\b|\\bbutterfly stroke\\b|swim.*technique|swim.*drill|flip turn|open water swim|\\bswim cap\\b|\\bhigh elbow.*swim\\b|\\bswim.*lesson\\b|freestyle.*(?:water|pool|speed|mistakes?|stroke|kick|rotation|form|fix|body|leg|elbow|arm)|(?:water|pool|speed|form|fix).*freestyle|water.*tread|tread.*water|\\bdive.*pool\\b|\\bpool.*dive\\b|float.*(?:pool|water|beginner|surface|technique)|deep.*end|breath.*underwater|underwater.*breath|jump.*into.*water|feet.first.*(?:water|entry)|artisticswimming|synchronizedswimming|\\bsynchro\\b|\\bsynchro.*swim\\b|synchronized.*swim|\\bopen.*water\\b|\\btriathlon.*swim\\b"
+    ],
+    [
+      "骑行",
+      "\\bcycling\\b|\\bcyclist[s]?\\b|\\bpeloton\\b|mountain bik|\\bmtb\\b|road bike|\\bspin class\\b|indoor cycling|\\bcadence\\b|\\bturbo trainer\\b|FTP.*cycling|watt.*cycling|\\bbike[s]?\\b|\\bdrivetrain\\b|\\bchain.*(?:clean|length|size|cut|lube)|\\bderaill\\b|\\bBMX\\b|\\bbmx.*(?:trick|skill|jump)\\b|\\blongboard\\b|\\bbalance.*board\\b|\\bskate.*(?:long|board).*(?:trick|speed)\\b|\\bbike.*trick[s]?\\b|\\bcycling.*benefit[s]?\\b|\\bgravel.*(?:bike|cycling|road)\\b|\\bbike.*fit\\b|\\bcycling.*fit\\b|\\bclimbing.*(?:bike|cycling)\\b|\\bdescent.*cycling\\b|\\bcycle.*commut\\b|\\bbike.*commut\\b|\\bcycling.*commut\\b"
+    ],
+    [
+      "跳绳",
+      "\\bjump rope\\b|\\bskipping rope\\b|\\bdouble under\\b|\\bjumping rope\\b|\\bskip.*rope\\b|\\bjump.*rope.*(?:trick|tip[s]?|workout|beginner|tutorial|skill)\\b|\\bcrossover.*jump\\b|\\bcriss.?cross.*jump\\b|\\bboxer.*skip\\b|\\bpv.*cha.*cha\\b|\\bdouble.*dutch\\b|\\bjump rope\\b|\\bjumping rope\\b|\\bskipping rope\\b|\\bdouble under[s]?\\b|\\bcrossover\\b.*jump rope|\\bbasic bounce\\b.*rope|\\bspeed rope\\b|\\bweighted rope\\b|\\bboxing rope\\b"
+    ],
+    [
+      "体操/技巧",
+      "\\bgymnastics\\b|\\bgymnast\\b|\\bcartwheel\\b|\\bhandstand\\b|\\bheadstand\\b|\\bbackflip\\b|\\bfrontflip\\b|aerial.*trick|\\bacrobat\\b|\\btumbling\\b|\\bplanche\\b|\\bcalisthen\\b|\\bmuscle.?up[s]?\\b|\\btricking\\b|\\bwalkover\\b"
+    ],
+    [
+      "举重竞技",
+      "\\bweightlifting\\b|\\bpowerlifting\\b|\\bclean and jerk\\b|\\bclean.*jerk\\b|\\bsnatch\\b|\\bweightlifting\\b|\\bolympic lifting\\b|\\bclean and jerk\\b|\\bsnatch\\b.*weightlifting|\\bclean & jerk\\b|\\bpower clean\\b|\\bhang clean\\b|\\bhang snatch\\b|\\bsplit jerk\\b|\\bpush jerk\\b|\\bjerk dip\\b|\\bbarbell\\b.*technique|\\bweightlifting belt\\b"
+    ],
+    [
+      "壶铃",
+      "\\bkettlebell\\b|\\bcrossfit\\b|\\bbox jump\\b|\\bkettlebell\\b|\\bturkish get up\\b|\\bturkish get.?up\\b|\\bsnatch\\b.*kettlebell|\\bswing\\b.*kettlebell|\\bclean\\b.*kettlebell|\\bgoblet squat\\b|\\bbottoms up\\b.*press|\\bbear hold\\b|\\bRKC\\b|\\bStrongFirst\\b|\\bSFG\\b"
+    ],
+    [
+      "力量训练",
+      "strength training|weight training|\\bbarbell\\b|\\bdeadlift\\b|\\bsquat[s]?\\b|bench press|\\bdumbbell[s]?\\b|\\bbodybuilding\\b|\\bbicep[s]?\\b|\\btricep[s]?\\b|\\bglute[s]?\\b|hip thrust|chest.*exercise|overhead press|\\bshoulder press\\b|\\bdelt\\b|\\bhypertrophy\\b|progressive overload|lat pulldown|cable.*exercise|bulgarian split|\\brep range\\b|\\bbulking\\b|\\bcutting.*phase\\b|\\bmuscle.*build\\b|\\bbuild.*muscle\\b|\\bmuscle growth\\b|\\blift.*weight\\b|\\bweight.*lift\\b|\\bsuperset\\b|\\bdrop set\\b|\\bprotein.*muscle\\b|\\bcaloric.*surplus\\b|pull.?up[s]?\\b|push.*day|pull.*day|\\bPPL\\b|upper.*lower.*split|workout.*split|training.*split[s]?|\\bskinny.*bulk\\b|\\bbulk.*skinny\\b|\\bback width\\b|\\bback thickness\\b|resistance training|\\bsix.?pack\\b|\\babs.*workout\\b|\\bcore.*workout\\b|\\bcalves\\b|\\bcalf\\b.*(?:muscle|exercise|raise|train)|hip thrust|glute.*(?:exercise|workout|bridge|activation)|cable.*(?:row|fly|pull|curl|kickback)|arnold press|face pull|lat pulldown|preacher curl|hammer curl|drag curl|pendlay row|rdl\\b|romanian deadlift|overhead press|\\bohp\\b|tricep.*(?:extension|dip|pushdown|overhead)|shoulder.*(?:workout|press|exercise)|chest.*(?:workout|exercise|press|day)|back.*workout|lat.*workout|arm.*workout|build.*(?:glutes|chest|lats|bicep|tricep|back)|grow.*(?:chest|back|glutes|bicep|tricep)|glute.*bridge|hip.*hinge|seated.*row|standing.*row|incline.*(?:press|curl)|decline.*press|skull crusher|close.*grip.*bench|wide.*grip|neutral.*grip|supinating.*curl|progressive.*overload|muscle.*hypertrophy|time under tension|mind.*muscle|\\blat[s]?\\b.*(?:exercise[s]?|workout|tip[s]?|best|grow|build)|(?:exercise|workout).*\\blat[s]?\\b|\\bleg.*(?:day|workout|session)\\b|\\blegday\\b|\\bshoulder press\\b|\\bshoulder.*press\\b|\\bchest.*press\\b|\\bincline.*press\\b|\\bdecline.*press\\b|\\barm.*day\\b|\\barmday\\b|sh(?:ou|uo)lder.*press|shoulder.*press|\\bshoudler\\b|\\bplank[s]?\\b|\\bstepup[s]?\\b|\\bglutetraining\\b|\\bgluteday\\b|\\blegday\\b(?!workout)|\\bback.*day\\b|\\bchest.*day\\b|\\barm.*day\\b|\\bshoulder.*day\\b|\\bupper.*body.*(?:warm.?up|tip|session)\\b|\\bback.*warm.?up\\b|\\bmurph\\b.*(?:workout|wod|challenge)\\b|\\bsamsulek\\b|\\bsam.*sulek\\b|\\bsmith machine\\b|\\bnordic curl\\b|\\bjefferson curl\\b|\\breverse nordic\\b|\\bgoblet squat\\b|\\bbulgarian split\\b|\\brack pull\\b|\\bgood morning\\b|\\bhip thrust\\b|\\bglute bridge\\b|\\bhamstring curl\\b|\\bpec deck\\b|\\bcable fly\\b|\\binverted row\\b|\\bface pull\\b|\\barnold press\\b|\\bfront squat\\b|\\bback squat\\b|\\bRDL\\b|\\bromanian deadlift\\b|\\bsumo deadlift\\b|\\bconventional deadlift\\b|\\boverhead press\\b|\\bmilitary press\\b|\\bskullcrusher\\b|\\bpullover\\b|\\bcalf raise\\b|\\bleg curl\\b|\\bleg extension\\b|\\bbench press\\b|\\bincline press\\b|\\bdecline press\\b|\\bdumbbell row\\b|\\bbarbell row\\b|\\bt.?bar row\\b|\\bcable row\\b|\\bseated row\\b|\\blat pulldown\\b|\\bchin.?up\\b|\\bdip\\b.*tricep|\\btricep.*dip\\b|\\bfarmer.*carry\\b|\\bfarmer.*walk\\b|\\bzercher\\b|\\bclean\\b.*technique|\\bsnatch\\b.*technique|\\bjerk\\b.*technique|\\bbicep curl\\b|\\bhammer curl\\b|\\bconcentration curl\\b|\\bpreacher curl\\b|\\blateral raise\\b|\\bfront raise\\b|\\brear delt\\b|\\breverse fly\\b|\\bshrug[s]?\\b|\\bjefferson\\b|\\bnordic\\b.*hamstring|\\bGZCL\\b|\\bPHUL\\b|\\bwendler\\b|\\b5/3/1\\b|\\bstarting strength\\b|\\bstronglifts\\b|\\b531\\b.*program|\\bcandito\\b|\\bcompound lift\\b|\\bisolation lift\\b|\\bprogressive overload\\b|\\bperiodization\\b"
+    ],
+    [
+      "田径",
+      "\\btrack.*field\\b|\\blong jump\\b|\\bhigh jump\\b|\\bshot put\\b|\\bhurdle\\b|\\bpole vault\\b|\\bsprinting\\b|\\btrack and field\\b|\\bsprint(?:er|ing)?\\b.*technique|\\b100m\\b|\\b200m\\b|\\b400m\\b|\\b800m\\b|\\b1500m\\b|\\bhurdle[s]?\\b|\\bhigh jump\\b|\\blong jump\\b|\\btriple jump\\b|\\bpole vault\\b|\\bshot put\\b|\\bdiscus\\b|\\bjavelin\\b|\\bhammer throw\\b|\\bsprint start\\b|\\bblock start\\b|\\bbaton\\b.*relay|\\btriple.*jump\\b|\\bcamping.*technique\\b.*sprint"
+    ],
+    [
+      "赛艇/皮划艇",
+      "\\browing\\b|\\bergo\\b|\\bcanoeing\\b"
+    ],
+    [
+      "户外/徒步",
+      "\\bhiking\\b|\\bhiker[s]?\\b|\\bthru.?hik\\b|\\btrail.*run\\b|\\bbackpack\\b|\\btrekking\\b|\\bmulti.day.*hike\\b|\\bhiking\\b|\\bbackpacking\\b|\\bthru.?hike\\b|\\btrail\\b.*(?:hike|run|nav)|\\bappalachian\\b.*trail|\\bPCT\\b|\\bCDT\\b|\\bAT\\b.*hike|\\bultralight\\b.*backpack|\\bbivvy\\b|\\bbivouac\\b|\\bbushcraft\\b|\\bsurvival\\b.*wilderness|\\borienteer(?:ing)?\\b|\\bwilderness\\b.*nav|\\bleave no trace\\b|\\bLNT\\b.*hike|\\bcamping\\b.*backpack"
+    ],
+    [
+      "攀岩",
+      "\\brock climbing\\b|\\bbouldering\\b|\\bclimbing\\b|\\bclimber\\b|\\bclimb(?:er|ing)?\\b.*(?:rock|wall|gym|outdoor|sport|trad|boulder)|\\bboulder(?:ing)?\\b|\\bsport climb\\b|\\btrad climb\\b|\\blead climb\\b|\\btop rope\\b|\\boutdoor climb\\b|\\bcrag\\b|\\bV\\d+\\b.*grade|\\b5\\.\\d+\\b.*grade|\\bcrimp\\b.*hold|\\bsloper\\b|\\bpinch\\b.*climb|\\bcampus board\\b|\\bfingerboard\\b|\\bhangboard\\b|\\bmoonboard\\b|\\bkilter board\\b"
+    ],
+    [
+      "冲浪/水上",
+      "\\bsurfing\\b|\\bsurf\\b|\\bkayak\\b|\\bpaddleboard\\b|\\bwakeboard\\b|\\brip current[s]?\\b|\\bsurfer[s]?\\b|\\bsquare wave[s]?\\b|\\bsurf(?:ing|er)?\\b|\\bsurfboard\\b|\\bpaddleboard\\b|\\bSUP\\b.*board|\\bwakeboard(?:ing)?\\b|\\bwakesurf\\b|\\bkitesurf(?:ing)?\\b|\\bwindsurf(?:ing)?\\b|\\bfoil board\\b|\\bbodyboard\\b|\\bbeach break\\b|\\bpoint break\\b|\\breef break\\b|\\bbarrel ride\\b|\\btube ride\\b|\\bduck dive\\b|\\bturtle roll\\b|\\bpop up\\b.*surf"
+    ],
+    [
+      "潜水",
+      "\\bscuba\\b|\\bfreediving\\b|\\bfreediver\\b|\\bPADI\\b|\\bopen water.*div\\b|\\bunderwater.*div\\b|\\bdiving\\b|\\bbreath.?hold\\b|\\bbreath holding\\b|\\bstatic apnea\\b|\\bapnea\\b|\\bscuba\\b|\\bfreediv(?:e|er|ing)\\b|\\bfree.?div(?:e|er|ing)\\b|\\bsnorkel(?:ing)?\\b|\\bcave div(?:e|er|ing)\\b|\\btech div(?:e|er|ing)\\b|\\bDCS\\b|\\bdecompression sickness\\b|\\bnitrogen narcosis\\b|\\bsafety stop\\b|\\bequalization\\b.*ear|\\bspearfish(?:ing)?\\b|\\bapnea\\b.*div|\\bopen water cert\\b|\\bPADI\\b|\\bSSI\\b.*div"
+    ],
+    [
+      "滑板",
+      "\\bskateboard\\b|\\bskatepark\\b|\\bollie\\b|\\bkickflip\\b|\\bmongo\\b|\\bskater[s]?\\b|\\bskate\\b.*\\bbowl\\b|\\bpump.*bowl\\b|\\bskate\\b.*trick[s]?\\b|\\bskateboard(?:ing|er)?\\b|\\bskate park\\b|\\bskate trick\\b|\\bollie\\b|\\bkickflip\\b|\\bheelflip\\b|\\bvarial\\b|\\bgrind\\b.*skate|\\bmanual\\b.*skate|\\bnose manual\\b|\\btail manual\\b|\\bdrop in\\b.*skate|\\bbowl\\b.*skate|\\bhalf pipe\\b|\\bvert\\b.*skate|\\blongboard(?:ing)?\\b|\\bdownhill\\b.*skate"
+    ],
+    [
+      "冰球",
+      "\\bice hockey\\b|\\bhockey\\b|\\bNHL\\b|\\bpuck\\b|\\bice hockey\\b|\\bNHL\\b|\\bpuck\\b|\\bslap shot\\b|\\bwrist shot\\b|\\bsnap shot\\b|\\bbackhand\\b.*hockey|\\bdeke\\b|\\bstick handling\\b|\\bbody check\\b|\\bblue line\\b|\\bgoaltender\\b|\\bgoalie\\b.*hockey|\\bpower play\\b|\\bpenalty kill\\b"
+    ],
+    [
+      "滑冰/滑雪",
+      "\\bice skat\\b|\\bice skater\\b|\\bfigure skat\\b|figure skating|\\bsnowboard|\\bskiing\\b|\\bski\\b(?!ll|\\bn\\b)|\\bon the ice\\b|\\bice.*balance\\b|\\bice.*posture\\b|\\bice.*beginner\\b|\\bglide\\b.*ice|ice.*\\bglide\\b|\\bweight shift\\b.*ice|ice.*\\bedge\\b"
+    ],
+    [
+      "跑酷",
+      "\\bparkour\\b|\\bfreerunning\\b|\\bparkour\\b|\\bfreerunning\\b|\\bvault\\b|\\bprecision jump\\b|\\bkong vault\\b|\\bdash vault\\b|\\bspeed vault\\b|\\bwall run\\b|\\bwall flip\\b|\\bcat leap\\b|\\bdive roll\\b|\\btic.?tac\\b|\\bsai cycle\\b|\\bturn vault\\b|\\blazy vault\\b|\\bwall climb\\b|\\bplyometric\\b.*urban"
+    ],
+    [
+      "舞蹈",
+      "\\bdance\\b|\\bdancing\\b|\\bdancer\\b|\\bhip.?hop\\b|\\bchoreography\\b|\\bsalsa\\b|\\bbachata\\b|\\bballroom\\b|\\bzumba\\b|\\bcumbia\\b|\\bdancehall\\b|\\bafrobeat[s]?\\b|kpop.*dance|dance.*kpop|\\bpassinho\\b|west.?coast.*swing|\\bmerengue\\b|\\breggaeton\\b|dance.*tutorial|dance.*challenge|dance.*cardio|dance.*steps|\\btutting\\b|\\bpopping\\b.*dance|dance.*class.*beginner|\\bafro.*fusion\\b|\\bcumbiatutorial\\b|\\bhip.*isolation[s]?\\b|\\bvoguing\\b|\\bvogue.*dance\\b|\\bwaacking\\b|\\bkrump\\b|\\blitefeet\\b|\\bfunk.*style\\b|\\bshuffle.*dance\\b|\\belectro.*shuffle\\b|\\bcutting.*shapes\\b|\\bbelly.*dance\\b|\\bbellydanc\\b|\\boriental.*dance\\b|\\bpoledance\\b|\\bpole.*dancing\\b|\\bpole.*fitness\\b"
+    ],
+    [
+      "椭圆机",
+      "\\belliptical\\b"
+    ],
+    [
+      "踏步机",
+      "\\bstairmaster\\b|\\bstair climber\\b"
+    ],
+    [
+      "运动健康",
+      "\\bknee pain\\b|\\bback pain\\b|\\bshoulder pain\\b|\\bposture.*correct\\b|\\bfix.*posture\\b|\\bimpingement\\b|\\brehab\\b|\\binjury.*prevent\\b|\\bankle.*sprain[s]?\\b|\\bplantar\\b|\\bsciatica\\b|\\bhip flexor[s]?\\b|\\bshoulder.*impingement\\b|\\bhamstring[s]?\\b|\\bankle.*mobil|\\bposture.*improv\\b|\\bimprov.*posture\\b|\\bstand taller\\b|\\bbetter posture\\b|\\bspine.*mobil|\\bhip.*mobil|\\bback.*crack\\b|\\bspinal.*traction\\b|\\bspinal.*decompress\\b|\\btmj\\b|\\bjaw.*tension\\b|\\btrigger.*point\\b|\\bneck.*tension\\b|\\bshoulder.*impingement\\b|\\bknee.*rehab\\b|\\bsciatica\\b|\\bsciatic.*nerve\\b|\\bcervical\\b.*(?:pain|stretch)\\b|\\bforward.*head\\b|\\bhyperlordosis\\b|\\bkyphosis\\b|\\bmouthbreathing\\b|\\bmouth.*breath\\b|\\bnose.*breath\\b|\\bnasal.*breath\\b|\\bbreathing.*nose\\b|\\bcompression.*(?:garment|wear)\\b|\\borthotics\\b|\\brib.*flare\\b|\\bhyperlordosis\\b|\\bkyphosis\\b|\\bscoliosis\\b|\\bcortisol\\b|\\blymphatic\\b(?:.*system)?|\\bblood.*pressure.*(?:exercise|lower)\\b|\\bhormone.*(?:balanc|health|level|regulat)\\b|\\btelomere\\b|\\binflammation.*(?:reduc|chronic|marker)\\b|\\bnasal.*breath\\b|\\bnose.*breath\\b|\\bmouth.*breath\\b|\\bbreathwork.*(?:health|benefit|science)\\b"
+    ],
+    [
+      "综合拉伸",
+      "full.body.*stretch|stretch.*routine|\\bflexibility.*routine\\b|\\bmobility.*routine\\b|\\bdaily.*stretch\\b|\\bmorning.*stretch\\b|\\bbedtime.*stretch\\b|tight.*hamstring|hamstring.*tight|hamstring.*stretch|stretch.*hamstring|\\brecovery.*stretch\\b|\\bstretch.*recovery\\b|\\bcore flow\\b|\\bsplits?\\b|\\bmiddle.*splits?\\b|\\bfront.*splits?\\b|\\bfrog.*pose\\b|\\bpigeon.*pose\\b|\\bpuppy.*pose\\b|legs.*up.*(?:wall|the)\\b|\\bmorning.*stretch\\b|\\bdaily.*stretch\\b|\\bmorning.*(?:routine|stretch.*routine)\\b|\\boffice.*stretch\\b|\\bdesk.*stretch\\b|\\bsedentary.*(?:stretch|exercise)\\b|\\bbed.*stretch\\b|\\bwake.*up.*stretch\\b|\\bstretch(?:ing)?\\b.*routine|\\bflexibility\\b.*routine|\\bdynamic stretch\\b|\\bstatic stretch\\b|\\bPNF stretch\\b|\\bfoam roll(?:er|ing)?\\b|\\blacrosse ball\\b.*release|\\btrigger point\\b|\\bself massage\\b|\\bfascia\\b.*release|\\bmyofascial\\b.*release"
+    ],
+    [
+      "健身综合",
+      "\\bHIIT\\b|\\bwarm.?up\\b.*workout|workout.*\\bwarm.?up\\b|\\bcardio\\b|\\bfat.?burning\\b|\\bfull.?body workout\\b|metabolic|functional fitness|functional training|\\bno.*equipment.*workout\\b|\\bhome.*workout\\b|\\bbodyweight.*workout\\b|\\bexplosive.*speed\\b|\\bfast.twitch\\b|\\bcoordination drill[s]?\\b|\\bfollow.along.*warm\\b|\\binteractive.*warm\\b|\\bwarm.?up\\b.*(?:build|train|session|full|daily)|fitness.*mistake[s]?|mistake[s]?.*fitness|\\bspot reduction\\b|animal flow|gym hack|workout tip|form check|muscle memory|gym routine|split.*workout|pull.*day|push.*day|upper.*lower|PPL\\b|bro.*split|training.*(?:volume|frequency|split)|rep.*range|failure.*train|drop.*set|superset|progressive overload|pre.*workout|post.*workout|body.*composition|body recomp|calisthen|bodyweight.*routine|functional.*(?:strength|movement|training)|gymtok|\\bno.*equipment\\b|\\bno.?equip\\b|\\bhome.*gym\\b|\\bresistance.*band[s]?\\b|\\bband.*workout\\b|\\belastic.*band\\b|\\bbodyweight.*workout\\b|\\bbody.*weight.*workout\\b|\\bshy.*girl.*workout\\b|\\blazy.*workout\\b|\\bminimal.*equipment\\b|\\btime.?under.?tension\\b|\\bdrop.*set\\b|\\bsuperset\\b|\\bbeginner.*gym\\b|\\bgym.*beginner\\b|\\bfirst.*time.*gym\\b|\\bworkout.*split\\b|\\bpush.*pull.*legs?\\b|\\bppl\\b|\\bburning.*fat\\b|\\bfat.*burn(?:ing)?\\b.*(?:workout|exercise|routine)|\\bworkout.*(?:at\\s+home|home\\s+based)\\b|\\bhome.*workout\\b|\\bbeginner.*(?:friendly|workout|gym)\\b|\\bfollow.*along.*workout\\b|\\bworkout.*follow\\b|\\bfat loss\\b|\\bweight loss\\b|\\bbelly fat\\b|\\binner thigh\\b|\\bcellulite\\b|\\bslimming\\b|\\bbody fat\\b|\\blean(?:ing)?\\b.*body|\\btone(?:d|ing)?\\b.*muscle|\\bbody recomposition\\b|\\bbody recomp\\b|\\bcut(?:ting)?\\b.*phase|\\bbulk(?:ing)?\\b.*phase|\\bgain\\b.*muscle|\\bbuild.*muscle\\b|\\bfull.?body\\b.*workout|\\bupper.?body\\b.*workout|\\blower.?body\\b.*workout|\\bpush.?pull.?legs\\b|\\bPPL\\b|\\bbro split\\b|\\bcrossfit\\b|\\bfunctional fitness\\b|\\bgeneral fitness\\b"
+    ],
+    [
+      "运动营养",
+      "\\bprotein.*intake\\b|\\bprotein.*gram\\b|\\bcalorie.*deficit\\b|\\bcaloric\\b|\\bmacro\\b|\\bsupplement.*guide\\b|\\bcreatine\\b|\\bBCAA\\b|\\bmilk.*whey\\b|\\bwhey.*protein\\b|\\bmuscle.*meal\\b|meal.*muscle|\\bsupplement[s]?\\b.*muscle|\\bmuscle.*supplement|muscle.build.*nutrition|nutrition.*muscle|high.protein.*meal|meal.*high.protein|fat loss.*meal|meal.*fat loss|\\bmeal.*prep\\b|\\bfood.*prep\\b|\\bbatch.*cook\\b|\\bbulk(?:ing)?\\b|\\bcutting.*(?:phase|body|diet)|cut.*phase|\\bintermittent.*fast(?:ing)?\\b|\\bIF.*(?:diet|fast)\\b|\\bcarb.*cycl\\b|\\bsupplement.*(?:review|guide|rank)\\b|\\bprotein.*shake\\b|\\bpre.?workout\\b|\\bpost.?workout.*eat\\b|\\bweight.*gain.*(?:diet|food|meal)\\b|\\bcheap.*bulk\\b|\\bcheap.*meal\\b|\\bfasting\\b(?!.*intermittent)|\\bfast.*diet\\b|\\bfast.*weight\\b|\\bgut.?health\\b|\\bmicrobiome\\b|\\belectrolyte[s]?\\b|\\bhydration.*(?:sport|exercise|athlete)\\b|\\bwater.*intake\\b|\\banti.?inflammat\\b|\\bcollagen\\b.*(?:supplement|benefit)\\b|\\bwhey.*protein\\b|\\bcasein\\b|\\bvegan.*protein\\b|\\bgainer\\b|\\bmass.*gainer\\b|\\bprotein.*bar\\b|\\bprotein.*review\\b|\\bprotein\\b|\\bcreatine\\b|\\bsupplement[s]?\\b|\\bcarb\\b|\\bcarbohydrate[s]?\\b|\\bcaloric\\b|\\bcalorie[s]?\\b|\\bmacros?\\b|\\belectrolyte\\b|\\bhydration\\b|\\bpre.?workout\\b|\\bpost.?workout\\b|\\bwhey\\b|\\bcasein\\b|\\bBCAA\\b|\\bcollagen\\b|\\bcreatine.*monohydrate\\b|\\bbeta.?alanine\\b|\\bcaffeine\\b.*workout|\\bfasted training\\b|\\bintermittent fasting\\b|\\bmeal plan\\b|\\bnutrition.*athlete\\b|\\bmacro tracking\\b|\\bbody recomp\\b"
+    ],
+    [
+      "柔韧性/康复",
+      "\\bstretching\\b|\\bflexibility\\b|\\bmobility\\b|\\bfoam roll\\b|\\bhip flexor\\b|\\bhamstring.*stretch\\b|\\bshoulder mobility\\b|\\bthoracic\\b|\\bpsoas\\b|\\bhip mobility\\b|\\blower back.*(?:pain|relief|stretch)\\b|\\bback pain\\b|\\bposture.*(?:correct|fix|improve)\\b|\\btight.*(?:hip|shoulder|hamstring)\\b|\\brange of motion\\b|\\bROM\\b|\\brelease.*(?:tension|tightness)\\b|\\brehab\\b|\\bphysical therapy\\b|\\binjury.*prevention\\b|\\brecovery.*routine\\b|\\bactive.*recovery\\b|\\bdeload\\b|\\bmobility.*routine\\b|\\bspinal.*decompression\\b|\\bcervical.*stretch\\b|\\bneck.*(?:pain|stretch|relief)\\b|\\bknee.*(?:pain|rehab)\\b|\\bshoulder.*(?:pain|rehab|impingement)\\b|\\brotator cuff\\b|\\bACL\\b|\\bPT exercise\\b|\\bsplits?\\b|\\bmiddle.*splits?\\b|\\bfront.*splits?\\b|\\bcenter.*splits?\\b|\\bfrog.*pose\\b|\\bpigeon.*pose\\b|\\bpuppy.*pose\\b|legs.*up.*(?:wall|the)\\b|\\bviparita.*karani\\b|\\bpiriformis\\b|\\bankle.*(?:mobil|dorsiflexion)\\b|\\bhip.*open(?:er|ing)?\\b|\\bstretch.*(?:routine|daily|morning|bedtime)\\b|\\bmorning.*stretch\\b|\\bdaily.*stretch\\b|\\bneck.*stretch\\b|\\bspinal.*mobil\\b|\\bspinal.*decompress\\b|\\brib.*flare\\b|\\btouch.*(?:your\\s+)?toes?\\b|can.?t.*(?:touch|reach).*toes?|\\btoe.*touch\\b|\\bhip.*(?:open|release)\\b|\\bspine.*health\\b|\\bdesk.*(?:stretch|break)\\b|\\boffice.*stretch\\b"
+    ],
+    [
+      "运动心理/动机",
+      "\\bsports psychology\\b|\\bmental.*(?:toughness|strength|game|training)\\b|\\bdiscipline\\b.*(?:workout|fitness|training)|\\bmotivation\\b.*(?:workout|gym|training)|\\bgrowth mindset\\b|\\bvisualization\\b.*sport|\\bconfidence\\b.*(?:athlete|sport|training)|\\bfear.*(?:failure|competition)|competition.*anxiety|\\bpre.*game.*routine\\b|\\bgoal.*setting\\b.*(?:sport|fitness|training)|\\bfocus\\b.*(?:sport|athletic|training)|\\btrauma.*(?:heal|releas)\\b|\\bheal.*trauma\\b|\\bnervoussystem\\b|\\bnervous.*system.*(?:regulat|reset|calm|heal)\\b|\\bcortisol.*(?:reduc|lower|manag|high|spike)\\b|\\banger.*manage\\b|\\bangermanagement\\b|\\bangerissues\\b|\\bemotional.*(?:heal|regulat|intelligence|wellbeing)\\b|\\bstress.*(?:reliev|manag|reduc)\\b|\\bburnout.*(?:recover|prevent)\\b|\\bgrief\\b.*(?:heal|process)\\b|\\bheal(?:ing)?\\b.*(?:journey|process|trauma|pain)\\b|\\bletgo\\b|\\blet.*go.*(?:past|pain|anger)\\b"
+    ],
+    [
+      "体重管理",
+      "\\bweight.*loss\\b|\\bfat.*loss\\b|\\bbody.*fat.*(?:percent|reduce|burn)\\b|\\bcalorie.*(?:cut|defic)\\b|\\bbelly.*fat\\b|\\bthigh.*fat\\b|\\binner.*thigh.*(?:fat|slim)\\b|\\bwaist.*slim\\b|\\bsmaller.*waist\\b|\\bwaist.*workout\\b|\\bbody.*recomp(?:osition)?\\b|\\bbmi\\b|\\bslim.*down\\b|\\bget.*lean\\b|\\bcut.*fat\\b|\\blose.*fat\\b|\\bhourglass\\b.*(?:body|figure|shape|waist)|\\btransform.*(?:body|physique)\\b|\\bphysique.*transform\\b|\\bbody.*transform\\b|\\bweight.*transform\\b|\\bburning.*fat\\b|\\bfat.*burn(?:ing)?\\b|\\bstubborn.*fat\\b|\\bfat.*stubborn\\b|\\blose.*weight\\b|\\bweight.*loss.*result\\b|\\bhourglass\\b"
+    ],
+    [
+      "睡眠/健康恢复",
+      "\\bsleep.*(?:science|health|quality|deprivation|hack|tip[s]?)\\b|\\bsleep.*better\\b|\\bfall.*asleep\\b|\\binsomnia\\b|\\bcircadian\\b|\\bsleep.*(?:routine|schedule|stage[s]?|disorder|problem)\\b|\\bdeep.*sleep\\b|\\bREM.*sleep\\b|\\bsleep.*cycle\\b|\\bice.*bath\\b|\\bcold.*plunge\\b|\\bcold.*water.*therap\\b|\\bwim.?hof.*(?:cold|ice|breath)\\b|\\bcold.*shower\\b.*(?:benefit|health)\\b|\\bsleep.*(?:damage[s]?|harm[s]?|affect[s]?|ruin[s]?)\\b|not.*enough.*sleep|lack.*sleep|sleep.*lack|\\bsleepless(?:ness)?\\b|\\bnap\\b.*(?:benefit|science|tip|better)|\\bsleep.*temperature\\b|\\bwhat.*sleep\\b"
+    ],
+    [
+      "柔韧/活动度",
+      "\\bstretch(?:ing)?\\b|\\bmobility\\b|\\bflexibility\\b|\\brange of motion\\b|\\bROM\\b.*exercise|\\bloosen\\b.*tight|\\brelease\\b.*tight|\\btightness\\b|\\bstiff(?:ness)?\\b|\\bhip flexor\\b|\\bfascia\\b|\\bmyofascial\\b|\\btrigger point\\b|\\bdynamic stretch\\b|\\bstatic stretch\\b|\\bPNF\\b|\\bfoam roll(?:er|ing)?\\b|\\blacrosse ball\\b|\\bmobility drill\\b|\\bjoint mobility\\b|\\bshoulder mobility\\b|\\bhip mobility\\b|\\bankle mobility\\b|\\bthoracic mobility\\b|\\bspine mobility\\b|\\bfront splits\\b|\\bmiddle splits\\b|\\bcontortion\\b|\\bbackbend\\b|\\bbridge pose\\b|\\bpancake stretch\\b|\\bcouch stretch\\b|\\b90/90\\b.*hip|\\bpigeon pose\\b|\\bsupine\\b.*stretch"
+    ],
+    [
+      "体姿矫正/PT",
+      "\\bposture\\b|\\brounded shoulder\\b|\\btech neck\\b|\\bthoracic\\b.*spine|\\bspinal\\b.*alignment|\\bscoliosis\\b|\\bkyphosis\\b|\\blordosis\\b|\\bimpingement\\b|\\bphysio\\b|\\bphysiotherap(?:y|ist)?\\b|\\brehab\\b.*injury|\\brehabilitation\\b|\\bchiropractic\\b|\\bchiropractor\\b|\\balignment\\b.*posture|\\bcorrective exercise\\b|\\bdry needling\\b|\\bcupping\\b.*therapy|\\bgraston\\b|\\bmuscle imbalance\\b|\\bdysfunction\\b.*movement|\\blumbar\\b.*pain|\\bsciatica\\b|\\bnerve impingement\\b|\\bdisc herniation\\b|\\bgolfer.?s elbow\\b|\\btennis elbow\\b|\\brotator cuff\\b.*rehab|\\bplantar fasciitis\\b|\\bIT band\\b.*pain"
+    ],
+    [
+      "睡眠/恢复",
+      "\\bsleep\\b.*(?:athlete|training|workout|performance|recover)|\\brecovery\\b.*(?:active|passive|workout)|\\bfatigue\\b.*(?:training|workout)|\\bovertraining\\b|\\bovertraining syndrome\\b|\\bDOMS\\b|\\bcortisol\\b.*workout|\\bhormone\\b.*recover|\\bcircadian\\b|\\bdeep sleep\\b|\\bREM\\b.*sleep|\\bsleep hygiene\\b|\\bsleep optimization\\b|\\bnap\\b.*athlete|\\bice bath\\b|\\bcold plunge\\b|\\bcontrast therapy\\b|\\bsauna\\b.*recover|\\bcompression boot\\b|\\bnormatec\\b|\\bpneumatic compression\\b|\\bmassage gun\\b|\\bpercussive therapy\\b"
+    ],
+    [
+      "心肺/HIIT",
+      "\\bHIIT\\b|\\bcardio\\b.*(?:workout|train|session|routine)|\\binterval\\b.*train|\\bconditioning\\b.*workout|\\bmetcon\\b|\\bEMOM\\b|\\bAMRAP\\b|\\btabata\\b|\\bsteady state\\b.*cardio|\\bzone 2\\b|\\bMAF\\b.*cardio|\\bMAF\\b.*train|\\baerobic\\b.*train|\\banaerobic\\b.*train|\\bVO2.*max\\b|\\bsprint interval\\b|\\bSIT\\b.*train|\\bheart rate\\b.*train|\\bHIIT\\b.*workout|\\bfat burn\\b.*cardio"
+    ]
+  ],
+  "l2": [
+    [
+      "篮球",
+      "控球/运球",
+      "\\bdribbling\\b|\\bcrossover\\b|\\bball handling\\b|\\bspeed dribble\\b"
+    ],
+    [
+      "篮球",
+      "投篮/三分",
+      "\\bshooting\\b|\\bthree.?point\\b|\\bjump shot\\b|\\bfree throw\\b|\\bmid.?range\\b"
+    ],
+    [
+      "篮球",
+      "扣篮技巧",
+      "\\bdunk\\b|\\bdunking\\b|\\balley.?oop\\b|\\bslam dunk\\b"
+    ],
+    [
+      "篮球",
+      "防守技术",
+      "defend.*basketball|defense.*basketball|steal.*basketball|man.to.man\\b"
+    ],
+    [
+      "篮球",
+      "传球/配合",
+      "passing.*basketball|pick.and.roll|\\bno.look pass\\b"
+    ],
+    [
+      "篮球",
+      "步伐/身体对抗",
+      "footwork.*basketball|post.?up\\b|\\beurostep\\b|pivot.*basketball"
+    ],
+    [
+      "篮球",
+      "NBA明星技术解析",
+      "\\bkobe\\b|\\blebron\\b|\\bcurry\\b.*move|\\bjordan\\b.*move|nba.*skill"
+    ],
+    [
+      "跑步",
+      "跑步姿势/技术",
+      "run.*form|stride|cadence.*run|posture.*running|running.*technique"
+    ],
+    [
+      "跑步",
+      "马拉松备赛",
+      "\\bmarathon\\b|half.marathon|race day|race.*prep|marathon.*training"
+    ],
+    [
+      "跑步",
+      "减脂跑步",
+      "running.*weight|fat.*burning.*run|running.*lose.*weight|cardio.*run"
+    ],
+    [
+      "跑步",
+      "间歇/速度训练",
+      "interval.*run|speed.*workout|tempo.*run|fartlek|VO2 max"
+    ],
+    [
+      "跑步",
+      "损伤预防/恢复",
+      "running.*injur|shin splints|runner.*knee|plantar fasciitis|prevent.*injur.*run"
+    ],
+    [
+      "跑步",
+      "初学者入门",
+      "beginner.*run|start.*running|couch.*5k|run.*first|how.*start.*run"
+    ],
+    [
+      "跑步",
+      "越野跑/步道跑",
+      "trail.*run|treadmill.*workout|hill.*running|ultramarathon"
+    ],
+    [
+      "瑜伽",
+      "初学者入门",
+      "yoga.*beginner|beginner.*yoga|yoga.*starter|yoga.*start|yoga.*first time"
+    ],
+    [
+      "瑜伽",
+      "柔韧性/拉伸",
+      "yoga.*flexib|flexib.*yoga|yoga.*stretch|stretch.*yoga|split.*yoga"
+    ],
+    [
+      "瑜伽",
+      "减脂/体重管理",
+      "yoga.*weight|weight.*yoga|yoga.*fat|fat.*yoga|yoga.*slim|yoga.*tone"
+    ],
+    [
+      "瑜伽",
+      "力量/平衡",
+      "yoga.*strength|strength.*yoga|yoga.*balance|balance.*yoga|yoga.*core|arm balance"
+    ],
+    [
+      "瑜伽",
+      "晨间瑜伽",
+      "morning yoga|yoga.*morning|wake.*up.*yoga|sunrise yoga"
+    ],
+    [
+      "瑜伽",
+      "睡前/放松瑜伽",
+      "bedtime yoga|sleep.*yoga|yoga.*sleep|night.*yoga|yoga.*relax|restorative yoga|yin yoga"
+    ],
+    [
+      "瑜伽",
+      "冥想/气息结合",
+      "yoga.*meditation|yoga.*breath|pranayama.*yoga|yoga.*mindful"
+    ],
+    [
+      "瑜伽",
+      "孕期/产后瑜伽",
+      "prenatal yoga|pregnancy yoga|postnatal yoga|postpartum yoga"
+    ],
+    [
+      "瑜伽",
+      "高难度体式",
+      "yoga.*handstand|yoga.*inversion|yoga.*wheel|advanced.*yoga|yoga.*backbend"
+    ],
+    [
+      "力量训练",
+      "胸部训练",
+      "chest.*workout|bench press|push.?up.*chest|chest.*exercise|pec.*exercise|chest.*day"
+    ],
+    [
+      "力量训练",
+      "背部训练",
+      "back.*workout|deadlift|lat.*pulldown|row.*exercise|back.*exercise|pull.*day|lats.*workout"
+    ],
+    [
+      "力量训练",
+      "腿部/臀部",
+      "leg.*workout|squat|\\bglute\\b|\\bglutes\\b|hip thrust|leg.*day|quad.*workout|hamstring|lunge"
+    ],
+    [
+      "力量训练",
+      "肩部/手臂",
+      "shoulder.*workout|overhead press|arm.*workout|bicep|tricep|delt.*exercise|shoulder.*day"
+    ],
+    [
+      "力量训练",
+      "核心/腹部",
+      "core.*workout|ab.*workout|abs.*exercise|plank.*workout|six.?pack|core.*strength|crunch.*exercise"
+    ],
+    [
+      "力量训练",
+      "女性力量/塑形",
+      "women.*strength|female.*workout|girl.*workout|women.*lifting|glute.*women|body.*tone.*women|women.*body"
+    ],
+    [
+      "力量训练",
+      "居家力量",
+      "home.*workout|no.*gym|bodyweight.*strength|home.*strength|apartment.*workout|home.*dumbbell"
+    ],
+    [
+      "力量训练",
+      "初学者入门",
+      "beginner.*weight|weight.*beginner|lifting.*beginner|strength.*beginner|gym.*first|how.*lift"
+    ],
+    [
+      "力量训练",
+      "进阶/超负荷",
+      "progressive overload|hypertrophy|advanced.*lifting|powerlifting|max.*strength|one.*rep.*max"
+    ],
+    [
+      "力量训练",
+      "举铁技术纠错",
+      "deadlift.*form|squat.*form|bench.*form|form.*check|lifting.*mistake|fix.*form"
+    ],
+    [
+      "足球",
+      "控球技术/花式",
+      "ball.*skill|skill.*move|dribbling.*soccer|tekkers|ball.*mastery|first touch|cruyff|nutmeg"
+    ],
+    [
+      "足球",
+      "射门/任意球",
+      "shooting.*soccer|free kick|finishing.*soccer|penalty.*soccer|shooting.*technique.*soccer"
+    ],
+    [
+      "足球",
+      "体能/速度",
+      "soccer.*speed|football.*fitness|soccer.*agility|sprint.*soccer|soccer.*endurance"
+    ],
+    [
+      "足球",
+      "守门员",
+      "goalkeeper|goalie|save.*shot|gk.*training|penalty.*save"
+    ],
+    [
+      "足球",
+      "传球/战术",
+      "passing.*soccer|tactics.*soccer|formation.*soccer|pressing.*football|build.*up.*play"
+    ],
+    [
+      "足球",
+      "初学者基础",
+      "beginner.*soccer|soccer.*beginner|learn.*soccer|soccer.*basic|football.*basic"
+    ],
+    [
+      "足球",
+      "花式技巧/标志性动作",
+      "\\brabona\\b|\\btrivela\\b|\\belastico\\b|rainbow.*flick|\\bscissor.*kick\\b|bicycle.*kick|\\bskill.*move\\b.*(?:soccer|football)|(?:ronaldo|cr7).*chop"
+    ],
+    [
+      "游泳",
+      "自由泳技术",
+      "freestyle.*swim|front crawl|swim.*stroke.*freestyle|freestyle.*technique"
+    ],
+    [
+      "游泳",
+      "蛙泳/仰泳/蝶泳",
+      "breaststroke|backstroke|butterfly.*stroke|butterfly.*swim"
+    ],
+    [
+      "游泳",
+      "初学者入门",
+      "beginner.*swim|swim.*beginner|learn.*swim|how.*swim|swim.*lesson"
+    ],
+    [
+      "游泳",
+      "游泳健身/减脂",
+      "swim.*workout|swim.*fitness|swim.*weight|swim.*tone|swimming.*exercise"
+    ],
+    [
+      "游泳",
+      "开放水域/铁三",
+      "open water swim|triathlon.*swim|swim.*race|swim.*competition"
+    ],
+    [
+      "游泳",
+      "翻身/专项技术",
+      "flip turn|tumble turn|swim.*turn|swim.*drill|swim.*technique"
+    ],
+    [
+      "冥想/呼吸",
+      "入门冥想",
+      "meditation.*beginner|beginner.*meditation|how.*meditate|meditation.*start|guided.*meditation"
+    ],
+    [
+      "冥想/呼吸",
+      "减压/焦虑冥想",
+      "anxiety.*meditation|stress.*meditation|meditation.*calm|relax.*meditation|stress.*relief.*breath"
+    ],
+    [
+      "冥想/呼吸",
+      "睡眠冥想",
+      "sleep.*meditation|meditation.*sleep|bedtime.*meditation|insomnia.*meditation"
+    ],
+    [
+      "冥想/呼吸",
+      "呼吸技巧",
+      "breathing.*technique|breath.*exercise|breathwork|box breathing|wim.?hof|pranayama"
+    ],
+    [
+      "冥想/呼吸",
+      "专注/正念",
+      "mindfulness|focus.*meditation|concentration.*meditation|mindful.*practice|body.*scan"
+    ],
+    [
+      "冥想/呼吸",
+      "声音/频率治愈",
+      "\\bsound.*healing\\b|\\bsinging.*bowl\\b|\\bsound.*bath\\b|\\bbinaural.*beat[s]?\\b|\\btheta.*wave[s]?\\b|\\b432.*hz\\b|\\b528.*hz\\b|\\bfrequency.*healing\\b|\\btuning.*fork\\b"
+    ],
+    [
+      "冥想/呼吸",
+      "催眠/引导放松",
+      "\\bhypnosis\\b|\\bhypnotherapy\\b|\\bsleep.*hypnosis\\b|\\bself.?hypnosis\\b|\\bguided.*(?:sleep|relax|medit)\\b|\\bsleep.*meditation\\b"
+    ],
+    [
+      "冥想/呼吸",
+      "宣言/显化/潜意识",
+      "\\baffirmation[s]?\\b|\\bmanifest(?:ation|ing)?\\b|\\blaw.*attraction\\b|\\bsubconscious\\b|\\bsubliminal\\b|\\bpositive.*affirmation\\b|\\battract.*success\\b|\\bvibration[s]?\\b.*(?:attract|manif)\\b"
+    ],
+    [
+      "舞蹈",
+      "街舞/Hip-hop",
+      "hip.?hop.*dance|street.*dance|breaking|b.?boy|b.?girl|urban.*dance"
+    ],
+    [
+      "舞蹈",
+      "流行舞/K-pop",
+      "kpop.*dance|k.pop.*dance|pop.*dance|tiktok.*dance|viral.*dance|trending.*dance"
+    ],
+    [
+      "舞蹈",
+      "入门基础",
+      "dance.*beginner|beginner.*dance|how.*dance|dance.*basic|learn.*dance"
+    ],
+    [
+      "舞蹈",
+      "拉丁/交谊舞",
+      "salsa.*dance|bachata|ballroom.*dance|cha.?cha|rumba|tango"
+    ],
+    [
+      "舞蹈",
+      "编舞/完整舞蹈",
+      "choreography|full.*dance.*routine|dance.*tutorial|dance.*cover"
+    ],
+    [
+      "舞蹈",
+      "Zumba/健身舞",
+      "zumba|dance.*workout|dance.*fitness|dance.*cardio"
+    ],
+    [
+      "舞蹈",
+      "拉丁民间舞(Cumbia/Merengue)",
+      "\\bcumbia\\b|\\bmerengue\\b|cumbia.*tutorial|cumbia.*dance|cumbia.*step[s]?"
+    ],
+    [
+      "舞蹈",
+      "加勒比/非洲舞蹈(Dancehall/Afrobeats)",
+      "\\bdancehall\\b|\\bafrobeat[s]?\\b|\\bafro.*fusion\\b|\\bwhining\\b.*dance|\\bisland.*dance\\b"
+    ],
+    [
+      "舞蹈",
+      "街舞变体/特色风格",
+      "\\bvoguing\\b|\\bvogue.*dance\\b|\\bwaacking\\b|\\bkrump\\b|\\blitefeet\\b|\\bshuffle.*dance\\b|\\belectro.*shuffle\\b|\\bbelly.*dance\\b|\\bpole.*dance\\b|\\bpole.*fitness\\b"
+    ],
+    [
+      "拳击/搏击",
+      "基础拳法",
+      "boxing.*basic|basic.*boxing|boxing.*jab|boxing.*combination|punch.*technique|boxing.*stance"
+    ],
+    [
+      "拳击/搏击",
+      "踢技/泰拳",
+      "muay thai|kickboxing|thai.*boxing|kick.*technique|teep|roundhouse"
+    ],
+    [
+      "拳击/搏击",
+      "综合格斗/MMA",
+      "\\bMMA\\b|mixed.*martial|grappling|wrestling.*MMA|ground.*pound"
+    ],
+    [
+      "拳击/搏击",
+      "自卫防身",
+      "self.?defense|street.*fight|self.*protect|how.*defend.*yourself"
+    ],
+    [
+      "拳击/搏击",
+      "初学者入门",
+      "boxing.*beginner|beginner.*boxing|learn.*boxing|boxing.*first|how.*box"
+    ],
+    [
+      "武术/太极",
+      "柔道/巴柔BJJ",
+      "judo|jiu.?jitsu|\\bbjj\\b|grappling.*throw|hip.*throw|choke|armbar|guard.*pass"
+    ],
+    [
+      "武术/太极",
+      "空手道/跆拳道",
+      "karate|taekwondo|kick.*taekwondo|kata|sparring.*karate"
+    ],
+    [
+      "武术/太极",
+      "太极/气功",
+      "tai chi|taichi|qigong|tai.?chi.*form|tai.*chi.*beginner"
+    ],
+    [
+      "武术/太极",
+      "功夫/武术套路",
+      "kung fu|wushu|kung.*fu.*form|martial.*arts.*form|wushu.*routine"
+    ],
+    [
+      "排球",
+      "扣球/技术",
+      "volleyball.*spike|spike.*volleyball|volleyball.*serve|jump.*serve|volleyball.*technique"
+    ],
+    [
+      "排球",
+      "沙滩排球",
+      "beach volleyball|sand.*volleyball|outdoor.*volleyball"
+    ],
+    [
+      "排球",
+      "初学者入门",
+      "volleyball.*beginner|beginner.*volleyball|learn.*volleyball|volleyball.*basic"
+    ],
+    [
+      "排球",
+      "自由人/防守技术(Libero/Dig)",
+      "\\blibero\\b|\\bflying.*dig\\b|\\bdolphin.*dive\\b|\\bvolleyball.*dig\\b|\\bdefense.*volleyball\\b|\\bvolleyball.*defense\\b"
+    ],
+    [
+      "排球",
+      "发球技术细分",
+      "\\btopspin.*serve\\b|\\bfloat.*serve\\b|\\boverhand.*serve\\b|\\bunderhand.*serve\\b|\\bjump.*serve.*volleyball\\b|\\bserve.*volleyball.*tutorial\\b"
+    ],
+    [
+      "羽毛球",
+      "扣杀/技术",
+      "badminton.*smash|smash.*badminton|badminton.*technique|badminton.*skill"
+    ],
+    [
+      "羽毛球",
+      "发球/网前",
+      "badminton.*serve|badminton.*net|badminton.*drop|badminton.*clear"
+    ],
+    [
+      "羽毛球",
+      "初学者入门",
+      "badminton.*beginner|beginner.*badminton|learn.*badminton|badminton.*basic"
+    ],
+    [
+      "乒乓球",
+      "正手/反手",
+      "table tennis.*forehand|table tennis.*backhand|ping.*pong.*technique|topspin.*table"
+    ],
+    [
+      "乒乓球",
+      "发球技术",
+      "table tennis.*serve|ping.*pong.*serve|serve.*table tennis"
+    ],
+    [
+      "乒乓球",
+      "初学者入门",
+      "table tennis.*beginner|beginner.*table tennis|learn.*ping.*pong|ping pong.*start"
+    ],
+    [
+      "乒乓球",
+      "专业战术",
+      "table tennis.*tactic|professional.*ping.*pong|table tennis.*loop|table tennis.*pro"
+    ],
+    [
+      "壶铃/CrossFit",
+      "壶铃训练",
+      "kettlebell|kettlebell.*swing|kettlebell.*workout|kettlebell.*snatch"
+    ],
+    [
+      "壶铃/CrossFit",
+      "CrossFit动作",
+      "crossfit|box jump|double under|thruster|wall ball|snatch.*crossfit"
+    ],
+    [
+      "壶铃/CrossFit",
+      "WOD/高效训练",
+      "\\bWOD\\b|workout.*of.*day|crossfit.*workout|amrap|emom|for time.*crossfit"
+    ],
+    [
+      "体操/技巧",
+      "基础翻转",
+      "cartwheel|backflip|frontflip|roundoff|aerial.*trick|standing.*back|flip.*tutorial"
+    ],
+    [
+      "体操/技巧",
+      "倒立/平衡",
+      "handstand|headstand|hand.*balance|wall.*handstand|freestanding.*handstand"
+    ],
+    [
+      "体操/技巧",
+      "劈叉/柔韧",
+      "splits.*flexibility|how.*do.*splits|middle splits|oversplit|stretch.*splits"
+    ],
+    [
+      "体操/技巧",
+      "高难度技巧",
+      "double.*backflip|layout.*trick|full.*twist|tricking.*advanced|gymnastics.*advanced"
+    ],
+    [
+      "冲浪/水上",
+      "冲浪入门",
+      "surf.*beginner|beginner.*surf|learn.*surf|surf.*popup|surf.*paddle.*technique"
+    ],
+    [
+      "冲浪/水上",
+      "冲浪进阶",
+      "surf.*turn|surf.*maneuver|surfing.*technique.*advanced|barrel.*riding|surf.*cutback"
+    ],
+    [
+      "攀岩",
+      "室内抱石入门",
+      "rock climbing.*beginner|bouldering.*beginner|indoor.*climbing|climbing.*gym.*start"
+    ],
+    [
+      "攀岩",
+      "攀岩技术",
+      "climbing.*technique|footwork.*climbing|crimp|dyno.*climb|climbing.*movement"
+    ],
+    [
+      "棒球/垒球",
+      "投球技术",
+      "pitching.*baseball|baseball.*pitch|fastball|curveball|slider.*baseball|changeup"
+    ],
+    [
+      "棒球/垒球",
+      "击球技术",
+      "batting.*baseball|baseball.*swing|hit.*baseball|batting.*stance|batting.*practice"
+    ],
+    [
+      "棒球/垒球",
+      "入门基础",
+      "baseball.*beginner|beginner.*baseball|learn.*baseball|baseball.*basic"
+    ],
+    [
+      "滑冰/滑雪",
+      "滑冰技术",
+      "ice skating|figure skating|speed skating|skating.*beginner|ice.*skate.*technique"
+    ],
+    [
+      "滑冰/滑雪",
+      "滑雪技术",
+      "skiing.*beginner|beginner.*skiing|ski.*technique|snowboard.*beginner|snowboard.*technique"
+    ],
+    [
+      "普拉提",
+      "普拉提训练",
+      "pilates|pilates.*core|pilates.*workout|pilates.*beginner|pilates.*reform"
+    ],
+    [
+      "跳绳",
+      "跳绳训练",
+      "jump rope|skipping rope|jump.*rope.*workout|speed.*rope"
+    ],
+    [
+      "皮克球",
+      "基础技术",
+      "pickleball.*beginner|pickleball.*serve|pickleball.*dink|pickleball.*volley"
+    ],
+    [
+      "皮克球",
+      "进阶战术",
+      "pickleball.*strategy|pickleball.*advanced|third.*shot.*drop|pickleball.*tournament"
+    ],
+    [
+      "台球/斯诺克",
+      "打法技术",
+      "billiards.*technique|snooker.*technique|pool.*shot|billiards.*beginner|cue.*ball.*control"
+    ],
+    [
+      "板球",
+      "投球/打球",
+      "cricket.*bowling|cricket.*batting|cricket.*spin|cricket.*pace|leg spin|off spin"
+    ],
+    [
+      "运动营养",
+      "减脂饮食/热量缺口",
+      "calorie.*deficit|fat.*loss.*diet|cutting.*(?:phase|diet|calories)\\b|\\bdeficit.*eating\\b|\\beat.*(?:less|fewer)\\b.*calories?|\\breverse.*diet\\b|\\bminimum.*calorie\\b"
+    ],
+    [
+      "运动营养",
+      "备餐/Meal Prep",
+      "\\bmeal.*prep\\b|\\bfood.*prep\\b|\\bbatch.*cook\\b|\\bhigh.*protein.*meal\\b|\\bcheap.*meal.*prep\\b|\\bprotein.*meal\\b|\\bweight.*loss.*meal\\b"
+    ],
+    [
+      "运动营养",
+      "补剂科学/评测",
+      "\\bsupplement.*(?:review|guide|rank|stack)\\b|\\bcreatine.*(?:benefit|dose|review)\\b|\\bprotein.*powder.*review\\b|\\bpre.?workout.*review\\b|\\bbcaa\\b|\\bcollagen.*supplement\\b|\\bwhey.*vs\\b|\\bplant.*protein\\b"
+    ],
+    [
+      "运动营养",
+      "增肌/增重饮食",
+      "\\bbulk(?:ing)?\\b|\\bcheap.*bulk\\b|\\bmass.*gain\\b|\\bmuscle.*gain.*diet\\b|\\bweight.*gain.*(?:diet|food|meal|plan)\\b|\\bdirty.*bulk\\b|\\bclean.*bulk\\b|\\bcalorie.*surplus\\b"
+    ],
+    [
+      "运动营养",
+      "肠道/抗炎营养",
+      "\\bgut.?health\\b|\\bmicrobiome\\b|\\bprobiotics?\\b|\\banti.?inflammat\\b|\\belectrolyte[s]?\\b|\\bmineral.*(?:water|drink)\\b|\\bwater.*mineral\\b"
+    ],
+    [
+      "体重管理",
+      "减脂/体脂减少",
+      "\\bfat.*loss.*(?:tip|guide|hack|routine)\\b|\\bweight.*loss.*(?:tip|hack)\\b|\\bbelly.*fat\\b|\\bthigh.*fat\\b|\\binner.*thigh\\b.*(?:fat|slim)\\b|\\blose.*(?:fat|weight)\\b|\\bbody.*fat.*percent\\b"
+    ],
+    [
+      "体重管理",
+      "腰腹塑形/身材重塑",
+      "\\bsmaller.*waist\\b|\\bwaist.*slim\\b|\\bwaist.*workout\\b|\\bhourglass.*(?:body|figure|shape)\\b|\\bbody.*recomp(?:osition)?\\b|\\bbbl.*(?:result|natural|allegation)\\b|\\bget.*lean\\b|\\bsculpt.*body\\b|\\btone.*(?:up|body)\\b"
+    ],
+    [
+      "睡眠/健康恢复",
+      "睡眠科学",
+      "\\bsleep.*science\\b|\\bsleep.*deprivation\\b|\\bsleep.*stage[s]?\\b|\\bREM.*sleep\\b|\\bcircadian.*rhythm\\b|\\bsleep.*biology\\b|\\bcortisol.*sleep\\b|\\bsleep.*brain\\b|\\bnap.*science\\b"
+    ],
+    [
+      "睡眠/健康恢复",
+      "睡眠优化/助眠",
+      "\\bfall.*asleep\\b|\\bsleep.*(?:better|faster|deeper|quality)\\b|\\binsomnia\\b|\\bsleep.*routine\\b|\\bsleep.*schedule\\b|\\bsleep.*hack[s]?\\b|\\bsleep.*tip[s]?\\b|\\bsleep.*hygiene\\b"
+    ],
+    [
+      "睡眠/健康恢复",
+      "冷疗/冰浴恢复",
+      "\\bice.*bath\\b|\\bcold.*plunge\\b|\\bcold.*water.*therap\\b|\\bcold.*shower\\b.*(?:benefit|health)\\b|\\bwim.?hof.*cold\\b|\\bcryotherapy\\b|\\bpost.*workout.*(?:ice|cold|recovery)\\b"
+    ],
+    [
+      "运动心理/动机",
+      "心理健康/情绪管理",
+      "\\btrauma.*(?:heal|releas)\\b|\\bheal.*trauma\\b|\\bnervous.*system.*(?:regulat|reset)\\b|\\bcortisol.*(?:lower|reduc|manag)\\b|\\banger.*manage\\b|\\bemotional.*regulat\\b|\\bstress.*(?:reliev|manag|body)\\b|\\bletgo\\b|\\blet.*go.*(?:past|pain)\\b"
+    ],
+    [
+      "运动健康",
+      "呼吸/生理健康",
+      "\\bnasal.*breath\\b|\\bnose.*breath\\b|\\bmouth.*breath\\b|\\bbreathing.*(?:pattern|science)\\b|\\blymphatic.*(?:drain|system|massage)\\b|\\bblood.*pressure.*exercise\\b"
+    ],
+    [
+      "运动健康",
+      "损伤预防",
+      "\\binjury prevent\\b|\\bprehab\\b|\\bwarm.?up\\b.*injury|\\bdynamic warm.?up\\b|\\bcorrective exercise\\b|\\bmovement screen\\b|\\bFMS\\b.*screen|\\bmuscle imbalance\\b|\\bweak link\\b.*body"
+    ],
+    [
+      "运动健康",
+      "康复训练",
+      "\\brehab\\b.*(?:injury|surgery|knee|shoulder|back|ankle|hip)|\\bACL\\b.*rehab|\\brotator cuff\\b.*rehab|\\bphysical therapy\\b.*exercise|\\bPT\\b.*exercise|\\bpost.?surgery\\b.*rehab"
+    ],
+    [
+      "运动健康",
+      "睡眠优化",
+      "\\bsleep\\b.*(?:athlete|performance|recover)|\\bsleep hygiene\\b|\\bnap\\b.*athlete|\\bcircadian\\b.*train|\\bdeep sleep\\b.*recover"
+    ],
+    [
+      "运动健康",
+      "心理调节",
+      "\\bsports psychology\\b|\\bmental toughness\\b|\\bperformance anxiety\\b|\\bpre.?game routine\\b|\\bvisualization\\b.*sport|\\bmental rehearsal\\b|\\bflow state\\b.*sport|\\bchoking\\b.*pressure"
+    ],
+    [
+      "运动健康",
+      "物理治疗",
+      "\\bphysio\\b.*exercise|\\bchiropractic adjustment\\b|\\bdry needling\\b|\\bcupping therapy\\b|\\bgraston\\b|\\bASTYM\\b|\\bmassage therapy\\b.*recover|\\bsoft tissue work\\b"
+    ],
+    [
+      "运动健康",
+      "运动营养",
+      "\\bsports nutrition\\b|\\bathlete diet\\b|\\bprotein\\b.*athlete|\\bfueling\\b.*workout|\\bpre.?workout\\b|\\bpost.?workout\\b|\\bhydration\\b.*train|\\belectrolyte\\b.*train"
+    ],
+    [
+      "高尔夫",
+      "挥杆机制",
+      "\\bswing\\b.*(?:golf|club|driver|iron|wedge)|\\bbackswing\\b|\\bdownswing\\b|\\bfollow.?through\\b.*golf|\\bswing plane\\b|\\btempo\\b.*golf|\\brotation\\b.*golf|\\bweight shift\\b.*golf"
+    ],
+    [
+      "高尔夫",
+      "推杆/果岭",
+      "\\bputt(?:er|ing)?\\b|\\bgreen\\b.*golf|\\bputting stroke\\b|\\bbreak\\b.*putt|\\bspeed\\b.*putt|\\bline\\b.*putt|\\blag putt\\b|\\bshort putt\\b"
+    ],
+    [
+      "高尔夫",
+      "短杆切球",
+      "\\bchip(?:ping)?\\b.*golf|\\bpitch shot\\b.*golf|\\bflop shot\\b|\\bbunker\\b.*golf|\\bsand shot\\b|\\bsand save\\b|\\bwedge\\b.*golf|\\bfinesse wedge\\b"
+    ],
+    [
+      "高尔夫",
+      "球场策略",
+      "\\bcourse management\\b|\\bcourse strategy\\b|\\bclub selection\\b|\\bdistance control\\b.*golf|\\brisk reward\\b.*golf|\\bcourse vision\\b|\\bcourse navigation\\b"
+    ],
+    [
+      "高尔夫",
+      "装备评测",
+      "\\bclub fitting\\b|\\bdriver review\\b|\\biron set\\b|\\bgolf ball\\b.*compare|\\bgolf shaft\\b|\\bgrip\\b.*golf|\\bspecs?\\b.*golf|\\bMOI\\b.*golf"
+    ],
+    [
+      "高尔夫",
+      "心理/心态",
+      "\\bgolf mental\\b|\\bmindset\\b.*golf|\\bpressure\\b.*golf|\\bfocus\\b.*golf|\\byips\\b|\\bnerves\\b.*golf|\\bconfidence\\b.*golf"
+    ],
+    [
+      "网球",
+      "正手/反手",
+      "\\bforehand\\b.*tennis|\\bbackhand\\b.*tennis|\\btwo.?hand backhand\\b|\\bone.?hand backhand\\b|\\bgroundstroke\\b|\\btopspin\\b.*tennis|\\bslice\\b.*tennis|\\bflat shot\\b.*tennis"
+    ],
+    [
+      "网球",
+      "发球/接发球",
+      "\\bserve\\b.*tennis|\\bfirst serve\\b|\\bsecond serve\\b|\\bkick serve\\b|\\bflat serve\\b|\\bslice serve\\b|\\breturn of serve\\b|\\bservice toss\\b|\\bball toss\\b.*serve"
+    ],
+    [
+      "网球",
+      "截击/网前",
+      "\\bvolley\\b.*tennis|\\bnet play\\b|\\bhalf volley\\b|\\bdrop volley\\b|\\bsmash\\b.*tennis|\\boverhead\\b.*tennis|\\bswing volley\\b|\\btransition\\b.*net"
+    ],
+    [
+      "网球",
+      "步法/移动",
+      "\\bfootwork\\b.*tennis|\\bsplit step\\b|\\bcrossover step\\b|\\bopen stance\\b.*tennis|\\bclosed stance\\b.*tennis|\\brecovery step\\b|\\bcourt coverage\\b"
+    ],
+    [
+      "网球",
+      "战术/策略",
+      "\\btennis strategy\\b|\\btennis tactic\\b|\\bsingles strategy\\b|\\bdoubles strategy\\b|\\bI.?formation\\b.*tennis|\\bAustralian formation\\b|\\bserve.?and.?volley\\b|\\bbaseline grinder\\b"
+    ],
+    [
+      "网球",
+      "装备/选拍",
+      "\\btennis racquet\\b|\\btennis racket\\b|\\bstring tension\\b.*tennis|\\bgrip size\\b.*tennis|\\boverwrap\\b|\\bdampener\\b.*tennis|\\bracket compare\\b"
+    ],
+    [
+      "骑行",
+      "公路骑行",
+      "\\broad bike\\b|\\broad cycling\\b|\\broadie\\b|\\bpeloton\\b.*cycling|\\bdrafting\\b.*bike|\\bcadence\\b.*cycling|\\bclimbing\\b.*road bike|\\bdescend(?:ing)?\\b.*road"
+    ],
+    [
+      "骑行",
+      "山地/MTB",
+      "\\bMTB\\b|\\bmountain bike\\b|\\bmountain biking\\b|\\bsingletrack\\b|\\bdownhill\\b.*bike|\\benduro\\b.*bike|\\bXC\\b.*bike|\\bsuspension\\b.*MTB|\\bcornering\\b.*MTB|\\bdrop\\b.*MTB|\\bjump\\b.*MTB|\\bbike park\\b"
+    ],
+    [
+      "骑行",
+      "装备维护",
+      "\\bbike maintenance\\b|\\bbike repair\\b|\\bchain\\b.*bike|\\bbike chain\\b|\\bbrake\\b.*bike|\\bderailleur\\b|\\bshift(?:er|ing)?\\b.*bike|\\btire\\b.*bike|\\btube\\b.*bike|\\bcassette\\b.*bike|\\bbottom bracket\\b|\\bbike fit\\b|\\bbike tune\\b"
+    ],
+    [
+      "骑行",
+      "训练/体能",
+      "\\bcycling train\\b|\\bbike train\\b|\\bFTP\\b|\\bthreshold\\b.*cycling|\\bzone\\b.*train.*bike|\\bsweet spot\\b.*bike|\\bsprint interval\\b.*bike|\\bendurance ride\\b|\\blong ride\\b"
+    ],
+    [
+      "骑行",
+      "安全/装备",
+      "\\bbike helmet\\b|\\bcycling kit\\b|\\bcycling shoe\\b|\\bclipless\\b.*pedal|\\bcleat\\b.*bike|\\bbike light\\b|\\bbike lock\\b|\\bcycle safety\\b|\\bbike commute\\b"
+    ],
+    [
+      "健身综合",
+      "减脂",
+      "\\bfat loss\\b|\\bweight loss\\b|\\bbelly fat\\b|\\bcellulite\\b|\\bvisceral fat\\b|\\bcaloric deficit\\b|\\bcardio\\b.*fat loss|\\bHIIT\\b.*fat loss"
+    ],
+    [
+      "健身综合",
+      "增肌",
+      "\\bbuild muscle\\b|\\bmuscle gain\\b|\\bhypertrophy\\b|\\bbulk\\b.*muscle|\\blean bulk\\b|\\bnatural bodybuild\\b|\\bnewbie gains\\b"
+    ],
+    [
+      "健身综合",
+      "体能综合",
+      "\\bgeneral fitness\\b|\\bgeneral physical preparedness\\b|\\bGPP\\b.*fitness|\\bfunctional fitness\\b|\\bcrossfit\\b|\\bWOD\\b.*crossfit|\\bcircuit train\\b"
+    ],
+    [
+      "健身综合",
+      "居家健身",
+      "\\bhome gym\\b|\\bhome workout\\b|\\bno equipment\\b|\\bbodyweight\\b.*workout|\\bcalisthenics\\b|\\bsmall apartment\\b.*train|\\bgarage gym\\b"
+    ],
+    [
+      "健身综合",
+      "女性塑形",
+      "\\bwomen\\b.*workout|\\bfemale\\b.*workout|\\bbooty\\b.*workout|\\bglute\\b.*women|\\binner thigh\\b|\\barm sculpt\\b.*women|\\bbarre\\b.*workout|\\bsculpt\\b.*body"
+    ],
+    [
+      "健身综合",
+      "体能测试",
+      "\\bfitness test\\b|\\bbody composition\\b.*test|\\bDEXA\\b.*body|\\bBMI\\b.*fitness|\\bphysical assessment\\b|\\bbenchmark\\b.*fitness"
+    ]
+  ]
+}

@@ -21,7 +21,8 @@ content-gap/
 | R4 · gap #21-30 | queries_gap21to30_20260528.json | 190 | 380 |
 | R5 · full batch | queries_full_batch_20260528.json | — | — |
 | R6 · high-ROI 10k | queries_highroi_10k_20260528.json | — | — |
-| **合计** | | **1,655+** | **3,310+** |
+| R7 · P0/P1/P2 (V4诊断) | queries_r7_p0p1p2_20260528.json | 1,581 | 4,743 (3平台) |
+| **合计** | | **3,236+** | **8,053+** |
 
 ## 核心公式
 

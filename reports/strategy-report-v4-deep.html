@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动内容池补充策略报告 V4 深度版</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #f4f6fa; color: #1a1a2e; font-size: 14px; line-height: 1.6; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 56px 40px 44px; }
+  .hero h1 { font-size: 32px; font-weight: 700; letter-spacing: -.5px; margin-bottom: 6px; }
+  .hero .subtitle { font-size: 14px; opacity: .7; margin-bottom: 36px; }
+  .hero-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+  .hero-stat { background: rgba(255,255,255,.08); border-radius: 12px; padding: 18px 24px; min-width: 160px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,.1); }
+  .hero-stat .label { font-size: 10px; opacity: .75; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .7px; }
+  .hero-stat .value { font-size: 32px; font-weight: 700; }
+  .hero-stat .sub { font-size: 11px; opacity: .65; margin-top: 4px; }
+
+  /* Container */
+  .container { max-width: 1240px; margin: 32px auto; padding: 0 24px; }
+
+  /* Section */
+  h2 { font-size: 22px; font-weight: 700; margin: 0 0 14px; color: #1a1a2e; border-left: 5px solid #0f3460; padding-left: 14px; }
+  h3 { font-size: 16px; font-weight: 600; margin: 20px 0 10px; color: #2c3e50; }
+  .section-sub { font-size: 13px; color: #666; margin-bottom: 18px; }
+  .card { background: white; border-radius: 14px; padding: 28px; margin-bottom: 26px; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f0f4f8; padding: 10px 14px; text-align: left; font-weight: 600; color: #555; font-size: 11px; text-transform: uppercase; letter-spacing: .4px; border-bottom: 2px solid #e0e7ef; }
+  td { padding: 9px 14px; border-bottom: 1px solid #f3f5f8; vertical-align: middle; }
+  tr:hover td { background: #fafbfc; }
+  td.num { font-variant-numeric: tabular-nums; text-align: right; }
+  td.l1 { font-weight: 600; color: #16213e; }
+
+  /* Growth tags */
+  .g-hot   { color: #c0392b; font-weight: 700; }
+  .g-good  { color: #16a34a; font-weight: 600; }
+  .g-flat  { color: #555; }
+  .g-low   { color: #d97706; font-weight: 600; }
+  .g-cold  { color: #6b7280; }
+  .g-new   { color: #2563eb; font-weight: 700; }
+
+  /* Badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+  .badge-red    { background: #fde8e8; color: #c0392b; }
+  .badge-orange { background: #fef3e2; color: #c2410c; }
+  .badge-green  { background: #e8f8f0; color: #16a34a; }
+  .badge-yellow { background: #fef9e7; color: #d97706; }
+  .badge-blue   { background: #e8f0fe; color: #2563eb; }
+  .badge-gray   { background: #f0f0f0; color: #666; }
+
+  /* Mini stats */
+  .ministat { background: #f9fafb; border-radius: 10px; padding: 14px; border: 1px solid #e5e7eb; }
+  .ministat .v { font-size: 22px; font-weight: 700; color: #16213e; }
+  .ministat .l { font-size: 11px; color: #777; margin-top: 2px; }
+  .ministat .delta { font-size: 11px; color: #16a34a; margin-top: 4px; font-weight: 600; }
+
+  /* L2 block */
+  .l2-section { background: #fff; border: 1px solid #e8eaee; border-radius: 12px; margin: 14px 0; overflow: hidden; }
+  .l2-header { background: linear-gradient(90deg, #f8fafc 0%, #fff 100%); padding: 14px 18px; border-bottom: 1px solid #e8eaee; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .l2-header .name { font-size: 16px; font-weight: 700; color: #16213e; }
+  .l2-header .count { font-size: 13px; color: #555; }
+  .l2-header .growth { font-size: 12px; }
+  .l2-body { padding: 14px 18px; }
+  .l2-body table th { background: transparent; padding: 6px 10px; font-size: 10px; }
+  .l2-body table td { padding: 6px 10px; font-size: 12px; }
+
+  /* Topic samples */
+  .samples { background: #fbfcfd; border-radius: 8px; padding: 10px 14px; margin-top: 10px; border-left: 3px solid #3b82f6; }
+  .samples .sample-title { font-size: 11px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+  .samples .sample-item { font-size: 12px; color: #444; padding: 3px 0; }
+
+  /* Uncategorized cluster */
+  .uncat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .uncat-card { background: #f9fafb; border-radius: 10px; padding: 14px; border: 1px solid #e5e7eb; }
+  .uncat-card .head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .uncat-card .name { font-weight: 600; color: #16213e; font-size: 13px; }
+  .uncat-card .cnt  { font-size: 11px; color: #888; }
+  .uncat-card .pct  { font-weight: 700; color: #2563eb; font-size: 18px; }
+  .uncat-card .bar  { background: #e5e7eb; border-radius: 99px; height: 6px; margin-top: 6px; overflow: hidden; }
+  .uncat-card .bar-fill { background: linear-gradient(90deg, #3b82f6, #1d4ed8); height: 100%; border-radius: 99px; }
+  .uncat-card .ex { font-size: 11px; color: #555; margin-top: 8px; line-height: 1.4; padding-top: 8px; border-top: 1px dashed #e5e7eb; }
+
+  /* Recommendation grid */
+  .reco-card { border-radius: 12px; padding: 18px; margin: 10px 0; }
+  .reco-p0 { background: #fff5f5; border: 2px solid #fca5a5; }
+  .reco-p1 { background: #fffbeb; border: 2px solid #fcd34d; }
+  .reco-p2 { background: #f0f9ff; border: 2px solid #bae6fd; }
+  .reco-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .reco-tag { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+  .reco-tag.p0 { background: #dc2626; color: white; }
+  .reco-tag.p1 { background: #f59e0b; color: white; }
+  .reco-tag.p2 { background: #0284c7; color: white; }
+  .reco-tag.sum { background: #16213e; color: white; }
+
+  /* Takeaway */
+  .takeaway { background: #f0fdf4; border-left: 4px solid #22c55e; padding: 14px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .takeaway strong { color: #15803d; }
+  .takeaway-orange { background: #fff7ed; border-left: 4px solid #f97316; padding: 14px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .takeaway-orange strong { color: #c2410c; }
+  .takeaway-blue { background: #eff6ff; border-left: 4px solid #3b82f6; padding: 14px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; }
+  .takeaway-blue strong { color: #1d4ed8; }
+
+  /* TOC */
+  .toc { background: #fafbfc; border-radius: 10px; padding: 18px 22px; margin-bottom: 24px; border: 1px solid #e5e7eb; }
+  .toc-title { font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+  .toc ol { margin-left: 18px; }
+  .toc li { padding: 3px 0; font-size: 13px; }
+  .toc a { color: #2563eb; text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .uncat-grid { grid-template-columns: 1fr; }
+    .hero { padding: 32px 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>运动内容池补充策略报告 V4</h1>
+  <div class="subtitle">深度版 · 65k Gemini 批次入池后的全面诊断与下一轮补充优先级 · 2026-05-28</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="label">合并总池</div><div class="value">104,407</div><div class="sub">19k + 12k + indb + 65k</div></div>
+    <div class="hero-stat"><div class="label">本批新增</div><div class="value">+63,108</div><div class="sub">v3 QC通过 · 已去Y去border</div></div>
+    <div class="hero-stat"><div class="label">补充前规模</div><div class="value">41,299</div><div class="sub">4 个老批次合计</div></div>
+    <div class="hero-stat"><div class="label">规模增幅</div><div class="value">+153%</div><div class="sub">≈2.5x 总量</div></div>
+    <div class="hero-stat"><div class="label">L1 已覆盖</div><div class="value">47</div><div class="sub">含 1 个本批首次入池</div></div>
+    <div class="hero-stat"><div class="label">未分类规模</div><div class="value">20,654</div><div class="sub">19.8% · 主因L1词库不全</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">报告导读</div>
+    <ol>
+      <li><a href="#sec1">总体诊断与核心结论</a></li>
+      <li><a href="#sec2">本批补强成效（Top Winners）</a></li>
+      <li><a href="#sec3">「其他/未分类」深度拆解</a></li>
+      <li><a href="#sec4">L2 细分缺口（按运动逐个看）</a></li>
+      <li><a href="#sec5">持续性缺口（L1总量<1000）</a></li>
+      <li><a href="#sec6">下一轮补充优先级与配额</a></li>
+      <li><a href="#sec7">L1/L2 词库扩展建议</a></li>
+      <li><a href="#sec8">完整 L1 分布表</a></li>
+    </ol>
+  </div>
+
+  <!-- Section 1: Overall diagnosis -->
+  <a id="sec1"></a>
+  <div class="card">
+    <h2>一、总体诊断与核心结论</h2>
+    <div class="takeaway">
+      <strong>本批 65k 的战略意义：</strong>大规模补强了"室内/居家健身"和"身心健康"两条主线，
+      <strong>力量训练池从 1,354 → 13,229（×8.8）、瑜伽 1,127 → 6,842（×5.1）、普拉提/冥想/健身综合三类均 ×12 以上</strong>，
+      把上一版 V3 报告诊断出的最大结构缺口一次性补齐。这是池子第一次具备"完整的居家+功能性训练"能力。
+    </div>
+    <div class="takeaway-orange">
+      <strong>结构遗留问题：</strong>本批高度聚焦健身/身心健康，<strong>对户外/极限/球类长尾几乎没有补充</strong>。
+      26 个 L1 仍 &lt;1,000 条；其中攀岩、滑板、潜水、冲浪、户外徒步、跑酷六个户外项的新增均 &lt;230 条（增幅 0.2-0.4x），
+      武术 L2 失衡（柔道/BJJ 1,400 条，太极/气功仅 1 条），都需要下一轮专项补强。
+    </div>
+    <div class="takeaway-blue">
+      <strong>「其他/未分类」20,654 条（19.8%）属于词库不全，非内容问题：</strong>
+      抽样分析显示，至少 60% 是力量训练细分变体（Smith机、Nordic curl、特定肌肉部位、家庭健身器械）和柔韧/拉伸/营养等内容，
+      只是当前 L1 正则没覆盖到。这部分内容质量是好的，<strong>建议同步迭代词库</strong>，不是要把这些剔除。
+    </div>
+  </div>
+
+  <!-- Section 2: Winners -->
+  <a id="sec2"></a>
+  <div class="card">
+    <h2>二、本批补强成效 — Top Winners</h2>
+    <p class="section-sub">按新增绝对量排序，显示本批主要"补到了哪里"</p>
+    <table>
+      <tr>
+        <th>排名</th>
+        <th>L1运动</th>
+        <th class="num">补充前</th>
+        <th class="num">本批新增</th>
+        <th class="num">现在合计</th>
+        <th class="num">增幅</th>
+        <th class="num">占池比</th>
+        <th>状态</th>
+      </tr>
+      <tr>
+        <td class="num"><strong>1</strong></td>
+        <td class="l1">力量训练</td>
+        <td class="num">1,354</td>
+        <td class="num"><strong style="color:#16a34a">+11,875</strong></td>
+        <td class="num">13,229</td>
+        <td class="num"><span class="g-hot">8.8x</span></td>
+        <td class="num">12.7%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>2</strong></td>
+        <td class="l1">瑜伽</td>
+        <td class="num">1,127</td>
+        <td class="num"><strong style="color:#16a34a">+5,715</strong></td>
+        <td class="num">6,842</td>
+        <td class="num"><span class="g-hot">5.1x</span></td>
+        <td class="num">6.6%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>3</strong></td>
+        <td class="l1">跑步</td>
+        <td class="num">2,941</td>
+        <td class="num"><strong style="color:#16a34a">+2,873</strong></td>
+        <td class="num">5,814</td>
+        <td class="num"><span class="g-low">1.0x</span></td>
+        <td class="num">5.6%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>4</strong></td>
+        <td class="l1">运动健康</td>
+        <td class="num">389</td>
+        <td class="num"><strong style="color:#16a34a">+2,284</strong></td>
+        <td class="num">2,673</td>
+        <td class="num"><span class="g-hot">5.9x</span></td>
+        <td class="num">2.6%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>5</strong></td>
+        <td class="l1">健身综合</td>
+        <td class="num">148</td>
+        <td class="num"><strong style="color:#16a34a">+1,904</strong></td>
+        <td class="num">2,052</td>
+        <td class="num"><span class="g-hot">12.9x</span></td>
+        <td class="num">2.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>6</strong></td>
+        <td class="l1">冥想/呼吸</td>
+        <td class="num">154</td>
+        <td class="num"><strong style="color:#16a34a">+1,894</strong></td>
+        <td class="num">2,048</td>
+        <td class="num"><span class="g-hot">12.3x</span></td>
+        <td class="num">2.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>7</strong></td>
+        <td class="l1">舞蹈</td>
+        <td class="num">449</td>
+        <td class="num"><strong style="color:#16a34a">+1,863</strong></td>
+        <td class="num">2,312</td>
+        <td class="num"><span class="g-good">4.1x</span></td>
+        <td class="num">2.2%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>8</strong></td>
+        <td class="l1">普拉提</td>
+        <td class="num">131</td>
+        <td class="num"><strong style="color:#16a34a">+1,673</strong></td>
+        <td class="num">1,804</td>
+        <td class="num"><span class="g-hot">12.8x</span></td>
+        <td class="num">1.7%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>9</strong></td>
+        <td class="l1">足球</td>
+        <td class="num">1,816</td>
+        <td class="num"><strong style="color:#16a34a">+1,447</strong></td>
+        <td class="num">3,263</td>
+        <td class="num"><span class="g-low">0.8x</span></td>
+        <td class="num">3.1%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>10</strong></td>
+        <td class="l1">拳击/搏击</td>
+        <td class="num">2,775</td>
+        <td class="num"><strong style="color:#16a34a">+1,389</strong></td>
+        <td class="num">4,164</td>
+        <td class="num"><span class="g-low">0.5x</span></td>
+        <td class="num">4.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>11</strong></td>
+        <td class="l1">高尔夫</td>
+        <td class="num">2,451</td>
+        <td class="num"><strong style="color:#16a34a">+1,242</strong></td>
+        <td class="num">3,693</td>
+        <td class="num"><span class="g-low">0.5x</span></td>
+        <td class="num">3.5%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>12</strong></td>
+        <td class="l1">篮球</td>
+        <td class="num">2,304</td>
+        <td class="num"><strong style="color:#16a34a">+1,146</strong></td>
+        <td class="num">3,450</td>
+        <td class="num"><span class="g-cold">0.5x</span></td>
+        <td class="num">3.3%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>13</strong></td>
+        <td class="l1">体操/技巧</td>
+        <td class="num">697</td>
+        <td class="num"><strong style="color:#16a34a">+988</strong></td>
+        <td class="num">1,685</td>
+        <td class="num"><span class="g-flat">1.4x</span></td>
+        <td class="num">1.6%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>14</strong></td>
+        <td class="l1">骑行</td>
+        <td class="num">2,166</td>
+        <td class="num"><strong style="color:#16a34a">+960</strong></td>
+        <td class="num">3,126</td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">3.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+      </tr>
+      <tr>
+        <td class="num"><strong>15</strong></td>
+        <td class="l1">排球</td>
+        <td class="num">922</td>
+        <td class="num"><strong style="color:#16a34a">+906</strong></td>
+        <td class="num">1,828</td>
+        <td class="num"><span class="g-low">1.0x</span></td>
+        <td class="num">1.8%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+      </tr>
+    </table>
+    <div class="takeaway">
+      <strong>趋势观察：</strong>本批新增显著集中在"非传统竞技、可在家做、零器械门槛"的内容上 ——
+      力量训练 / 瑜伽 / 普拉提 / 冥想 / 健身综合 / 运动健康 / 舞蹈 / 体操技巧 8 个品类合计吃掉 +29,300 条新增（占 65k 的 46%），
+      这跟当前用户行为（居家健身 + Z世代心智健康）方向高度一致。
+    </div>
+  </div>
+
+  <!-- Section 3: Uncategorized deep dive -->
+  <a id="sec3"></a>
+  <div class="card">
+    <h2>三、「其他/未分类」深度拆解</h2>
+    <p class="section-sub">
+      用 14 类细化词包二次扫描 65k 批中 14,564 条未被 L1 命中的 topic，看实际归属
+    </p>
+    <div class="uncat-grid">
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">力量训练-肌肉细分</span>
+          <span class="pct">10.3%</span>
+        </div>
+        <div class="cnt">1,493 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:30.753913759956056%"></div></div>
+        <div class="ex">• How adding dips to a forearm side plank builds the oblique stability needed for longer sta<br>• A beginner's foundation for the plank: setting up the proper form to effectively target th</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">柔韧/拉伸/活动度</span>
+          <span class="pct">9.2%</span>
+        </div>
+        <div class="cnt">1,333 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:27.458115902224666%"></div></div>
+        <div class="ex">• Why emotional tension isn't just in your head: using somatic exercises to release stored a<br>• Why releasing shame starts in the body: a somatic practice for nervous system regulation</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">运动饮食/营养/补剂</span>
+          <span class="pct">6.9%</span>
+        </div>
+        <div class="cnt">1,005 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:20.70173029387531%"></div></div>
+        <div class="ex">• A nutrition and exercise specialist's case for mouth taping: why taping your mouth shut at<br>• Why taping your mouth shut at night could be the simplest adjustment for better sleep</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">体姿矫正/物理治疗</span>
+          <span class="pct">6.4%</span>
+        </div>
+        <div class="cnt">926 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:19.074430101620436%"></div></div>
+        <div class="ex">• Why deadlifts aren't dangerous for seniors: a physical therapist's case for building a res<br>• Making the intense hip-opening of Frog Pose accessible: key alignment rules and modificati</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">减脂/瘦身/塑形</span>
+          <span class="pct">6.1%</span>
+        </div>
+        <div class="cnt">885 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:18.229881900576764%"></div></div>
+        <div class="ex">• Targeting leg cellulite without hitting the mat: a standing-only approach to lower body to<br>• Andrew Huberman's cyclic sighing protocol: the specific breathing pattern for rapid relaxa</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">睡眠/恢复</span>
+          <span class="pct">5.6%</span>
+        </div>
+        <div class="cnt">812 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:16.726174127986816%"></div></div>
+        <div class="ex">• Why frequent night urination might actually be a breathing problem: the sleep benefits of <br>• Why mouth breathing is more than a sleep issue: how it physically reshapes your face over </div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">力量训练-动作技术</span>
+          <span class="pct">5.4%</span>
+        </div>
+        <div class="cnt">785 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:16.170008239494642%"></div></div>
+        <div class="ex">• Why everyone from yogis to cross-training athletes relies on the lunge: the physical adapt<br>• The case for making lunges a non-negotiable part of your lower-body routine</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">居家/无器械健身</span>
+          <span class="pct">2.8%</span>
+        </div>
+        <div class="cnt">411 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:8.466080747047515%"></div></div>
+        <div class="ex">• How to progress your bodyweight dips: a strength coach's foundation for building upper-bod<br>• Evaluating the Starting Strength method: what still works and what might be outdated</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">心理/动机/教练学</span>
+          <span class="pct">2.6%</span>
+        </div>
+        <div class="cnt">375 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:7.72452622905795%"></div></div>
+        <div class="ex">• Why building a nose-breathing habit in children starts with daytime mouth taping<br>• Why common breathing advice for pelvic floor dysfunction gets it wrong</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">老年/青少年专项</span>
+          <span class="pct">1.4%</span>
+        </div>
+        <div class="cnt">201 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:4.140346058775061%"></div></div>
+        <div class="ex">• A strength coach's case for the 5x5 workout: why guys over 40 need this specific protocol<br>• Why leg strength is the foundation of senior balance: using step-ups to build everyday sta</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">心肺/HIIT</span>
+          <span class="pct">1.1%</span>
+        </div>
+        <div class="cnt">165 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:3.3987915407854983%"></div></div>
+        <div class="ex">• Standing diaphragmatic breathing: the physical setup to actively calm the nervous system a<br>• A coach's Tabata step routine: applying high-intensity interval pacing to traditional step</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">马术/骑马</span>
+          <span class="pct">0.6%</span>
+        </div>
+        <div class="cnt">86 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:1.7714913485306236%"></div></div>
+        <div class="ex">• The critical first steps for horseback riding beginners: from safety gear to a secure moun<br>• How the Brompton saddle height insert eliminates the guesswork of setting your perfect sea</div>
+      </div>
+      <div class="uncat-card">
+        <div class="head">
+          <span class="name">内/外功能性训练</span>
+          <span class="pct">0.6%</span>
+        </div>
+        <div class="cnt">81 条 / 本批未分类 14,564</div>
+        <div class="bar"><div class="bar-fill" style="width:1.6684976654765176%"></div></div>
+        <div class="ex">• The hidden physique benefit of ring dips: forcing undertrained muscles to grow without ext<br>• Breaking out of functional freeze: a somatic sequence to regulate the nervous system</div>
+      </div>
+      <div class="uncat-card" style="border-color:#fcd34d;background:#fffbeb;">
+        <div class="head">
+          <span class="name">真·杂项（仍未匹配）</span>
+          <span class="pct">41.2%</span>
+        </div>
+        <div class="cnt">6,006 条</div>
+        <div class="bar"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,#f59e0b,#d97706);"></div></div>
+        <div class="ex">含特定健身方法（GZCL/PHUL/Wendler 531/Buteyko呼吸）、教练学论文式内容、神经系统调节等。<br>样本: How to choose between GZCL, PHUL, and Candito: a coach's breakdown of 5 popular </div>
+      </div>
+    </div>
+
+    <div class="takeaway-blue" style="margin-top:18px;">
+      <strong>结论：未分类的 14,564 条中至少 8,500 条（59%）属于明确可归类的健身/健康内容</strong>，主要包括 ——
+      <ul style="margin-top:8px;margin-left:20px;font-size:13px;">
+        <li><strong>力量训练-肌肉细分</strong>（1,493）+ <strong>力量训练-动作技术</strong>（785）= 2,278 条应归入「力量训练」</li>
+        <li><strong>柔韧/拉伸/活动度</strong>（1,333）→ 建议新增独立 L1「柔韧/活动度」</li>
+        <li><strong>运动饮食/营养/补剂</strong>（1,005）→ 应归入「运动营养」（当前仅 638，加上后接近 1,650）</li>
+        <li><strong>体姿矫正/物理治疗</strong>（926）→ 建议新增 L1「体姿矫正/PT」</li>
+        <li><strong>减脂/瘦身/塑形</strong>（885）→ 应归入「健身综合」</li>
+        <li><strong>睡眠/恢复</strong>（812）→ 应归入「运动健康」</li>
+      </ul>
+      <strong>词库迭代后预计可减少未分类 ≥8,000 条</strong>，剩余约 6,000 条才是真"杂项"。
+    </div>
+  </div>
+
+  <!-- Section 4: L2 deep dive -->
+  <a id="sec4"></a>
+  <div class="card">
+    <h2>四、L2 细分缺口 — 主流运动逐个看</h2>
+    <p class="section-sub">大类有量但细分技术点不齐 — 这些点是真正需要定向补充的题目</p>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">力量训练</span>
+        <span class="count">合计 13,229 条</span>
+        <span class="growth">整体增幅 <span class="g-hot">8.8x</span></span>
+        <span class="badge badge-green">饱和</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 79% · 未细分 2,747</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>腿部/臀部</td><td class="num">380</td><td class="num">3,474</td><td class="num"><strong>3,854</strong></td><td class="num"><span class="g-hot">9.1x</span></td><td></td></tr>
+          <tr><td>背部训练</td><td class="num">202</td><td class="num">1,692</td><td class="num"><strong>1,894</strong></td><td class="num"><span class="g-hot">8.4x</span></td><td></td></tr>
+          <tr><td>肩部/手臂</td><td class="num">98</td><td class="num">1,538</td><td class="num"><strong>1,636</strong></td><td class="num"><span class="g-hot">15.7x</span></td><td></td></tr>
+          <tr><td>胸部训练</td><td class="num">150</td><td class="num">1,016</td><td class="num"><strong>1,166</strong></td><td class="num"><span class="g-hot">6.8x</span></td><td></td></tr>
+          <tr><td>核心/腹部</td><td class="num">53</td><td class="num">852</td><td class="num"><strong>905</strong></td><td class="num"><span class="g-hot">16.1x</span></td><td></td></tr>
+          <tr><td>进阶/超负荷</td><td class="num">86</td><td class="num">284</td><td class="num"><strong>370</strong></td><td class="num"><span class="g-good">3.3x</span></td><td></td></tr>
+          <tr><td>居家力量</td><td class="num">30</td><td class="num">267</td><td class="num"><strong>297</strong></td><td class="num"><span class="g-hot">8.9x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>女性力量/塑形</td><td class="num">6</td><td class="num">157</td><td class="num"><strong>163</strong></td><td class="num"><span class="g-hot">26.2x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>初学者入门</td><td class="num">25</td><td class="num">133</td><td class="num"><strong>158</strong></td><td class="num"><span class="g-hot">5.3x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>举铁技术纠错</td><td class="num">3</td><td class="num">36</td><td class="num"><strong>39</strong></td><td class="num"><span class="g-hot">12.0x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">瑜伽</span>
+        <span class="count">合计 6,842 条</span>
+        <span class="growth">整体增幅 <span class="g-hot">5.1x</span></span>
+        <span class="badge badge-green">饱和</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 64% · 未细分 2,446</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>柔韧性/拉伸</td><td class="num">319</td><td class="num">1,141</td><td class="num"><strong>1,460</strong></td><td class="num"><span class="g-good">3.6x</span></td><td></td></tr>
+          <tr><td>初学者入门</td><td class="num">231</td><td class="num">951</td><td class="num"><strong>1,182</strong></td><td class="num"><span class="g-good">4.1x</span></td><td></td></tr>
+          <tr><td>力量/平衡</td><td class="num">96</td><td class="num">531</td><td class="num"><strong>627</strong></td><td class="num"><span class="g-hot">5.5x</span></td><td></td></tr>
+          <tr><td>睡前/放松瑜伽</td><td class="num">80</td><td class="num">324</td><td class="num"><strong>404</strong></td><td class="num"><span class="g-good">4.0x</span></td><td></td></tr>
+          <tr><td>减脂/体重管理</td><td class="num">21</td><td class="num">252</td><td class="num"><strong>273</strong></td><td class="num"><span class="g-hot">12.0x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>晨间瑜伽</td><td class="num">21</td><td class="num">164</td><td class="num"><strong>185</strong></td><td class="num"><span class="g-hot">7.8x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>冥想/气息结合</td><td class="num">19</td><td class="num">98</td><td class="num"><strong>117</strong></td><td class="num"><span class="g-hot">5.2x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>高难度体式</td><td class="num">21</td><td class="num">79</td><td class="num"><strong>100</strong></td><td class="num"><span class="g-good">3.8x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>孕期/产后瑜伽</td><td class="num">9</td><td class="num">39</td><td class="num"><strong>48</strong></td><td class="num"><span class="g-good">4.3x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">跑步</span>
+        <span class="count">合计 5,814 条</span>
+        <span class="growth">整体增幅 <span class="g-low">1.0x</span></span>
+        <span class="badge badge-green">饱和</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 52% · 未细分 2,805</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>跑步姿势/技术</td><td class="num">408</td><td class="num">488</td><td class="num"><strong>896</strong></td><td class="num"><span class="g-flat">1.2x</span></td><td></td></tr>
+          <tr><td>马拉松备赛</td><td class="num">476</td><td class="num">288</td><td class="num"><strong>764</strong></td><td class="num"><span class="g-low">0.6x</span></td><td></td></tr>
+          <tr><td>损伤预防/恢复</td><td class="num">201</td><td class="num">191</td><td class="num"><strong>392</strong></td><td class="num"><span class="g-low">1.0x</span></td><td></td></tr>
+          <tr><td>初学者入门</td><td class="num">201</td><td class="num">148</td><td class="num"><strong>349</strong></td><td class="num"><span class="g-low">0.7x</span></td><td></td></tr>
+          <tr><td>间歇/速度训练</td><td class="num">121</td><td class="num">106</td><td class="num"><strong>227</strong></td><td class="num"><span class="g-low">0.9x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>越野跑/步道跑</td><td class="num">101</td><td class="num">91</td><td class="num"><strong>192</strong></td><td class="num"><span class="g-low">0.9x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>减脂跑步</td><td class="num">52</td><td class="num">137</td><td class="num"><strong>189</strong></td><td class="num"><span class="g-good">2.6x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">篮球</span>
+        <span class="count">合计 3,450 条</span>
+        <span class="growth">整体增幅 <span class="g-cold">0.5x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 52% · 未细分 1,640</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>控球/运球</td><td class="num">434</td><td class="num">255</td><td class="num"><strong>689</strong></td><td class="num"><span class="g-low">0.6x</span></td><td></td></tr>
+          <tr><td>投篮/三分</td><td class="num">330</td><td class="num">156</td><td class="num"><strong>486</strong></td><td class="num"><span class="g-cold">0.5x</span></td><td></td></tr>
+          <tr><td>防守技术</td><td class="num">251</td><td class="num">95</td><td class="num"><strong>346</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td><span class="badge badge-orange">补充少</span></td></tr>
+          <tr><td>步伐/身体对抗</td><td class="num">64</td><td class="num">40</td><td class="num"><strong>104</strong></td><td class="num"><span class="g-low">0.6x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>传球/配合</td><td class="num">71</td><td class="num">13</td><td class="num"><strong>84</strong></td><td class="num"><span class="g-cold">0.2x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+          <tr><td>NBA明星技术解析</td><td class="num">20</td><td class="num">32</td><td class="num"><strong>52</strong></td><td class="num"><span class="g-flat">1.6x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+          <tr><td>扣篮技巧</td><td class="num">30</td><td class="num">19</td><td class="num"><strong>49</strong></td><td class="num"><span class="g-low">0.6x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">足球</span>
+        <span class="count">合计 3,263 条</span>
+        <span class="growth">整体增幅 <span class="g-low">0.8x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 47% · 未细分 1,718</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>控球技术/花式</td><td class="num">255</td><td class="num">361</td><td class="num"><strong>616</strong></td><td class="num"><span class="g-flat">1.4x</span></td><td></td></tr>
+          <tr><td>守门员</td><td class="num">178</td><td class="num">217</td><td class="num"><strong>395</strong></td><td class="num"><span class="g-flat">1.2x</span></td><td></td></tr>
+          <tr><td>体能/速度</td><td class="num">90</td><td class="num">72</td><td class="num"><strong>162</strong></td><td class="num"><span class="g-low">0.8x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>射门/任意球</td><td class="num">114</td><td class="num">46</td><td class="num"><strong>160</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>传球/战术</td><td class="num">93</td><td class="num">33</td><td class="num"><strong>126</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>初学者基础</td><td class="num">46</td><td class="num">40</td><td class="num"><strong>86</strong></td><td class="num"><span class="g-low">0.9x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">游泳</span>
+        <span class="count">合计 2,569 条</span>
+        <span class="growth">整体增幅 <span class="g-cold">0.4x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 71% · 未细分 738</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>初学者入门</td><td class="num">387</td><td class="num">166</td><td class="num"><strong>553</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td></td></tr>
+          <tr><td>自由泳技术</td><td class="num">409</td><td class="num">103</td><td class="num"><strong>512</strong></td><td class="num"><span class="g-cold">0.3x</span></td><td><span class="badge badge-orange">补充少</span></td></tr>
+          <tr><td>蛙泳/仰泳/蝶泳</td><td class="num">312</td><td class="num">121</td><td class="num"><strong>433</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td><span class="badge badge-orange">补充少</span></td></tr>
+          <tr><td>翻身/专项技术</td><td class="num">124</td><td class="num">36</td><td class="num"><strong>160</strong></td><td class="num"><span class="g-cold">0.3x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>游泳健身/减脂</td><td class="num">59</td><td class="num">41</td><td class="num"><strong>100</strong></td><td class="num"><span class="g-low">0.7x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>开放水域/铁三</td><td class="num">56</td><td class="num">17</td><td class="num"><strong>73</strong></td><td class="num"><span class="g-cold">0.3x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">武术/太极</span>
+        <span class="count">合计 3,374 条</span>
+        <span class="growth">整体增幅 <span class="g-cold">0.4x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 74% · 未细分 884</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>柔道/巴柔BJJ</td><td class="num">1,101</td><td class="num">299</td><td class="num"><strong>1,400</strong></td><td class="num"><span class="g-cold">0.3x</span></td><td></td></tr>
+          <tr><td>空手道/跆拳道</td><td class="num">614</td><td class="num">256</td><td class="num"><strong>870</strong></td><td class="num"><span class="g-cold">0.4x</span></td><td></td></tr>
+          <tr><td>功夫/武术套路</td><td class="num">196</td><td class="num">23</td><td class="num"><strong>219</strong></td><td class="num"><span class="g-cold">0.1x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>太极/气功</td><td class="num">1</td><td class="num">0</td><td class="num"><strong>1</strong></td><td class="num"><span class="g-cold">0.0x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">舞蹈</span>
+        <span class="count">合计 2,312 条</span>
+        <span class="growth">整体增幅 <span class="g-good">4.1x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 85% · 未细分 348</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>入门基础</td><td class="num">170</td><td class="num">790</td><td class="num"><strong>960</strong></td><td class="num"><span class="g-good">4.6x</span></td><td></td></tr>
+          <tr><td>街舞/Hip-hop</td><td class="num">94</td><td class="num">239</td><td class="num"><strong>333</strong></td><td class="num"><span class="g-good">2.5x</span></td><td></td></tr>
+          <tr><td>流行舞/K-pop</td><td class="num">50</td><td class="num">198</td><td class="num"><strong>248</strong></td><td class="num"><span class="g-good">4.0x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>编舞/完整舞蹈</td><td class="num">26</td><td class="num">161</td><td class="num"><strong>187</strong></td><td class="num"><span class="g-hot">6.2x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>Zumba/健身舞</td><td class="num">9</td><td class="num">131</td><td class="num"><strong>140</strong></td><td class="num"><span class="g-hot">14.6x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>拉丁/交谊舞</td><td class="num">6</td><td class="num">90</td><td class="num"><strong>96</strong></td><td class="num"><span class="g-hot">15.0x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">拳击/搏击</span>
+        <span class="count">合计 4,164 条</span>
+        <span class="growth">整体增幅 <span class="g-low">0.5x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 64% · 未细分 1,500</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>初学者入门</td><td class="num">499</td><td class="num">282</td><td class="num"><strong>781</strong></td><td class="num"><span class="g-low">0.6x</span></td><td></td></tr>
+          <tr><td>踢技/泰拳</td><td class="num">537</td><td class="num">178</td><td class="num"><strong>715</strong></td><td class="num"><span class="g-cold">0.3x</span></td><td><span class="badge badge-orange">补充少</span></td></tr>
+          <tr><td>基础拳法</td><td class="num">397</td><td class="num">237</td><td class="num"><strong>634</strong></td><td class="num"><span class="g-low">0.6x</span></td><td></td></tr>
+          <tr><td>综合格斗/MMA</td><td class="num">349</td><td class="num">75</td><td class="num"><strong>424</strong></td><td class="num"><span class="g-cold">0.2x</span></td><td><span class="badge badge-orange">补充少</span></td></tr>
+          <tr><td>自卫防身</td><td class="num">16</td><td class="num">94</td><td class="num"><strong>110</strong></td><td class="num"><span class="g-hot">5.9x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">排球</span>
+        <span class="count">合计 1,828 条</span>
+        <span class="growth">整体增幅 <span class="g-low">1.0x</span></span>
+        <span class="badge badge-blue">基础</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 41% · 未细分 1,070</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>扣球/技术</td><td class="num">246</td><td class="num">277</td><td class="num"><strong>523</strong></td><td class="num"><span class="g-flat">1.1x</span></td><td></td></tr>
+          <tr><td>初学者入门</td><td class="num">90</td><td class="num">67</td><td class="num"><strong>157</strong></td><td class="num"><span class="g-low">0.7x</span></td><td><span class="badge badge-yellow">不足</span></td></tr>
+          <tr><td>沙滩排球</td><td class="num">48</td><td class="num">30</td><td class="num"><strong>78</strong></td><td class="num"><span class="g-low">0.6x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">棒球/垒球</span>
+        <span class="count">合计 2,142 条</span>
+        <span class="growth">整体增幅 <span class="g-low">0.6x</span></span>
+        <span class="badge badge-green">够用</span>
+        <span style="margin-left:auto;font-size:12px;color:#888;">L2细分覆盖率 41% · 未细分 1,272</span>
+      </div>
+      <div class="l2-body">
+        <table>
+          <tr><th>L2 子分类</th><th class="num">旧</th><th class="num">本批新增</th><th class="num">现在合计</th><th class="num">增幅</th><th>诊断</th></tr>
+          <tr><td>投球技术</td><td class="num">313</td><td class="num">147</td><td class="num"><strong>460</strong></td><td class="num"><span class="g-cold">0.5x</span></td><td></td></tr>
+          <tr><td>击球技术</td><td class="num">209</td><td class="num">155</td><td class="num"><strong>364</strong></td><td class="num"><span class="g-low">0.7x</span></td><td></td></tr>
+          <tr><td>入门基础</td><td class="num">29</td><td class="num">17</td><td class="num"><strong>46</strong></td><td class="num"><span class="g-low">0.6x</span></td><td><span class="badge badge-red">缺口严重</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px;">L2 词库缺失的大类（建议优先补 L2 规则）</h3>
+    <table>
+      <tr><th>L1</th><th class="num">合计</th><th>说明</th></tr>
+      <tr><td class="l1">高尔夫</td><td class="num">3,693</td><td>无 L2 分类规则，全部计为"未细分"，无法做技术点诊断</td></tr>
+      <tr><td class="l1">网球</td><td class="num">3,153</td><td>无 L2 分类规则，全部计为"未细分"，无法做技术点诊断</td></tr>
+      <tr><td class="l1">骑行</td><td class="num">3,126</td><td>无 L2 分类规则，全部计为"未细分"，无法做技术点诊断</td></tr>
+      <tr><td class="l1">运动健康</td><td class="num">2,673</td><td>无 L2 分类规则，全部计为"未细分"，无法做技术点诊断</td></tr>
+      <tr><td class="l1">健身综合</td><td class="num">2,052</td><td>无 L2 分类规则，全部计为"未细分"，无法做技术点诊断</td></tr>
+    </table>
+  </div>
+
+  <a id="sec5"></a>
+  <div class="card">
+    <h2>五、持续性缺口（L1 总量 < 1,000）</h2>
+    <p class="section-sub">本次补充后绝对量仍不足，且部分本批也没怎么补到，附 sample topic 供参考</p>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">椭圆机</span>
+        <span class="count">现 15 条</span>
+        <span class="growth">本批 +14 (<span class="g-hot">14.0x</span>)</span>
+        <span class="badge badge-red">裸盘</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 985 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">乒乓球</span>
+        <span class="count">现 32 条</span>
+        <span class="growth">本批 +22 (<span class="g-good">2.2x</span>)</span>
+        <span class="badge badge-red">裸盘</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 968 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] From €0.3 to €400: comparing ping pong rackets across 5 extreme price tiers</div><div class="sample-item">[新] The best budget alternative to Tenergy 05: how Fastarc G1 matches the spin and control at a fraction of the cost</div><div class="sample-item">[老] The ping pong paddle cue that sharpens Sweeper movement: why hitting the outside 10% of the ball changes side-to-side br</div><div class="sample-item">[老] Mastering the banana flick: how wrist rotation creates the sidespin needed for aggressive returns</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">壁球/手球</span>
+        <span class="count">现 39 条</span>
+        <span class="growth">本批 +37 (<span class="g-hot">18.5x</span>)</span>
+        <span class="badge badge-red">裸盘</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 961 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] A squash figure of 8 variation: using slight drill tweaks to level up solo training</div><div class="sample-item">[新] Using friction to quickly warm up a squash ball: how to get a cold ball bouncing</div><div class="sample-item">[新] A squash accuracy benchmark: testing your consistency with the 10 tight drives challenge</div><div class="sample-item">[新] Why the pivot is handball's ultimate space creator: dominating the six-meter line under pressure</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">踏步机</span>
+        <span class="count">现 47 条</span>
+        <span class="growth">本批 +46 (<span class="g-hot">46.0x</span>)</span>
+        <span class="badge badge-red">裸盘</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 953 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">赛艇/皮划艇</span>
+        <span class="count">现 82 条</span>
+        <span class="growth">本批 +80 (<span class="g-hot">40.0x</span>)</span>
+        <span class="badge badge-red">裸盘</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 918 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] A coach's mechanics for the Concept2 drive: why efficient technique yields more power than raw effort</div><div class="sample-item">[新] The mechanics of a single scull start: building momentum from a dead stop</div><div class="sample-item">[新] Rowing over 40: why the rowing machine is the ultimate joint-friendly cardio tool</div><div class="sample-item">[新] An Olympic rower's key to rowing rhythm: where in the stroke speed and tempo are actually built</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">飞盘</span>
+        <span class="count">现 131 条</span>
+        <span class="growth">本批 +19 (<span class="g-cold">0.2x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 869 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why an alternative frisbee throw feels way easier than a traditional backhand</div><div class="sample-item">[老] 4-way frisbee: a PE lead-up game that builds disc throwing, catching, and movement skills all at once</div><div class="sample-item">[老] The Waffle Fries: one of ultimate frisbee's most popular trick throws broken down for players ready to go beyond the bas</div><div class="sample-item">[老] What ultimate frisbee coaches actually look for at tryouts: 3 things to focus on when you only have months to prepare</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">曲棍球</span>
+        <span class="count">现 145 条</span>
+        <span class="growth">本批 +143 (<span class="g-hot">71.5x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 855 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] Why your field hockey aerials lack distance: 3 setup tweaks for a cleaner, higher lift</div><div class="sample-item">[老] A field hockey defence drill that chains block tackle, jab, and reverse tackle into one continuous footwork sequence</div><div class="sample-item">[新] Stop waiting in the circle: why a quick release defines the best field hockey goal scorers</div><div class="sample-item">[新] Why defense doesn't end when you're beaten: how to tackle back and win the ball from behind in field hockey</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">长曲棍球</span>
+        <span class="count">现 151 条</span>
+        <span class="growth">本批 +151 (<span class="g-new">NEW</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 849 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] Why a loose top string ruins your release: using a triangle top string for better lacrosse pocket consistency</div><div class="sample-item">[新] 5 offensive lacrosse head picks to dial in your attacking setup</div><div class="sample-item">[新] Concussion prevention in contact sports: a college lacrosse player on the purpose of the Q Collar</div><div class="sample-item">[新] The fundamentals of the behind-the-back technique for women's lacrosse players</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">跑酷</span>
+        <span class="count">现 304 条</span>
+        <span class="growth">本批 +83 (<span class="g-cold">0.4x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 696 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why most parkour injuries happen before the jump: the mental and physical checks practitioners skip</div><div class="sample-item">[新] A pro freerunner's breakdown of the 360 wall run: how to initiate and control the spin off the wall</div><div class="sample-item">[老] 5 mistakes that stall beginner parkour progress: why most newcomers skip the foundations that actually matter</div><div class="sample-item">[老] How to scout and read a university campus for parkour: using UCLA as a map</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">冰球</span>
+        <span class="count">现 374 条</span>
+        <span class="growth">本批 +209 (<span class="g-flat">1.3x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 626 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why the wrist shot breaks down under pressure: building from static basics to game-speed passes and technical precision</div><div class="sample-item">[老] 5 hockey scoring skills you can train at home — including weight shift without a puck</div><div class="sample-item">[新] Why a strong-looking hockey wind-up kills your accuracy: the difference between brute strength and a properly loaded sla</div><div class="sample-item">[新] How to find your perfect hockey skate sharpening cut: balancing ice grip and glide speed</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">跳绳</span>
+        <span class="count">现 383 条</span>
+        <span class="growth">本批 +378 (<span class="g-hot">75.6x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 617 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] A no-talking jump rope and dumbbell sequence blending cardio intervals with resistance training</div><div class="sample-item">[新] A jump rope coach's progression for landing your first double under</div><div class="sample-item">[新] A jump rope coach's reality check on belly fat: why overall calorie deficit matters more than your workout duration</div><div class="sample-item">[新] A jump rope coach's troubleshooting guide for frequent tripping: 3 form mechanics to review on camera</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">田径</span>
+        <span class="count">现 394 条</span>
+        <span class="growth">本批 +352 (<span class="g-hot">8.4x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 606 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] A jumps coach's framework for teaching the high jump: essential mechanics for consistent clearance</div><div class="sample-item">[老] 5 drills to build stride length for faster sprinting and field sport speed</div><div class="sample-item">[新] Bridging the gap to the vault table: a high-rep trampoline drill to condition an aggressive heel drive</div><div class="sample-item">[新] Beyond hurdle clearance: why raw speed and quickness are the true foundation for the 110m</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">潜水</span>
+        <span class="count">现 455 条</span>
+        <span class="growth">本批 +113 (<span class="g-cold">0.3x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 545 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] A 4-step progression to go from standing on the block to diving cleanly into the water</div><div class="sample-item">[新] Preparing for the open ocean: essential breath-hold basics for your first freedive</div><div class="sample-item">[老] Why the octopus is the most critical piece of scuba gear you own — and why most divers never test it</div><div class="sample-item">[老] Why a PADI 5-star rating doesn't mean luxury or quality: what the designation actually requires and how to spot a genuin</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">橄榄球</span>
+        <span class="count">现 491 条</span>
+        <span class="growth">本批 +269 (<span class="g-flat">1.2x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 509 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] 5 quarterback habits that separate players who can throw a perfect spiral from those who can't</div><div class="sample-item">[新] Ranking the 5 most dominant blindside flankers currently defining Rugby Union</div><div class="sample-item">[新] Why dominant linemen need anti-rotational core strength: a drill that actually translates to the field</div><div class="sample-item">[老] The one adjustment most rugby players miss when catching a high ball under pressure</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">板球</span>
+        <span class="count">现 499 条</span>
+        <span class="growth">本批 +257 (<span class="g-flat">1.1x</span>)</span>
+        <span class="badge badge-orange">严重不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 501 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] Why the reverse swing defies normal flight: how legendary fast bowlers control late movement to deceive batters</div><div class="sample-item">[新] The essential mechanics for an effective cover drive in cricket</div><div class="sample-item">[老] A cricket coach's 5 mental shifts for bowlers to stay consistent and stop overthinking under pressure</div><div class="sample-item">[老] Beyond the standard off-spin: a former first-class cricketer's breakdown of the carrom ball, arm ball, and back spinner </div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">综合拉伸</span>
+        <span class="count">现 572 条</span>
+        <span class="growth">本批 +472 (<span class="g-good">4.7x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 928 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] 4 quad stretches for lower body mobility: finding the line between slight pressure and sharp pain</div><div class="sample-item">[新] How pre-workout upper body foam rolling prevents mobility limitations from stalling your long-term strength gains</div><div class="sample-item">[新] Prepping for an upper body workout: combining foundational cardio with targeted back stretches</div><div class="sample-item">[新] A low-commitment daily stretch flow for beginners to release the back and hips</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">户外/徒步</span>
+        <span class="count">现 635 条</span>
+        <span class="growth">本批 +132 (<span class="g-cold">0.3x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 865 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why a backpacking pack is the wrong choice for Tour du Mont Blanc day hikes: the mistakes that cost comfort on trail</div><div class="sample-item">[老] 3 low-cost adjustments that make a real difference on long-distance hikes and backpacking trips</div><div class="sample-item">[老] Why hikers and preppers should make their own custom maps before heading out: a free tool that beats generic trail maps</div><div class="sample-item">[老] 5 outdoor apps that actually solve real problems on the trail: navigation, wildlife ID, and peak recognition</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">运动营养</span>
+        <span class="count">现 638 条</span>
+        <span class="growth">本批 +621 (<span class="g-hot">36.5x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 862 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] The foundational math of fat loss: why calories in vs. out matters more than diet trends</div><div class="sample-item">[老] Why burning more fat during exercise doesn't mean losing more body fat: the calorie deficit reality most people miss</div><div class="sample-item">[新] Why creatine isn't just for muscles: a neurosurgeon's case for its brain benefits</div><div class="sample-item">[新] 5 fat-loss food staples to help reduce belly fat and finally reveal your abs</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">台球/斯诺克</span>
+        <span class="count">现 675 条</span>
+        <span class="growth">本批 +334 (<span class="g-low">1.0x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 825 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why your usual aiming line breaks down when the object ball is tight to the cushion: adjusting for acute-angle pots in s</div><div class="sample-item">[老] 3 practical potting techniques for billiards beginners that actually work in real games</div><div class="sample-item">[新] A reproducible setup for executing reliable bank shots in billiards</div><div class="sample-item">[新] Fixing the most common beginner billiards mistake: 4 hand bridge variations for different situations</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">皮克球</span>
+        <span class="count">现 733 条</span>
+        <span class="growth">本批 +372 (<span class="g-flat">1.0x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 767 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] From paddle basics to court rules: what you need to know before your first pickleball game</div><div class="sample-item">[新] What to do when you're one player short for pickleball doubles: how the 3-player cutthroat format works</div><div class="sample-item">[新] Why shifting one step in the direction of the shot covers the most common speedups in pickleball doubles</div><div class="sample-item">[新] Demystifying the powerful pickleball serve: a coach's 5-step breakdown for generating more pace</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">气功/太极</span>
+        <span class="count">现 744 条</span>
+        <span class="growth">本批 +512 (<span class="g-good">2.2x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 756 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why stiff knees limit your power in Taichi: the link between lower body flexibility and a strong palm push</div><div class="sample-item">[老] Why Tai Chi feels impossible to start: the foundational body awareness cues that make the first movements click</div><div class="sample-item">[新] Why jumping straight into morning stimulation keeps your body tight: how slow Qi Gong movements actually wake up the ner</div><div class="sample-item">[新] Using daily Qi Gong for somatic healing: how gentle movement regulates the nervous system and clears stagnant energy</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">举重竞技</span>
+        <span class="count">现 769 条</span>
+        <span class="growth">本批 +622 (<span class="g-good">4.2x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 731 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] Choosing the right squat footwear: a powerlifting coach on how your shoes impact your lift</div><div class="sample-item">[新] A kettlebell coach's 5 snatch variations: how to match the movement to your goals for speed, joint control, or lower bac</div><div class="sample-item">[新] How intentionally losing momentum in the pause snatch forces a more aggressive pull and efficient speed under the bar</div><div class="sample-item">[新] 2 prerequisites for the kettlebell snatch: mastering the single-arm swing and strict press to prepare the shoulders for </div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">冲浪/水上</span>
+        <span class="count">现 802 条</span>
+        <span class="growth">本批 +164 (<span class="g-cold">0.3x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 698 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why a balance board trains the reactive stability surfers actually need in unpredictable water</div><div class="sample-item">[老] Why surfers need movement training, not just strength: the gap between gym fitness and in-water performance</div><div class="sample-item">[老] Why surfers abandoned solid wood boards for foam: the material shift that made surfing accessible to everyone</div><div class="sample-item">[老] How your surfing level should determine the board you ride: a beginner-to-intermediate breakdown</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">壶铃</span>
+        <span class="count">现 802 条</span>
+        <span class="growth">本批 +643 (<span class="g-good">4.0x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 698 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[新] An exercise physiologist's case for supramaximal kettlebell swings: how short intervals optimize the hormone response du</div><div class="sample-item">[新] Why a lack of equipment is no excuse: driving functional fitness through push-up and pull-up fundamentals</div><div class="sample-item">[新] Building a core to move better, not just look better: a single-kettlebell side coil press and half-kneeling windmill flo</div><div class="sample-item">[老] Why most CrossFit athletes plateau on weight loss: the one factor that matters more than workout intensity</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">攀岩</span>
+        <span class="count">现 921 条</span>
+        <span class="growth">本批 +228 (<span class="g-cold">0.3x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 579 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] Why a no-moving-parts belay device can still add a meaningful safety margin: the Mammut Smart 2.0 tested at the crag</div><div class="sample-item">[新] How to maintain balance and control on the climbing wall: using body positioning and the flagging technique</div><div class="sample-item">[老] Why strong climbers swear by training boards — and what most beginners get wrong when starting out</div><div class="sample-item">[老] What a 9a+ climber prioritizes differently: the training habits most boulderers overlook on the way up</div></div>
+      </div>
+    </div>
+    <div class="l2-section">
+      <div class="l2-header">
+        <span class="name">滑板</span>
+        <span class="count">现 932 条</span>
+        <span class="growth">本批 +218 (<span class="g-cold">0.3x</span>)</span>
+        <span class="badge badge-yellow">不足</span>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;font-weight:600;">建议补 568 条达到基础线</span>
+      </div>
+      <div class="l2-body">
+        <div class="samples"><div class="sample-title">现有内容样本</div><div class="sample-item">[老] The fundamental technique for a leveled-out kickflip: why the flick direction is the key to consistency</div><div class="sample-item">[新] Why most beach workouts are just moving around: 3 explosive jumps to train with actual intent</div><div class="sample-item">[老] 5 beginner ski tricks that actually look good on the mountain: ollie 180, tail drag, switch 180, lazy boy, and nollie</div><div class="sample-item">[老] Why the crooked grind is easier than most skaters think</div></div>
+      </div>
+    </div>
+  </div>
+
+  <a id="sec6"></a>
+  <div class="card">
+    <h2>六、下一轮补充优先级与配额建议</h2>
+    <p class="section-sub">基于"绝对量缺口 + 本批增幅 + L2 覆盖度"三维评估，给出三档优先级与具体目标条数</p>
+    <div class="reco-card reco-p0">
+      <div class="reco-header">
+        <span class="reco-tag p0">P0 紧急</span>
+        <strong style="font-size:16px;">极度稀缺类 — 总量 &lt; 500</strong>
+        <span style="margin-left:auto;font-size:13px;color:#dc2626;">目标补充 ≈ 11,458 条</span>
+      </div>
+      <table>
+        <tr><th>L1</th><th class="num">现有</th><th class="num">本批新增</th><th>状态</th><th class="num">目标补量</th><th>定向策略</th></tr>
+        <tr><td class="l1">椭圆机</td><td class="num">15</td><td class="num">+14</td><td><span class="badge badge-red">裸盘</span></td><td class="num"><strong>+985</strong></td><td style="font-size:12px;color:#555;">抓"机器健身入门 + 训练计划"题材</td></tr>
+        <tr><td class="l1">乒乓球</td><td class="num">32</td><td class="num">+22</td><td><span class="badge badge-red">裸盘</span></td><td class="num"><strong>+968</strong></td><td style="font-size:12px;color:#555;">抓"规则入门 + 单一技术分解"题材</td></tr>
+        <tr><td class="l1">壁球/手球</td><td class="num">39</td><td class="num">+37</td><td><span class="badge badge-red">裸盘</span></td><td class="num"><strong>+961</strong></td><td style="font-size:12px;color:#555;">抓"规则入门 + 单一技术分解"题材</td></tr>
+        <tr><td class="l1">踏步机</td><td class="num">47</td><td class="num">+46</td><td><span class="badge badge-red">裸盘</span></td><td class="num"><strong>+953</strong></td><td style="font-size:12px;color:#555;">抓"机器健身入门 + 训练计划"题材</td></tr>
+        <tr><td class="l1">赛艇/皮划艇</td><td class="num">82</td><td class="num">+80</td><td><span class="badge badge-red">裸盘</span></td><td class="num"><strong>+918</strong></td><td style="font-size:12px;color:#555;">抓"机器健身入门 + 训练计划"题材</td></tr>
+        <tr><td class="l1">飞盘</td><td class="num">131</td><td class="num">+19</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+869</strong></td><td style="font-size:12px;color:#555;">抓"规则入门 + 单一技术分解"题材</td></tr>
+        <tr><td class="l1">曲棍球</td><td class="num">145</td><td class="num">+143</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+855</strong></td><td style="font-size:12px;color:#555;">抓"规则入门 + 单一技术分解"题材</td></tr>
+        <tr><td class="l1">长曲棍球</td><td class="num">151</td><td class="num">+151</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+849</strong></td><td style="font-size:12px;color:#555;">抓"规则入门 + 单一技术分解"题材</td></tr>
+        <tr><td class="l1">跑酷</td><td class="num">304</td><td class="num">+83</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+696</strong></td><td style="font-size:12px;color:#555;">抓"基础技术 + 训练进阶"题材</td></tr>
+        <tr><td class="l1">冰球</td><td class="num">374</td><td class="num">+209</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+626</strong></td><td style="font-size:12px;color:#555;">抓"基础技术 + 训练进阶"题材</td></tr>
+        <tr><td class="l1">跳绳</td><td class="num">383</td><td class="num">+378</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+617</strong></td><td style="font-size:12px;color:#555;">抓"动作技术 + 配套方法论"题材</td></tr>
+        <tr><td class="l1">田径</td><td class="num">394</td><td class="num">+352</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+606</strong></td><td style="font-size:12px;color:#555;">抓"基础技术 + 训练进阶"题材</td></tr>
+        <tr><td class="l1">潜水</td><td class="num">455</td><td class="num">+113</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+545</strong></td><td style="font-size:12px;color:#555;">抓"装备使用 + 安全技术"题材</td></tr>
+        <tr><td class="l1">橄榄球</td><td class="num">491</td><td class="num">+269</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+509</strong></td><td style="font-size:12px;color:#555;">抓"规则解读 + 单一位置技术"题材</td></tr>
+        <tr><td class="l1">板球</td><td class="num">499</td><td class="num">+257</td><td><span class="badge badge-orange">严重不足</span></td><td class="num"><strong>+501</strong></td><td style="font-size:12px;color:#555;">抓"规则解读 + 单一位置技术"题材</td></tr>
+      </table>
+    </div>
+    <div class="reco-card reco-p1">
+      <div class="reco-header">
+        <span class="reco-tag p1">P1 重点补强</span>
+        <strong style="font-size:16px;">基础不牢类 — 500 ≤ 总量 &lt; 1,500 且本批增幅有限</strong>
+        <span style="margin-left:auto;font-size:13px;color:#d97706;">目标补充 ≈ 5,651 条</span>
+      </div>
+      <table>
+        <tr><th>L1</th><th class="num">现有</th><th class="num">本批新增</th><th>状态</th><th class="num">目标补量</th><th>说明</th></tr>
+        <tr><td class="l1">户外/徒步</td><td class="num">635</td><td class="num">+132</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+865</strong></td><td style="font-size:12px;color:#555;">户外/极限类，本批没碰到，单独立项补</td></tr>
+        <tr><td class="l1">台球/斯诺克</td><td class="num">675</td><td class="num">+334</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+825</strong></td><td style="font-size:12px;color:#555;"></td></tr>
+        <tr><td class="l1">皮克球</td><td class="num">733</td><td class="num">+372</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+767</strong></td><td style="font-size:12px;color:#555;">美区高增长运动，应紧跟趋势加大投入</td></tr>
+        <tr><td class="l1">冲浪/水上</td><td class="num">802</td><td class="num">+164</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+698</strong></td><td style="font-size:12px;color:#555;">户外/极限类，本批没碰到，单独立项补</td></tr>
+        <tr><td class="l1">攀岩</td><td class="num">921</td><td class="num">+228</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+579</strong></td><td style="font-size:12px;color:#555;">户外/极限类，本批没碰到，单独立项补</td></tr>
+        <tr><td class="l1">滑板</td><td class="num">932</td><td class="num">+218</td><td><span class="badge badge-yellow">不足</span></td><td class="num"><strong>+568</strong></td><td style="font-size:12px;color:#555;">户外/极限类，本批没碰到，单独立项补</td></tr>
+        <tr><td class="l1">滑冰/滑雪</td><td class="num">1,151</td><td class="num">+262</td><td><span class="badge badge-blue">基础</span></td><td class="num"><strong>+1,349</strong></td><td style="font-size:12px;color:#555;"></td></tr>
+      </table>
+    </div>
+    <div class="reco-card reco-p2">
+      <div class="reco-header">
+        <span class="reco-tag p2">P2 L2细分结构化</span>
+        <strong style="font-size:16px;">大类有量但 L2 失衡，按技术点定向补</strong>
+        <span style="margin-left:auto;font-size:13px;color:#0284c7;">按细分技术配额补充</span>
+      </div>
+      <table>
+        <tr><th>L1运动</th><th>L2 缺口点</th><th class="num">现量</th><th>问题</th></tr>
+        <tr><td class="l1">武术/太极</td><td>太极/气功</td><td class="num">1</td><td><span class="badge badge-red">严重失衡</span> 旧批 BJJ/柔道过重，应补太极/气功/咏春/形意拳等中式武术</td></tr>
+        <tr><td class="l1">武术/太极</td><td>功夫/武术套路</td><td class="num">219</td><td>本批仅+23，对中式武术几乎没补</td></tr>
+        <tr><td class="l1">游泳</td><td>开放水域/铁三</td><td class="num">73</td><td><span class="badge badge-red">缺口严重</span> 应补 OW/铁三训练、海泳安全</td></tr>
+        <tr><td class="l1">游泳</td><td>翻身/专项技术</td><td class="num">160</td><td>转身、出发、潜泳技术细分不足</td></tr>
+        <tr><td class="l1">篮球</td><td>传球/配合</td><td class="num">84</td><td><span class="badge badge-red">缺口严重</span> 战术配合内容稀缺</td></tr>
+        <tr><td class="l1">足球</td><td>射门/任意球</td><td class="num">160</td><td>本批+46，比例失衡</td></tr>
+        <tr><td class="l1">足球</td><td>传球/战术</td><td class="num">126</td><td>战术分析类偏少</td></tr>
+        <tr><td class="l1">跑步</td><td>越野跑/步道跑</td><td class="num">192</td><td>越野跑文化下需求大，绝对量低</td></tr>
+        <tr><td class="l1">跑步</td><td>间歇/速度训练</td><td class="num">227</td><td>速度训练技术内容不够</td></tr>
+        <tr><td class="l1">力量训练</td><td>女性力量/塑形</td><td class="num">163</td><td>女性向偏少，本批补充明显但绝对量仍小</td></tr>
+        <tr><td class="l1">力量训练</td><td>举铁技术纠错</td><td class="num">39</td><td>纠错类题材几乎为零</td></tr>
+      </table>
+    </div>
+
+    <div class="reco-card" style="background:#f0fdf4;border:2px solid #86efac;">
+      <div class="reco-header">
+        <span class="reco-tag sum">总配额</span>
+        <strong style="font-size:16px;">下一轮目标总量</strong>
+      </div>
+      <table>
+        <tr><th>优先级</th><th>类目数</th><th class="num">配额（条）</th><th>说明</th></tr>
+        <tr><td><span class="reco-tag p0">P0</span></td><td>15个L1</td><td class="num"><strong>11,458</strong></td><td>裸盘+严重不足，目标线1,000条/L1</td></tr>
+        <tr><td><span class="reco-tag p1">P1</span></td><td>7个L1</td><td class="num"><strong>5,651</strong></td><td>基础不牢，目标线1,500-2,500条/L1</td></tr>
+        <tr><td><span class="reco-tag p2">P2</span></td><td>11个L2</td><td class="num"><strong>~3,500</strong></td><td>L2细分按 300/L2 估算</td></tr>
+        <tr style="background:#dcfce7;"><td><strong>合计</strong></td><td></td><td class="num"><strong>≈ 20,609 条</strong></td><td>建议下一轮 Gemini 批量目标</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <a id="sec7"></a>
+  <div class="card">
+    <h2>七、L1/L2 词库扩展建议</h2>
+    <p class="section-sub">基于「其他/未分类」拆解，给出现行词库的扩展方向</p>
+
+    <h3>新增 L1（独立大类）</h3>
+    <table>
+      <tr><th>建议L1</th><th class="num">预计规模</th><th>命中词样本</th></tr>
+      <tr><td class="l1">柔韧/活动度</td><td class="num">~1,300+</td><td>stretch / mobility / flexibility / range of motion / fascia / myofascial</td></tr>
+      <tr><td class="l1">体姿矫正/PT</td><td class="num">~926+</td><td>posture / impingement / physio / rehab / chiropractic / alignment</td></tr>
+      <tr><td class="l1">睡眠/恢复</td><td class="num">~812+</td><td>sleep / recovery / fatigue / overtraining / cortisol / circadian</td></tr>
+      <tr><td class="l1">心肺/HIIT</td><td class="num">~165+</td><td>cardio / hiit / interval / conditioning / metcon / aerobic</td></tr>
+    </table>
+
+    <h3 style="margin-top:20px;">扩展现有 L1 关键词</h3>
+    <table>
+      <tr><th>L1</th><th>当前缺失关键词建议补充</th></tr>
+      <tr><td class="l1">力量训练</td><td>常见动作名：squat / deadlift / RDL / bench / press / row / curl / extension / hip thrust / lunge / step-up / farmer carry / Smith machine / Nordic curl / Jefferson curl<br>器械名：barbell / dumbbell / cable / kettlebell / smith / power rack<br>肌肉细分：bicep / tricep / delts / lat / glute / hamstring / quad</td></tr>
+      <tr><td class="l1">运动营养</td><td>protein / creatine / supplement / nutrition / carb / caloric / diet / meal / hydration / electrolyte / macros</td></tr>
+      <tr><td class="l1">健身综合</td><td>fat loss / weight loss / body recomp / lean / tone / belly fat / inner thigh</td></tr>
+      <tr><td class="l1">冥想/呼吸</td><td>Buteyko / coherent breathing / box breathing / nasal breathing</td></tr>
+    </table>
+
+    <h3 style="margin-top:20px;">新增 L2 子分类（给 5 个 L1 无 L2 的大类补）</h3>
+    <table>
+      <tr><th>L1</th><th>建议 L2</th></tr>
+      <tr><td class="l1">高尔夫（3,693）</td><td>挥杆机制 / 推杆 / 短杆切球 / 球场策略 / 装备评测 / 心理</td></tr>
+      <tr><td class="l1">网球（3,153）</td><td>正手反手 / 发球 / 截击 / 移动步法 / 战术 / 装备</td></tr>
+      <tr><td class="l1">骑行（3,126）</td><td>公路 / 山地MTB / 装备维护 / 训练计划 / 安全</td></tr>
+      <tr><td class="l1">运动健康（2,673）</td><td>损伤预防 / 康复训练 / 营养 / 睡眠恢复 / 心理 / 物理治疗</td></tr>
+      <tr><td class="l1">健身综合（2,052）</td><td>减脂 / 增肌 / 体能 / 居家健身 / HIIT / 女性塑形</td></tr>
+    </table>
+  </div>
+
+  <a id="sec8"></a>
+  <div class="card">
+    <h2>八、完整 L1 分布表</h2>
+    <p class="section-sub">所有 48 个 L1 类别的完整对照，按合计降序</p>
+    <table>
+      <tr>
+        <th>排序</th>
+        <th>L1运动</th>
+        <th class="num">补充前</th>
+        <th class="num">本批新增</th>
+        <th class="num">合计</th>
+        <th class="num">增幅</th>
+        <th class="num">占池比</th>
+        <th>健康度</th>
+        <th class="num">建议补量</th>
+      </tr>
+      <tr>
+        <td class="num">1</td>
+        <td class="l1">力量训练</td>
+        <td class="num">1,354</td>
+        <td class="num">11,875</td>
+        <td class="num"><strong>13,229</strong></td>
+        <td class="num"><span class="g-hot">8.8x</span></td>
+        <td class="num">12.7%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td class="l1">瑜伽</td>
+        <td class="num">1,127</td>
+        <td class="num">5,715</td>
+        <td class="num"><strong>6,842</strong></td>
+        <td class="num"><span class="g-hot">5.1x</span></td>
+        <td class="num">6.6%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">3</td>
+        <td class="l1">跑步</td>
+        <td class="num">2,941</td>
+        <td class="num">2,873</td>
+        <td class="num"><strong>5,814</strong></td>
+        <td class="num"><span class="g-low">1.0x</span></td>
+        <td class="num">5.6%</td>
+        <td><span class="badge badge-green">饱和</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">4</td>
+        <td class="l1">拳击/搏击</td>
+        <td class="num">2,775</td>
+        <td class="num">1,389</td>
+        <td class="num"><strong>4,164</strong></td>
+        <td class="num"><span class="g-low">0.5x</span></td>
+        <td class="num">4.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">5</td>
+        <td class="l1">高尔夫</td>
+        <td class="num">2,451</td>
+        <td class="num">1,242</td>
+        <td class="num"><strong>3,693</strong></td>
+        <td class="num"><span class="g-low">0.5x</span></td>
+        <td class="num">3.5%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">6</td>
+        <td class="l1">篮球</td>
+        <td class="num">2,304</td>
+        <td class="num">1,146</td>
+        <td class="num"><strong>3,450</strong></td>
+        <td class="num"><span class="g-cold">0.5x</span></td>
+        <td class="num">3.3%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">7</td>
+        <td class="l1">武术/太极</td>
+        <td class="num">2,497</td>
+        <td class="num">877</td>
+        <td class="num"><strong>3,374</strong></td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">3.2%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">8</td>
+        <td class="l1">足球</td>
+        <td class="num">1,816</td>
+        <td class="num">1,447</td>
+        <td class="num"><strong>3,263</strong></td>
+        <td class="num"><span class="g-low">0.8x</span></td>
+        <td class="num">3.1%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">9</td>
+        <td class="l1">网球</td>
+        <td class="num">2,251</td>
+        <td class="num">902</td>
+        <td class="num"><strong>3,153</strong></td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">3.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">10</td>
+        <td class="l1">骑行</td>
+        <td class="num">2,166</td>
+        <td class="num">960</td>
+        <td class="num"><strong>3,126</strong></td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">3.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">11</td>
+        <td class="l1">运动健康</td>
+        <td class="num">389</td>
+        <td class="num">2,284</td>
+        <td class="num"><strong>2,673</strong></td>
+        <td class="num"><span class="g-hot">5.9x</span></td>
+        <td class="num">2.6%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">12</td>
+        <td class="l1">游泳</td>
+        <td class="num">1,823</td>
+        <td class="num">746</td>
+        <td class="num"><strong>2,569</strong></td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">2.5%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">13</td>
+        <td class="l1">舞蹈</td>
+        <td class="num">449</td>
+        <td class="num">1,863</td>
+        <td class="num"><strong>2,312</strong></td>
+        <td class="num"><span class="g-good">4.1x</span></td>
+        <td class="num">2.2%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">14</td>
+        <td class="l1">棒球/垒球</td>
+        <td class="num">1,335</td>
+        <td class="num">807</td>
+        <td class="num"><strong>2,142</strong></td>
+        <td class="num"><span class="g-low">0.6x</span></td>
+        <td class="num">2.1%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">15</td>
+        <td class="l1">健身综合</td>
+        <td class="num">148</td>
+        <td class="num">1,904</td>
+        <td class="num"><strong>2,052</strong></td>
+        <td class="num"><span class="g-hot">12.9x</span></td>
+        <td class="num">2.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">16</td>
+        <td class="l1">冥想/呼吸</td>
+        <td class="num">154</td>
+        <td class="num">1,894</td>
+        <td class="num"><strong>2,048</strong></td>
+        <td class="num"><span class="g-hot">12.3x</span></td>
+        <td class="num">2.0%</td>
+        <td><span class="badge badge-green">够用</span></td>
+        <td class="num"><span style="color:#888;">充足</span></td>
+      </tr>
+      <tr>
+        <td class="num">17</td>
+        <td class="l1">排球</td>
+        <td class="num">922</td>
+        <td class="num">906</td>
+        <td class="num"><strong>1,828</strong></td>
+        <td class="num"><span class="g-low">1.0x</span></td>
+        <td class="num">1.8%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+        <td class="num">+672</td>
+      </tr>
+      <tr>
+        <td class="num">18</td>
+        <td class="l1">普拉提</td>
+        <td class="num">131</td>
+        <td class="num">1,673</td>
+        <td class="num"><strong>1,804</strong></td>
+        <td class="num"><span class="g-hot">12.8x</span></td>
+        <td class="num">1.7%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+        <td class="num">+696</td>
+      </tr>
+      <tr>
+        <td class="num">19</td>
+        <td class="l1">体操/技巧</td>
+        <td class="num">697</td>
+        <td class="num">988</td>
+        <td class="num"><strong>1,685</strong></td>
+        <td class="num"><span class="g-flat">1.4x</span></td>
+        <td class="num">1.6%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+        <td class="num">+815</td>
+      </tr>
+      <tr>
+        <td class="num">20</td>
+        <td class="l1">羽毛球</td>
+        <td class="num">1,316</td>
+        <td class="num">300</td>
+        <td class="num"><strong>1,616</strong></td>
+        <td class="num"><span class="g-cold">0.2x</span></td>
+        <td class="num">1.5%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+        <td class="num">+884</td>
+      </tr>
+      <tr>
+        <td class="num">21</td>
+        <td class="l1">滑冰/滑雪</td>
+        <td class="num">889</td>
+        <td class="num">262</td>
+        <td class="num"><strong>1,151</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">1.1%</td>
+        <td><span class="badge badge-blue">基础</span></td>
+        <td class="num">+1,349</td>
+      </tr>
+      <tr>
+        <td class="num">22</td>
+        <td class="l1">滑板</td>
+        <td class="num">714</td>
+        <td class="num">218</td>
+        <td class="num"><strong>932</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">0.9%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+568</td>
+      </tr>
+      <tr>
+        <td class="num">23</td>
+        <td class="l1">攀岩</td>
+        <td class="num">693</td>
+        <td class="num">228</td>
+        <td class="num"><strong>921</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">0.9%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+579</td>
+      </tr>
+      <tr>
+        <td class="num">24</td>
+        <td class="l1">冲浪/水上</td>
+        <td class="num">638</td>
+        <td class="num">164</td>
+        <td class="num"><strong>802</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">0.8%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+698</td>
+      </tr>
+      <tr>
+        <td class="num">25</td>
+        <td class="l1">壶铃</td>
+        <td class="num">159</td>
+        <td class="num">643</td>
+        <td class="num"><strong>802</strong></td>
+        <td class="num"><span class="g-good">4.0x</span></td>
+        <td class="num">0.8%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+698</td>
+      </tr>
+      <tr>
+        <td class="num">26</td>
+        <td class="l1">举重竞技</td>
+        <td class="num">147</td>
+        <td class="num">622</td>
+        <td class="num"><strong>769</strong></td>
+        <td class="num"><span class="g-good">4.2x</span></td>
+        <td class="num">0.7%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+731</td>
+      </tr>
+      <tr>
+        <td class="num">27</td>
+        <td class="l1">气功/太极</td>
+        <td class="num">232</td>
+        <td class="num">512</td>
+        <td class="num"><strong>744</strong></td>
+        <td class="num"><span class="g-good">2.2x</span></td>
+        <td class="num">0.7%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+756</td>
+      </tr>
+      <tr>
+        <td class="num">28</td>
+        <td class="l1">皮克球</td>
+        <td class="num">361</td>
+        <td class="num">372</td>
+        <td class="num"><strong>733</strong></td>
+        <td class="num"><span class="g-flat">1.0x</span></td>
+        <td class="num">0.7%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+767</td>
+      </tr>
+      <tr>
+        <td class="num">29</td>
+        <td class="l1">台球/斯诺克</td>
+        <td class="num">341</td>
+        <td class="num">334</td>
+        <td class="num"><strong>675</strong></td>
+        <td class="num"><span class="g-low">1.0x</span></td>
+        <td class="num">0.6%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+825</td>
+      </tr>
+      <tr>
+        <td class="num">30</td>
+        <td class="l1">运动营养</td>
+        <td class="num">17</td>
+        <td class="num">621</td>
+        <td class="num"><strong>638</strong></td>
+        <td class="num"><span class="g-hot">36.5x</span></td>
+        <td class="num">0.6%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+862</td>
+      </tr>
+      <tr>
+        <td class="num">31</td>
+        <td class="l1">户外/徒步</td>
+        <td class="num">503</td>
+        <td class="num">132</td>
+        <td class="num"><strong>635</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">0.6%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+865</td>
+      </tr>
+      <tr>
+        <td class="num">32</td>
+        <td class="l1">综合拉伸</td>
+        <td class="num">100</td>
+        <td class="num">472</td>
+        <td class="num"><strong>572</strong></td>
+        <td class="num"><span class="g-good">4.7x</span></td>
+        <td class="num">0.5%</td>
+        <td><span class="badge badge-yellow">不足</span></td>
+        <td class="num">+928</td>
+      </tr>
+      <tr>
+        <td class="num">33</td>
+        <td class="l1">板球</td>
+        <td class="num">242</td>
+        <td class="num">257</td>
+        <td class="num"><strong>499</strong></td>
+        <td class="num"><span class="g-flat">1.1x</span></td>
+        <td class="num">0.5%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+501</td>
+      </tr>
+      <tr>
+        <td class="num">34</td>
+        <td class="l1">橄榄球</td>
+        <td class="num">222</td>
+        <td class="num">269</td>
+        <td class="num"><strong>491</strong></td>
+        <td class="num"><span class="g-flat">1.2x</span></td>
+        <td class="num">0.5%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+509</td>
+      </tr>
+      <tr>
+        <td class="num">35</td>
+        <td class="l1">潜水</td>
+        <td class="num">342</td>
+        <td class="num">113</td>
+        <td class="num"><strong>455</strong></td>
+        <td class="num"><span class="g-cold">0.3x</span></td>
+        <td class="num">0.4%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+545</td>
+      </tr>
+      <tr>
+        <td class="num">36</td>
+        <td class="l1">田径</td>
+        <td class="num">42</td>
+        <td class="num">352</td>
+        <td class="num"><strong>394</strong></td>
+        <td class="num"><span class="g-hot">8.4x</span></td>
+        <td class="num">0.4%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+606</td>
+      </tr>
+      <tr>
+        <td class="num">37</td>
+        <td class="l1">跳绳</td>
+        <td class="num">5</td>
+        <td class="num">378</td>
+        <td class="num"><strong>383</strong></td>
+        <td class="num"><span class="g-hot">75.6x</span></td>
+        <td class="num">0.4%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+617</td>
+      </tr>
+      <tr>
+        <td class="num">38</td>
+        <td class="l1">冰球</td>
+        <td class="num">165</td>
+        <td class="num">209</td>
+        <td class="num"><strong>374</strong></td>
+        <td class="num"><span class="g-flat">1.3x</span></td>
+        <td class="num">0.4%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+626</td>
+      </tr>
+      <tr>
+        <td class="num">39</td>
+        <td class="l1">跑酷</td>
+        <td class="num">221</td>
+        <td class="num">83</td>
+        <td class="num"><strong>304</strong></td>
+        <td class="num"><span class="g-cold">0.4x</span></td>
+        <td class="num">0.3%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+696</td>
+      </tr>
+      <tr>
+        <td class="num">40</td>
+        <td class="l1">长曲棍球</td>
+        <td class="num">0</td>
+        <td class="num">151</td>
+        <td class="num"><strong>151</strong></td>
+        <td class="num"><span class="g-new">NEW</span></td>
+        <td class="num">0.1%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+849</td>
+      </tr>
+      <tr>
+        <td class="num">41</td>
+        <td class="l1">曲棍球</td>
+        <td class="num">2</td>
+        <td class="num">143</td>
+        <td class="num"><strong>145</strong></td>
+        <td class="num"><span class="g-hot">71.5x</span></td>
+        <td class="num">0.1%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+855</td>
+      </tr>
+      <tr>
+        <td class="num">42</td>
+        <td class="l1">飞盘</td>
+        <td class="num">112</td>
+        <td class="num">19</td>
+        <td class="num"><strong>131</strong></td>
+        <td class="num"><span class="g-cold">0.2x</span></td>
+        <td class="num">0.1%</td>
+        <td><span class="badge badge-orange">严重不足</span></td>
+        <td class="num">+869</td>
+      </tr>
+      <tr>
+        <td class="num">43</td>
+        <td class="l1">赛艇/皮划艇</td>
+        <td class="num">2</td>
+        <td class="num">80</td>
+        <td class="num"><strong>82</strong></td>
+        <td class="num"><span class="g-hot">40.0x</span></td>
+        <td class="num">0.1%</td>
+        <td><span class="badge badge-red">裸盘</span></td>
+        <td class="num">+918</td>
+      </tr>
+      <tr>
+        <td class="num">44</td>
+        <td class="l1">踏步机</td>
+        <td class="num">1</td>
+        <td class="num">46</td>
+        <td class="num"><strong>47</strong></td>
+        <td class="num"><span class="g-hot">46.0x</span></td>
+        <td class="num">0.0%</td>
+        <td><span class="badge badge-red">裸盘</span></td>
+        <td class="num">+953</td>
+      </tr>
+      <tr>
+        <td class="num">45</td>
+        <td class="l1">壁球/手球</td>
+        <td class="num">2</td>
+        <td class="num">37</td>
+        <td class="num"><strong>39</strong></td>
+        <td class="num"><span class="g-hot">18.5x</span></td>
+        <td class="num">0.0%</td>
+        <td><span class="badge badge-red">裸盘</span></td>
+        <td class="num">+961</td>
+      </tr>
+      <tr>
+        <td class="num">46</td>
+        <td class="l1">乒乓球</td>
+        <td class="num">10</td>
+        <td class="num">22</td>
+        <td class="num"><strong>32</strong></td>
+        <td class="num"><span class="g-good">2.2x</span></td>
+        <td class="num">0.0%</td>
+        <td><span class="badge badge-red">裸盘</span></td>
+        <td class="num">+968</td>
+      </tr>
+      <tr>
+        <td class="num">47</td>
+        <td class="l1">椭圆机</td>
+        <td class="num">1</td>
+        <td class="num">14</td>
+        <td class="num"><strong>15</strong></td>
+        <td class="num"><span class="g-hot">14.0x</span></td>
+        <td class="num">0.0%</td>
+        <td><span class="badge badge-red">裸盘</span></td>
+        <td class="num">+985</td>
+      </tr>
+      <tr style="background:#fffbeb;">
+        <td class="num">-</td>
+        <td class="l1">其他/未分类</td>
+        <td class="num">6,090</td>
+        <td class="num">14,564</td>
+        <td class="num"><strong>20,654</strong></td>
+        <td class="num"><span class="g-good">2.4x</span></td>
+        <td class="num">19.8%</td>
+        <td><span class="badge badge-gray">词库不全</span></td>
+        <td class="num"><span style="color:#888;">扩展词库</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="text-align:center;color:#94a3b8;font-size:12px;padding:32px 0;">
+    Pool Strategy V4 (Deep) · 数据基于 47 L1 + 97 L2 正则 · 总池 104,407 条 · 2026-05-28
+  </div>
+</div>
+</body>
+</html>
