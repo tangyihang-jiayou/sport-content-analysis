@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Phase 3 分析报告 — 优质池 68k 入库后</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #f5f6fa; font-size: 14px; line-height: 1.6; color: #1a1a2e; }
+.hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 48px 40px; }
+.hero h1 { font-size: 28px; font-weight: 700; }
+.hero .subtitle { opacity: .65; margin-top: 6px; }
+.hero-grid { display: flex; gap: 20px; margin-top: 28px; flex-wrap: wrap; }
+.hero-stat { background: rgba(255,255,255,.08); border-radius: 10px; padding: 16px 22px; min-width: 140px; }
+.hero-stat .v { font-size: 26px; font-weight: 700; }
+.hero-stat .l { font-size: 11px; opacity: .7; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+.hero-stat .s { font-size: 11px; opacity: .55; margin-top: 4px; }
+.container { max-width: 1200px; margin: 32px auto; padding: 0 24px; }
+.card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+h2 { font-size: 20px; font-weight: 700; margin-bottom: 14px; border-left: 4px solid #0f172a; padding-left: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #f0f4f8; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; color: #555; letter-spacing: .3px; border-bottom: 2px solid #e2e8f0; }
+td { padding: 9px 14px; border-bottom: 1px solid #f1f5f9; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.bar-cont { background: #f0f4f8; border-radius: 99px; height: 6px; max-width: 200px; }
+.bar-fill { background: linear-gradient(90deg, #3b82f6, #1d4ed8); height: 6px; border-radius: 99px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+.b-red { background: #fee2e2; color: #c0392b; }
+.b-orange { background: #fef3e2; color: #c2410c; }
+.b-yellow { background: #fef9e7; color: #d97706; }
+.b-green { background: #dcfce7; color: #16a34a; }
+.b-blue { background: #dbeafe; color: #2563eb; }
+.hot-item { background: #f9fafb; border-left: 3px solid #3b82f6; padding: 8px 12px; margin: 6px 0; border-radius: 0 6px 6px 0; }
+.hot-item .stats { font-size: 11px; color: #6b7280; }
+.hot-item .title { font-size: 13px; color: #1a1a2e; font-weight: 500; }
+.platform-tag { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 10px; font-weight: 700; margin-right: 6px; }
+.pt-yt { background: #fee2e2; color: #b91c1c; }
+.pt-tk { background: #fce7f3; color: #9d174d; }
+.pt-ig { background: #fef3c7; color: #92400e; }
+.cohort { background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 14px; margin: 10px 0; }
+.cohort h3 { color: #15803d; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Phase 3 入库内容分析报告</h1>
+  <div class="subtitle">基于今天优质池 68k 实际入库内容做缺口诊断 + 热门挖掘 + R8/R9 query 投放</div>
+  <div class="hero-grid">
+    <div class="hero-stat"><div class="l">优质池规模</div><div class="v">68,197</div><div class="s">今天 R1-R6 + 历史 入库</div></div>
+    <div class="hero-stat"><div class="l">L1 覆盖</div><div class="v">56</div><div class="s">含其他/未分类</div></div>
+    <div class="hero-stat"><div class="l">未分类率</div><div class="v">12.9%</div><div class="s">V6词库扩充后</div></div>
+    <div class="hero-stat"><div class="l">缺口L1 (P0+P1)</div><div class="v">46</div><div class="s">总量&lt;1500</div></div>
+    <div class="hero-stat"><div class="l">本轮投放</div><div class="v">R7+R8+R9</div><div class="s">6,285 queries</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>一、平台基准</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:14px;">用于计算 hot_score 的中位数基准</p>
+    <table>
+      <tr><th>平台</th><th class="num">Views 中位数</th><th class="num">Likes 中位数</th><th>说明</th></tr>
+      <tr><td>Instagram</td><td class="num">236,676</td><td class="num">4,983</td><td>互动率最高</td></tr>
+      <tr><td>TikTok</td><td class="num">108,402</td><td class="num">4,155</td><td>流量大基础</td></tr>
+      <tr><td>YouTube</td><td class="num">65,828</td><td class="num">1,146</td><td>教学内容主力</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>二、L1 实际供给分布 (Top 25)</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:14px;">本日优质池 vs 标准目标量 (健康线: 1,500 条/L1)</p>
+    <table>
+      <tr><th>排名</th><th>L1 运动</th><th class="num">供给数</th><th class="num">占比</th><th>分布</th><th>状态</th></tr>
+      <tr><td class="num">1</td><td><strong>力量训练</strong></td><td class="num">14,727</td><td class="num">21.6%</td><td><div class="bar-cont"><div class="bar-fill" style="width:100.0%"></div></div></td><td><span class="badge b-green">饱和</span></td></tr>
+      <tr><td class="num">2</td><td><strong>其他/未分类</strong></td><td class="num">8,767</td><td class="num">12.9%</td><td><div class="bar-cont"><div class="bar-fill" style="width:59.530114755211514%"></div></div></td><td><span class="badge b-green">饱和</span></td></tr>
+      <tr><td class="num">3</td><td><strong>瑜伽</strong></td><td class="num">5,745</td><td class="num">8.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:39.00998166632716%"></div></div></td><td><span class="badge b-green">饱和</span></td></tr>
+      <tr><td class="num">4</td><td><strong>健身综合</strong></td><td class="num">3,685</td><td class="num">5.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:25.022068309906974%"></div></div></td><td><span class="badge b-blue">够用</span></td></tr>
+      <tr><td class="num">5</td><td><strong>冥想/呼吸</strong></td><td class="num">3,266</td><td class="num">4.8%</td><td><div class="bar-cont"><div class="bar-fill" style="width:22.17695389420792%"></div></div></td><td><span class="badge b-blue">够用</span></td></tr>
+      <tr><td class="num">6</td><td><strong>跑步</strong></td><td class="num">3,114</td><td class="num">4.6%</td><td><div class="bar-cont"><div class="bar-fill" style="width:21.14483601548177%"></div></div></td><td><span class="badge b-blue">够用</span></td></tr>
+      <tr><td class="num">7</td><td><strong>运动健康</strong></td><td class="num">2,131</td><td class="num">3.1%</td><td><div class="bar-cont"><div class="bar-fill" style="width:14.470021049772527%"></div></div></td><td><span class="badge b-blue">够用</span></td></tr>
+      <tr><td class="num">8</td><td><strong>舞蹈</strong></td><td class="num">2,025</td><td class="num">3.0%</td><td><div class="bar-cont"><div class="bar-fill" style="width:13.75025463434508%"></div></div></td><td><span class="badge b-blue">够用</span></td></tr>
+      <tr><td class="num">9</td><td><strong>足球</strong></td><td class="num">1,774</td><td class="num">2.6%</td><td><div class="bar-cont"><div class="bar-fill" style="width:12.045902084606505%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">10</td><td><strong>普拉提</strong></td><td class="num">1,630</td><td class="num">2.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:11.068106199497521%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">11</td><td><strong>拳击/搏击</strong></td><td class="num">1,496</td><td class="num">2.2%</td><td><div class="bar-cont"><div class="bar-fill" style="width:10.158212806409995%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">12</td><td><strong>高尔夫</strong></td><td class="num">1,412</td><td class="num">2.1%</td><td><div class="bar-cont"><div class="bar-fill" style="width:9.587831873429755%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">13</td><td><strong>篮球</strong></td><td class="num">1,295</td><td class="num">1.9%</td><td><div class="bar-cont"><div class="bar-fill" style="width:8.793372716778705%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">14</td><td><strong>运动营养</strong></td><td class="num">1,248</td><td class="num">1.8%</td><td><div class="bar-cont"><div class="bar-fill" style="width:8.474231004277858%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">15</td><td><strong>骑行</strong></td><td class="num">1,013</td><td class="num">1.5%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.878522441773613%"></div></div></td><td><span class="badge b-yellow">基础</span></td></tr>
+      <tr><td class="num">16</td><td><strong>体操/技巧</strong></td><td class="num">993</td><td class="num">1.5%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.7427174577306985%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">17</td><td><strong>柔韧性/康复</strong></td><td class="num">986</td><td class="num">1.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.695185713315678%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">18</td><td><strong>武术/太极</strong></td><td class="num">970</td><td class="num">1.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.5865417260813475%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">19</td><td><strong>排球</strong></td><td class="num">934</td><td class="num">1.4%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.342092754804102%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">20</td><td><strong>棒球/垒球</strong></td><td class="num">894</td><td class="num">1.3%</td><td><div class="bar-cont"><div class="bar-fill" style="width:6.070482786718272%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">21</td><td><strong>网球</strong></td><td class="num">871</td><td class="num">1.3%</td><td><div class="bar-cont"><div class="bar-fill" style="width:5.914307055068921%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">22</td><td><strong>游泳</strong></td><td class="num">821</td><td class="num">1.2%</td><td><div class="bar-cont"><div class="bar-fill" style="width:5.574794594961635%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">23</td><td><strong>举重竞技</strong></td><td class="num">818</td><td class="num">1.2%</td><td><div class="bar-cont"><div class="bar-fill" style="width:5.5544238473551975%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">24</td><td><strong>壶铃</strong></td><td class="num">772</td><td class="num">1.1%</td><td><div class="bar-cont"><div class="bar-fill" style="width:5.2420723840564944%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+      <tr><td class="num">25</td><td><strong>综合拉伸</strong></td><td class="num">722</td><td class="num">1.1%</td><td><div class="bar-cont"><div class="bar-fill" style="width:4.902559923949209%"></div></div></td><td><span class="badge b-orange">不足</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>三、Top 缺口运动 (供给 &lt; 1,500)</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:14px;">本日实际入库缺口，R7+R8+R9 均已投放对应类目</p>
+    <table>
+      <tr><th>排名</th><th>L1</th><th class="num">当前供给</th><th class="num">目标缺口</th><th>优先级</th></tr>
+      <tr><td class="num">1</td><td><strong>椭圆机</strong></td><td class="num">8</td><td class="num">+1,492</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">2</td><td><strong>曲棍球</strong></td><td class="num">22</td><td class="num">+1,478</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">3</td><td><strong>踏步机</strong></td><td class="num">41</td><td class="num">+1,459</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">4</td><td><strong>壁球/手球</strong></td><td class="num">46</td><td class="num">+1,454</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">5</td><td><strong>心肺/HIIT</strong></td><td class="num">50</td><td class="num">+1,450</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">6</td><td><strong>睡眠/恢复</strong></td><td class="num">52</td><td class="num">+1,448</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">7</td><td><strong>赛艇/皮划艇</strong></td><td class="num">61</td><td class="num">+1,439</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">8</td><td><strong>乒乓球</strong></td><td class="num">81</td><td class="num">+1,419</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">9</td><td><strong>跑酷</strong></td><td class="num">86</td><td class="num">+1,414</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">10</td><td><strong>潜水</strong></td><td class="num">103</td><td class="num">+1,397</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">11</td><td><strong>飞盘</strong></td><td class="num">107</td><td class="num">+1,393</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">12</td><td><strong>长曲棍球</strong></td><td class="num">142</td><td class="num">+1,358</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">13</td><td><strong>运动心理/动机</strong></td><td class="num">150</td><td class="num">+1,350</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">14</td><td><strong>户外/徒步</strong></td><td class="num">151</td><td class="num">+1,349</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">15</td><td><strong>体姿矫正/PT</strong></td><td class="num">173</td><td class="num">+1,327</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">16</td><td><strong>冲浪/水上</strong></td><td class="num">188</td><td class="num">+1,312</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">17</td><td><strong>滑板</strong></td><td class="num">190</td><td class="num">+1,310</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">18</td><td><strong>攀岩</strong></td><td class="num">217</td><td class="num">+1,283</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">19</td><td><strong>睡眠/健康恢复</strong></td><td class="num">225</td><td class="num">+1,275</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">20</td><td><strong>滑冰/滑雪</strong></td><td class="num">226</td><td class="num">+1,274</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">21</td><td><strong>板球</strong></td><td class="num">261</td><td class="num">+1,239</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">22</td><td><strong>柔韧/活动度</strong></td><td class="num">269</td><td class="num">+1,231</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">23</td><td><strong>体重管理</strong></td><td class="num">270</td><td class="num">+1,230</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">24</td><td><strong>冰球</strong></td><td class="num">274</td><td class="num">+1,226</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">25</td><td><strong>羽毛球</strong></td><td class="num">290</td><td class="num">+1,210</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">26</td><td><strong>橄榄球</strong></td><td class="num">342</td><td class="num">+1,158</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">27</td><td><strong>皮克球</strong></td><td class="num">352</td><td class="num">+1,148</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">28</td><td><strong>跳绳</strong></td><td class="num">382</td><td class="num">+1,118</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">29</td><td><strong>台球/斯诺克</strong></td><td class="num">406</td><td class="num">+1,094</td><td><span class="badge b-red">P0</span></td></tr>
+      <tr><td class="num">30</td><td><strong>气功/太极</strong></td><td class="num">439</td><td class="num">+1,061</td><td><span class="badge b-red">P0</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>四、热门内容样本 (Top 10 L1 by hot_score)</h2>
+    <p style="color:#666;font-size:13px;margin-bottom:14px;">从这些热门 pattern 提取关键词，已扩展进 R9 投放</p>
+    <div class="cohort">
+      <h3>健身综合 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 4196.9)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-yt">YT</span>👁 161,233,751 · ❤️ 2,449,278</div>
+        <div class="title">7 DAY CHALLENGE 7 MINUTE WORKOUT TO LOSE BELLY FAT - HOME WORKOUT TO LOSE INCHES   Lucy Wyndham-Read</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-yt">YT</span>👁 45,624,126 · ❤️ 999,187</div>
+        <div class="title">Lose Belly Fat In 10 Days Challenge [Workouts To Slim Down Belly Fat]</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-yt">YT</span>👁 39,657,232 · ❤️ 615,079</div>
+        <div class="title">Do These 3 Things EVERY Morning!</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>睡眠/健康恢复 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 3444.1)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-yt">YT</span>👁 195,260,686 · ❤️ 34,389</div>
+        <div class="title">Relaxing Wind Down Body Scan: Switching Off for Deep Sleep with Sleep by Headspace</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 20,737,673 · ❤️ 3,782,714</div>
+        <div class="title">Sleep deprivation is a state where a person does not get enough sleep, either for a short period or </div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 29,930,809 · ❤️ 504,472</div>
+        <div class="title">Circadian disruption refers to disturbances in the natural 24-hour rhythm of biological processes th</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>力量训练 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1920.8)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 65,213,172 · ❤️ 8,287,977</div>
+        <div class="title">My go to exercise for mobility plus strength? Goblet squats 👌</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-yt">YT</span>👁 45,050,579 · ❤️ 941,901</div>
+        <div class="title">SLIM LEGS IN 20 DAYS! 10 min No Jumping Quiet Home Workout ~ Emi</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 47,617,452 · ❤️ 2,024,714</div>
+        <div class="title">Lower Abs Workout At Home 🔥 #workout #Summer #abs #viral </div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>舞蹈 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1869.5)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 48,555,574 · ❤️ 3,677,195</div>
+        <div class="title">Another tutorial 😋Comment what dances you want me to do! ☺️#tiktok #trending #savage #dance #foryou </div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 36,557,834 · ❤️ 3,624,037</div>
+        <div class="title">chorus 2 tutorial🥰 #blackpink #icecream #blackpinkicecream #icecreamblackpink #dancetutorials #tutor</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 41,649,384 · ❤️ 3,118,946</div>
+        <div class="title">get up and give this reggaeton dance workout a try. Add your own personality and energy and make the</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>冥想/呼吸 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1844.4)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 183,848,804 · ❤️ 2,398,470</div>
+        <div class="title">Follow (us) @Explaining to learn something NEW every day 🧠‼️ 
+
+This video is a type of visual exerci</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 64,986,498 · ❤️ 2,227,946</div>
+        <div class="title">👉What is Jalneti: 
+
+In Sanskrit, jala means ‘water’, and neti means ‘to guide’. Jalneti is mainly in</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 94,790,568 · ❤️ 1,696,016</div>
+        <div class="title">Do amazing exercise for one minute daily #helth #yoga #trending #instagram #yogaformind #meditation</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>运动健康 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1835.3)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 241,758,237 · ❤️ 2,682,486</div>
+        <div class="title">Feel overwhelmed or anxious? Do three rounds of this before anything else.
+
+4-7-8 breathing tells ou</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 24,421,009 · ❤️ 1,090,580</div>
+        <div class="title">💥This partner stretch gently decompresses the spine, helping release pressure built
+ from sitting, s</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 15,373,281 · ❤️ 1,157,141</div>
+        <div class="title">Jaw Relief on my page 💛 #tmj #tmjd #tmjdisorder #jawline #jawtension #triggerpointtherapy #diymassag</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>瑜伽 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1501.8)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 36,666,763 · ❤️ 1,397,848</div>
+        <div class="title">Can’t Touch Your Toes? Try This Instead! And if it still doesn’t work, check out my bio to discover </div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 107,583,455 · ❤️ 1,137,191</div>
+        <div class="title">Relief Back Pain😌!
+
+Don't try this one for first attempt...
+Practice yoga slowly then only we can do</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 49,790,794 · ❤️ 1,544,288</div>
+        <div class="title">Thanks for 40M views 🙏🏻🕉️
+ Save✅ Share with your loved ones ❤️
+Start Your healing journey 🌸
+
+DM me f</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>篮球 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1350.9)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 201,962,534 · ❤️ 2,660,796</div>
+        <div class="title">Get Brainpro App (FREE download) link in bio 👆
+
+Try starting your day with 1-3 minutes of eye exerci</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 43,065,443 · ❤️ 897,943</div>
+        <div class="title">Daily Dribble Skills ⚽🥶 Tutorial #football #danielauthur #skills #reels #dailydribbleskilltutorial #</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 5,791,322 · ❤️ 990,325</div>
+        <div class="title">Point guard court vision #creatorsearchinsights #basketball #viral #pointguard #fyp </div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>跑步 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1310.8)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 166,038,637 · ❤️ 3,742,515</div>
+        <div class="title">How didn’t I know about this until now?!
+
+I get stitches EVERY TIME I run and this got rid of it on </div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 30,416,244 · ❤️ 1,056,027</div>
+        <div class="title">Is this kayaking advice or life advice...? YES. 
+
+I find the more you panic, the more you fumble, th</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 64,278,967 · ❤️ 464,826</div>
+        <div class="title">🏃‍♂️ What Happens to Your Body Fat When You Run?
+
+FAT LOSS STARTER KIT IS NOW LIVE - LINK IN BIO
+
+Ru</div>
+      </div>
+    </div>
+    <div class="cohort">
+      <h3>武术/太极 <span style="font-size:12px;color:#666;font-weight:400;">(hot_score: 1213.7)</span></h3>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 190,387,875 · ❤️ 2,060,115</div>
+        <div class="title">Reverse Sweep Kick Training | Easy Step-by-Step Guide for Beginners🔥#ReverseSweepKick #MartialArtsTu</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-tk">TT</span>👁 9,769,642 · ❤️ 821,453</div>
+        <div class="title">13x world champion @rayna vallandingham shows us how to land a #TornadoKick .... and maybe a role in</div>
+      </div>
+      <div class="hot-item">
+        <div class="stats"><span class="platform-tag pt-ig">IG</span>👁 27,549,899 · ❤️ 904,930</div>
+        <div class="title">‼️Right technique matters more than weight & gender‼️
+
+Survival skills part - 3 
+
+Share & save ✔️ fo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>五、R8 + R9 投放策略</h2>
+
+    <div class="cohort">
+      <h3>R8: Viral Pattern Generation (4,148 queries)</h3>
+      <p style="font-size:13px;color:#444;line-height:1.6;">基于今天热门内容的 13 个 viral 角度，给所有 L1 按供给量分级投放：</p>
+      <table style="margin-top:10px;font-size:12px;">
+        <tr><th>角度</th><th>样例 query</th><th class="num">Query 数</th></tr>
+        <tr><td>Challenge</td><td>X 7 day challenge / X 30 day challenge</td><td class="num">770</td></tr>
+        <tr><td>Shorts Workout</td><td>X 5 minute workout / X 10 minute workout</td><td class="num">597</td></tr>
+        <tr><td>Fat Loss Angle</td><td>lose belly fat with X / slim down with X</td><td class="num">359</td></tr>
+        <tr><td>No Equipment</td><td>X no equipment / quiet X workout</td><td class="num">301</td></tr>
+        <tr><td>Transformation</td><td>I tried X for 30 days / X before and after</td><td class="num">282</td></tr>
+        <tr><td>Common Mistakes</td><td>why your X doesn't work / X mistakes</td><td class="num">258</td></tr>
+        <tr><td>Beginner Progression</td><td>X for absolute beginners / X zero to hero</td><td class="num">258</td></tr>
+        <tr><td>Celebrity</td><td>Bryson DeChambeau X / Cristiano Ronaldo X</td><td class="num">231</td></tr>
+        <tr><td>Science Explainer</td><td>science of X / X myths debunked</td><td class="num">224</td></tr>
+        <tr><td>Pop Culture Dance</td><td>BlackPink X / TikTok X trend</td><td class="num">222</td></tr>
+        <tr><td>Morning/Evening</td><td>morning X routine / before bed X</td><td class="num">196</td></tr>
+        <tr><td>Fast Results</td><td>X fast results / X overnight</td><td class="num">282</td></tr>
+        <tr><td>Comparison</td><td>X vs alternative / cheap vs expensive X</td><td class="num">168</td></tr>
+      </table>
+    </div>
+
+    <div class="cohort">
+      <h3>R9: Hot Neighborhood (556 queries)</h3>
+      <p style="font-size:13px;color:#444;line-height:1.6;">从热门内容反推具体的招式/明星/品牌名，做精准的 long-tail 投放：</p>
+      <ul style="margin:10px 0 0 20px;font-size:12px;line-height:1.8;">
+        <li><strong>力量训练</strong>: goblet squat, glute bridge, hip thrust, pistol squat, dragon flag, planche, etc.</li>
+        <li><strong>瑜伽</strong>: yoga for sciatica / tight hips / desk workers / pregnancy / sleep</li>
+        <li><strong>健身综合</strong>: 12-3-30 walking, wall pilates, mini band, 75 hard challenge</li>
+        <li><strong>冥想</strong>: jala neti, physiological sigh, vagal toning, Wim Hof, TRE</li>
+        <li><strong>舞蹈</strong>: BlackPink, NewJeans, Twice, aespa, le sserafim choreo tutorials</li>
+        <li><strong>跑步</strong>: sub 4 marathon, sub 25 5k, zone 2 cardio, hill sprints</li>
+        <li><strong>运动健康</strong>: fix anterior pelvic tilt, fix dowager hump, fix scapular winging</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>六、当前 14h Loop 进度</h2>
+    <table>
+      <tr><th>阶段</th><th>状态</th><th>说明</th></tr>
+      <tr><td>1. V6 词库 + 桌面表格</td><td><span class="badge b-green">✓ 完成</span></td><td>4 新 L1 + 29 新 L2 + 22 L1 关键词扩充，未分类降 60.8%</td></tr>
+      <tr><td>2. GitHub 仓库维护</td><td><span class="badge b-green">✓ 完成</span></td><td>vocab/, reports/, content-gap/data/, content-gap/scripts/ 全推送</td></tr>
+      <tr><td>3. R7 P0/P1/P2 query 投放</td><td><span class="badge b-green">✓ 完成</span></td><td>1,581 queries × 3 platforms = 4,741 seeds (failure 2)</td></tr>
+      <tr><td>4. Phase 3 实际入库分析</td><td><span class="badge b-green">✓ 完成</span></td><td>68k 优质池 hot+gap 双向诊断</td></tr>
+      <tr><td>5. R8 viral pattern 生成</td><td><span class="badge b-green">✓ 完成</span></td><td>4,148 queries 已生成，待 hermit 后端恢复后投放</td></tr>
+      <tr><td>6. R9 hot neighborhood</td><td><span class="badge b-green">✓ 完成</span></td><td>556 queries 已生成，待 hermit 后端恢复后投放</td></tr>
+      <tr><td>7. R8+R9 hermit 投放</td><td><span class="badge b-orange">⚠ 待 hermit 服务恢复</span></td><td>hermit 后端 502，可能是 R7 队列负载，将自动重试</td></tr>
+      <tr><td>8. 持续 loop 分析</td><td><span class="badge b-yellow">🔄 进行中</span></td><td>已设定 wakeup 自动循环</td></tr>
+    </table>
+  </div>
+
+  <div style="text-align:center;color:#94a3b8;font-size:12px;padding:24px 0;">
+    Phase 3 Report · 2026-05-29 · Pool 68,197 items · 14h continuous loop
+  </div>
+</div>
+</body>
+</html>
