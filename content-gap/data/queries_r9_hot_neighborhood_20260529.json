@@ -1,0 +1,4450 @@
+[
+  {
+    "query": "goblet squat for mobility",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "goblet squat home",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lower abs at home",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "slim legs no jumping",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "quiet home workout",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wall pilates abs",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "glute activation routine",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "glute bridge variations",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "glute building no equipment",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hip thrust progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pause squat technique",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tempo squat",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tempo bench press",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pause deadlift",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sumo deadlift form",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "romanian deadlift form",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell single leg",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "single leg deadlift",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bulgarian split squat home",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cossack squat mobility",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pistol squat tutorial",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shrimp squat progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "archer pull up",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tempo pull up",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "L-sit progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "dragon flag",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "human flag training",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "planche progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "front lever progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "one arm pushup",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "one arm chinup",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "handstand pushup progression",
+    "source": "gap",
+    "l1": "力量训练",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for tight hips",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for sciatica",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for lower back pain",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for sleep",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for anxiety",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for digestion",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for hormones",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for posture",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for runners",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for desk workers",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for pregnancy",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for kids",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga for seniors",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga to balance hormones",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fertility yoga",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga to release trauma",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "somatic yoga routine",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "restorative yoga night",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yin yoga long hold",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "yoga nidra deep rest",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kundalini awakening yoga",
+    "source": "gap",
+    "l1": "瑜伽",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "7 day belly fat challenge",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "10 minute belly fat workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "7 minute morning routine",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lose belly fat in 10 days",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "flat belly in 1 week",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lose 10 pounds fast",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "21 day fitness reset",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "30 day transformation challenge",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "14 day shred",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lose belly fat at home woman",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "belly fat killer workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "mini band exercises full body",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "resistance band fat loss",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "15 minute walking workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pilates for fat loss",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wall pilates 30 day",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "standing abs workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pop pilates workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "12-3-30 treadmill workout",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "75 hard challenge daily",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "low impact morning routine",
+    "source": "gap",
+    "l1": "健身综合",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "box breathing for anxiety",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "4 7 8 breathing technique",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "physiological sigh",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "nervous system reset breathing",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "vagal toning exercises",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cold shower breathing",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wim hof method breathing",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jala neti tutorial",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "nasal breathing for sleep",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "mouth taping for sleep",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "humming breath benefits",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "alternate nostril breathing",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pranayama for energy",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "meditation for ADHD",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "meditation for trauma",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "somatic shaking exercise",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "TRE trauma release exercises",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "EFT tapping anxiety",
+    "source": "gap",
+    "l1": "冥想/呼吸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "blackpink dance tutorial easy",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kpop dance tutorial slow",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kpop dance for beginners",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bts dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "newjeans dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "twice dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "aespa dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "le sserafim dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ive dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "reggaeton dance workout",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "afrobeats dance tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bachata sensual basics",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "salsa solo practice",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tiktok dance challenge tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "choreography for beginners",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "house dance footwork tutorial",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hip hop dance basics step by step",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jazz funk choreo",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "contemporary lyrical choreography",
+    "source": "gap",
+    "l1": "舞蹈",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sub 4 hour marathon plan",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sub 3 marathon training",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "beginner couch to 5k",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "run further without getting tired",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "breathing for runners",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cadence for runners",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hill running technique",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "trail running for beginners",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "zone 2 running guide",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "how to run 10k without stopping",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sub 25 minute 5k plan",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "long run pacing strategy",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "taper week marathon",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sub 20 minute 5k training",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "marathon fueling strategy",
+    "source": "gap",
+    "l1": "跑步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parasympathetic nervous system reset",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix anterior pelvic tilt",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix forward head posture",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix scapular winging",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix knee valgus",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix tight hip flexors",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix lower back pain at home",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix sciatica pain",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix piriformis syndrome",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix plantar fasciitis",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix tennis elbow",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix golfers elbow",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix rotator cuff at home",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rehab ACL tear",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rehab shoulder dislocation",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rehab post surgery knee",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fascia release routine",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lymphatic drainage massage at home",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "thoracic spine mobility",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hip mobility for runners",
+    "source": "gap",
+    "l1": "运动健康",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer free kick technique",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer freestyle tricks",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer juggling for beginners",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer 1v1 moves",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer dribbling skills",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer panna tutorial",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer crossover step over",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer elastico tutorial",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "Maradona turn tutorial",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "soccer first touch drills",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "goalkeeper dive technique",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "goalkeeper distribution",
+    "source": "gap",
+    "l1": "足球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shooting form fix",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump shot mechanics",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "finishing at the rim",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ball handling drills daily",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "1v1 isolation moves",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "crossover pull up jumper",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "eurostep tutorial",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fadeaway jumper technique",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "free throw consistency",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "guard footwork drills",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pick and roll reads",
+    "source": "gap",
+    "l1": "篮球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "creatine for women",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "protein for women",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "best whey protein 2026",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "how much protein per day muscle",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "magnesium for athletes",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "electrolyte hydration recipe",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fasted training fat loss",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "carb cycling for fat loss",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "meal prep for athletes",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "best pre workout supplement",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "collagen for joints",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "omega 3 for athletes",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "vitamin D athlete",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "iron supplement female athlete",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "creatine timing",
+    "source": "gap",
+    "l1": "运动营养",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "splits in 30 days",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "middle splits stretching",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pancake stretch progression",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wider hips flexibility",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shoulder mobility daily",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ankle mobility for squat",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "thoracic spine extension",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hip 90 90 mobility",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "frog stretch hips",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pigeon pose deep stretch",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "couch stretch hip flexor",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "overhead mobility for press",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wrist mobility for handstand",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cervical mobility neck",
+    "source": "gap",
+    "l1": "柔韧/活动度",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix rounded shoulders 5 minute",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix anterior pelvic tilt at home",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix dowager hump",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix scoliosis at home",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix flat back",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix kyphosis at home",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix lordosis at home",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fix uneven hips",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "physical therapy exercises shoulder",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "physical therapy knee",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "physical therapy hip",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "physical therapy lower back",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "PT exercises post surgery",
+    "source": "gap",
+    "l1": "体姿矫正/PT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wim hof cold shower routine",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ice bath benefits at home",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cold plunge for recovery",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sauna recovery routine",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "massage gun routine full body",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "foam rolling for recovery",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "percussion massage neck",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sleep optimization athlete",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "mouth tape sleep benefits",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "magnesium for sleep deep",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "red light therapy sleep",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "circadian rhythm reset",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "nap strategy athlete",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "compression boot recovery",
+    "source": "gap",
+    "l1": "睡眠/恢复",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "20 minute HIIT no equipment",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tabata workout 4 minutes",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "EMOM workout home",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "AMRAP workout 10 minutes",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "crossfit WOD home",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "metcon workout home",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sprint interval training SIT",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "zone 2 cardio guide",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fasted cardio fat loss",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "12-3-30 incline walking",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "treadmill HIIT workout",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stair climber HIIT",
+    "source": "gap",
+    "l1": "心肺/HIIT",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "V4 bouldering tips",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "V5 bouldering technique",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "overhang climbing technique",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "slab climbing footwork",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fingerboard beginner routine",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hangboard training program",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "climbing pull up training",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "campus board beginner",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "climbing finger strength",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "climbing antagonist exercises",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "climbing recovery nutrition",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lead climbing fall practice",
+    "source": "gap",
+    "l1": "攀岩",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball third shot drop",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball erne shot",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball ATP shot",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball kitchen rules",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball doubles strategy",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball serve power",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball return depth",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball paddle review 2026",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball footwork agility",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball dink pattern",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pickleball volley wall drill",
+    "source": "gap",
+    "l1": "皮克球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kickflip beginner step by step",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tre flip tutorial",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "frontside 180 tutorial",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "backside 180 tutorial",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "50-50 grind beginner",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "manual tutorial step by step",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "drop in halfpipe tutorial",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "switch riding tips",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "longboard downhill safety",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cruiser board for beginners",
+    "source": "gap",
+    "l1": "滑板",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tai chi 24 form slow",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "qigong 8 brocades tutorial",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tai chi push hands beginner",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "qigong morning routine 10 min",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "qigong for stress relief",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tai chi chen style",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tai chi yang style 24",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wing chun chi sao basics",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wing chun centerline drill",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "xing yi 5 elements basics",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bagua circle walking basics",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "zhan zhuang standing meditation",
+    "source": "gap",
+    "l1": "气功/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "double under tutorial beginner",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope cardio for fat loss",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "boxers jump rope routine",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "weighted jump rope routine",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope crossover tutorial",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope criss cross",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope speed training",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope freestyle tricks",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jump rope 30 minute workout",
+    "source": "gap",
+    "l1": "跳绳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pop up surfing drill",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "surfing duck dive technique",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "reading surf waves beginner",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "paddleboard balance basics",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "SUP yoga beginner",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kitesurfing first lesson",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wakeboard beginner tips",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "surfing turning technique",
+    "source": "gap",
+    "l1": "冲浪/水上",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freediving equalization tutorial",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freediving mouthfill technique",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "scuba buoyancy control",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "PADI open water tips",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cave diving safety",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "spearfishing technique",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "scuba mask clearing",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freediving relaxation",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "CMAS freediving",
+    "source": "gap",
+    "l1": "潜水",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ultralight backpacking gear list",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "thru hike preparation PCT",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "AT thru hike gear",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "CDT thru hike planning",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "fastpacking lightweight gear",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "backpacking sleep system",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "water filter backpacking",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tent setup wind storm",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bear safety hiking",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wilderness navigation map compass",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "leave no trace LNT",
+    "source": "gap",
+    "l1": "户外/徒步",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton smash power technique",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton net kill",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton drive shot fast",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton doubles formation",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton singles defense",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton clear power",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton drop shot deceptive",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton lift technique",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton footwork agility",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton string tension guide",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "badminton racket lightweight",
+    "source": "gap",
+    "l1": "羽毛球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "skiing carving technique",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "skiing parallel turns beginner",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snowboard heel toe edge",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snowboard park tricks 180",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "mogul skiing technique",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cross country skate technique",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "figure skating spin tutorial",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "speed skating posture",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "roller skating dance basics",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "inline skating beginners",
+    "source": "gap",
+    "l1": "滑冰/滑雪",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf swing tempo drill",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf backswing position",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf downswing sequence",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf putting stroke straight",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf chip shot clean",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf pitch shot ball position",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf bunker escape technique",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf driver consistency",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "golf club fitting at home",
+    "source": "gap",
+    "l1": "高尔夫",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis forehand topspin",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis backhand two handed",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis serve toss consistency",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis kick serve technique",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis volley footwork",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis slice backhand",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis return of serve",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis split step timing",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tennis racquet string tension",
+    "source": "gap",
+    "l1": "网球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freestyle stroke technique",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freestyle breathing bilateral",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "breaststroke kick timing",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "butterfly stroke timing",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "flip turn tutorial",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "streamline position swimming",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "open water sighting",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "triathlon swim training plan",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cold water acclimation",
+    "source": "gap",
+    "l1": "游泳",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "handstand progression at home",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cartwheel beginner tutorial",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "back handspring drill",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "aerial cartwheel tutorial",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "press handstand progression",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rings muscle up tutorial",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tumbling progression at home",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour cat leap technique",
+    "source": "gap",
+    "l1": "体操/技巧",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tai chi 24 form complete",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "BJJ guard retention basics",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "BJJ closed guard sweeps",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "judo throw uchimata",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "judo seoinage technique",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "taekwondo head kick",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kung fu basics for beginners",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wing chun chi sao drill",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shaolin warm up",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wushu nan quan form",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sanda striking technique",
+    "source": "gap",
+    "l1": "武术/太极",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shadow boxing for beginners",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "boxing jab cross hook",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "boxing footwork pivot",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "boxing slip rip combo",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "boxing pad work routine",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kickboxing combos",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "muay thai elbow strike",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "muay thai clinch basics",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "MMA fundamentals",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "BJJ no gi basics",
+    "source": "gap",
+    "l1": "拳击/搏击",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball spike approach",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball setting hand position",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball serve float",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball serve jump",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball block timing",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball pass platform",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "beach volleyball strategy",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "volleyball defensive shuffle",
+    "source": "gap",
+    "l1": "排球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball swing power",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball pitching mechanics",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball fielding ground ball",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball stealing base technique",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "softball pitcher mechanics",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball catcher framing",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball bunt technique",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "baseball outfield reads",
+    "source": "gap",
+    "l1": "棒球/垒球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "road bike climbing technique",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "MTB cornering tutorial",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "MTB jumping drop",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cycling cadence training",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bike fit at home",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bike maintenance chain",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bike chain replacement",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "bike derailleur tuning",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "tubeless tire setup",
+    "source": "gap",
+    "l1": "骑行",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sprint start block technique",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "100m race strategy",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "400m pacing strategy",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "long jump approach run",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "high jump fosbury flop",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "triple jump phases",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shot put glide vs spin",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "discus rotation technique",
+    "source": "gap",
+    "l1": "田径",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rugby tackle technique",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rugby pass technique",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rugby ruck technique",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "NFL quarterback footwork",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "NFL wide receiver routes",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "NFL defensive back stance",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "football tackling form",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "football blocking technique",
+    "source": "gap",
+    "l1": "橄榄球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey wrist shot tutorial",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey slap shot power",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey snap shot release",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey backhand shot",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey stickhandling toe drag",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey edge work",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey power skating",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hockey goalie butterfly",
+    "source": "gap",
+    "l1": "冰球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ultimate frisbee forehand flick",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ultimate frisbee backhand",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ultimate frisbee hammer",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "ultimate frisbee scoober",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "disc golf driver throw",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "disc golf putter technique",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "disc golf hyzer flip",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "disc golf course management",
+    "source": "gap",
+    "l1": "飞盘",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket batting stance",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket cover drive",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket pull shot",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket fast bowling action",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket spin bowling grip",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket yorker bowling",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket wicket keeping",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cricket fielding ground ball",
+    "source": "gap",
+    "l1": "板球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snooker break shot technique",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pool 9 ball break",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "cue ball english spin",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snooker safety play",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pool bank shot calculation",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snooker positional play",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pool draw shot technique",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snooker cue action",
+    "source": "gap",
+    "l1": "台球/斯诺克",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell swing form fix",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell snatch technique",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "turkish get up step by step",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell clean technique",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell windmill tutorial",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell halo warm up",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell flow workout",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kettlebell single arm exercises",
+    "source": "gap",
+    "l1": "壶铃",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "olympic clean technique fix",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snatch power position",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "jerk dip drive",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "split jerk footwork",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hang clean teaching progression",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "snatch grip placement",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "clean rack position elbows",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "weightlifting belt usage",
+    "source": "gap",
+    "l1": "举重竞技",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "splits stretching daily",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "middle splits flexibility",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pancake stretch routine",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "shoulder dislocation stretch",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hip flexor stretch deep",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "hamstring flexibility",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "foam roll IT band",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse ball glute release",
+    "source": "gap",
+    "l1": "综合拉伸",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis forehand loop",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis backhand drive",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis service spin",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis pen hold grip",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis shake hand grip",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis footwork",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis chop defense",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "table tennis flick over the table",
+    "source": "gap",
+    "l1": "乒乓球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "squash backhand drive",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "squash drop shot tutorial",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "squash kill shot",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "squash lob ceiling shot",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "squash court positioning",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "handball throwing technique",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "racquetball strategy basics",
+    "source": "gap",
+    "l1": "壁球/手球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "rowing technique stroke",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "concept2 rower workout",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kayak forward stroke",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "kayak roll technique",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "whitewater kayak basics",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "sea kayak touring",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "canoe paddling stroke",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "SUP paddleboard touring",
+    "source": "gap",
+    "l1": "赛艇/皮划艇",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour vault tutorial step by step",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour precision jump training",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour kong vault progression",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour wall run technique",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour roll landing",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "parkour cat leap drill",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "freerunning flips tutorial",
+    "source": "gap",
+    "l1": "跑酷",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey hit technique",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey push pass",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey 3D skills",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey reverse stick",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey aerial pass",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "field hockey defending",
+    "source": "gap",
+    "l1": "曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse cradling tutorial",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse face off basics",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse shooting form",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse dodge moves",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse stick stringing",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse goalkeeper drills",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "lacrosse defense positioning",
+    "source": "gap",
+    "l1": "长曲棍球",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical HIIT 20 minute",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical for fat loss",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical low impact cardio",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical resistance settings",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical posture correct",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "elliptical interval training",
+    "source": "gap",
+    "l1": "椭圆机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stair climber HIIT workout",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stairmaster fat loss",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stair stepper for glutes",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stairmaster posture",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stair climber 30 min workout",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "stair stepper for runners",
+    "source": "gap",
+    "l1": "踏步机",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "wall pilates 30 day challenge",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "reformer pilates workout",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pilates for posture",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pilates for runners",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pilates abs 10 minute",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pop pilates 30 day arms",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "pilates for back pain",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  },
+  {
+    "query": "mat pilates routine",
+    "source": "gap",
+    "l1": "普拉提",
+    "l2": "",
+    "angle": "hot_neighborhood",
+    "priority": "P1"
+  }
+]
