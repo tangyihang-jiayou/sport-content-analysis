@@ -1,0 +1,1802 @@
+[
+  {
+    "band": "0.84-0.86",
+    "i": 48604,
+    "j": 6823,
+    "sim": 0.8597443699836731,
+    "a": "Targeting SI joint pain: a yoga sequence to ease the sharp lower back discomfort when standing up or climbing stairs",
+    "bt": "A physical therapist's gentle yoga sequence for SI joint relief: targeting deep hip and low back discomfort safely",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 89392,
+    "j": 12133,
+    "sim": 0.850470781326294,
+    "a": "Why runners should deadlift with a kettlebell: the form cues that carry over to a stronger stride",
+    "bt": "A visual demonstration of the double kettlebell deadlift: foundational strength mechanics for runners",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 78355,
+    "j": 27910,
+    "sim": 0.8436082005500793,
+    "a": "What most people get wrong about the barbell Romanian deadlift: the hip hinge cues that actually keep the load on the hamstrings",
+    "bt": "Why the Romanian deadlift isn't a squat: 5 hinge cues to maintain continuous posterior chain tension",
+    "l1": "力量训练",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 64078,
+    "j": 67464,
+    "sim": 0.8410314917564392,
+    "a": "Why slowing down doesn't fix breathlessness when running: the over-breathing problem most runners never address",
+    "bt": "Why the standard breathing advice for runners misses the point: what actually controls your breath at different paces",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 64954,
+    "j": 541,
+    "sim": 0.8425087928771973,
+    "a": "A bolster-based yin yoga flow for winding down at night: long holds to release full-body tension before sleep",
+    "bt": "A bedtime yin yoga sequence to nourish the mind and prepare the body for deep sleep",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 51003,
+    "j": 51173,
+    "sim": 0.8549235463142395,
+    "a": "Vision therapy for the chronically online: a yoga routine to relieve digital eye strain",
+    "bt": "Relaxing overworked eye muscles: a yogi's daily routine to combat screen-induced strain",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 66931,
+    "j": 8361,
+    "sim": 0.8526347279548645,
+    "a": "A beginner yoga flow built around post-workout muscle soreness and upper back tension",
+    "bt": "Releasing full-body tension: a gentle yoga sequence built specifically for stiff bodies and sore muscles",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 76747,
+    "j": 96087,
+    "sim": 0.8527893424034119,
+    "a": "Seated yoga poses that keep kids engaged through storytelling and imaginative movement",
+    "bt": "Engaging children in yoga: using stories and mindful movement to build foundational posture and flexibility",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 3436,
+    "j": 46612,
+    "sim": 0.8472968935966492,
+    "a": "Why the famous 180 steps per minute cadence is a reference point rather than a strict rule for distance runners",
+    "bt": "Why your running cadence shouldn't drop when you slow down: how a 180 BPM tempo minimizes ground contact time at any pace",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 7033,
+    "j": 37244,
+    "sim": 0.8563820719718933,
+    "a": "A morning yoga flow to wake up the body and build full-body mobility for an energized start",
+    "bt": "Morning yoga for beginners: a full-body stretch flow to build daily flexibility and energy",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 6530,
+    "j": 32648,
+    "sim": 0.8407385349273682,
+    "a": "A bedtime yoga sequence to release the physical tightness and mental busyness that carry stress into the night",
+    "bt": "A fully lying-down yoga sequence built to release pre-sleep tension without ever leaving the bed",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 6530,
+    "j": 4309,
+    "sim": 0.8543670773506165,
+    "a": "A bedtime yoga sequence to release the physical tightness and mental busyness that carry stress into the night",
+    "bt": "Shedding the physical tension of a busy workday: an evening yoga sequence to decompress before bed",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 8019,
+    "j": 2978,
+    "sim": 0.8457593321800232,
+    "a": "An easy-going full-body stretch sequence designed to ease beginners into deep rest",
+    "bt": "A beginner-friendly gentle yoga sequence for full-body stretching",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 7996,
+    "j": 5393,
+    "sim": 0.8440380096435547,
+    "a": "Building a full-body yoga foundation: a men's coach's routine for absolute beginners",
+    "bt": "A fitness coach's morning mobility foundation for men: building optimal strength through bodyweight yoga",
+    "l1": "瑜伽",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 8450,
+    "j": 37853,
+    "sim": 0.8575057983398438,
+    "a": "5 targeted yoga asanas for managing Polycystic Ovarian Disease",
+    "bt": "Targeting PCOD and PCOS: a daily yoga sequence to balance hormones and regulate periods",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 65207,
+    "j": 15648,
+    "sim": 0.8419274687767029,
+    "a": "A yin yoga wind-down flow that uses deep passive holds to release stress and tension before bed",
+    "bt": "Why the sustained holds of yin yoga are the ideal way to release stress at the end of the day",
+    "l1": "瑜伽",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 10353,
+    "j": 10910,
+    "sim": 0.8456080555915833,
+    "a": "Building back muscle using only resistance bands: the high row technique",
+    "bt": "Building back muscles at home: how to get a ripped back using only resistance bands",
+    "l1": "力量训练",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 92894,
+    "j": 19502,
+    "sim": 0.84650057554245,
+    "a": "Why calming the nervous system before a run is the most underrated tool for better mid-run breathing",
+    "bt": "Why movement isn't the only pre-run essential: a running coach's case for nasal breath prep",
+    "l1": "跑步",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 3370,
+    "j": 5250,
+    "sim": 0.8483085036277771,
+    "a": "A yoga instructor's post-run protocol: building a daily total-body stretch routine for optimal runner health",
+    "bt": "Beyond basic stretches: a yoga instructor's mobilization sequence to unlock flexibility and strength for runners",
+    "l1": "瑜伽",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 3052,
+    "j": 64627,
+    "sim": 0.8491036891937256,
+    "a": "A restorative yoga flow built around deep stretches to maximize relaxation",
+    "bt": "A restorative yoga flow built around hip openers, twists, and gentle heart openers to help your body unwind and restore energy",
+    "l1": "瑜伽",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 2978,
+    "j": 6155,
+    "sim": 0.8425750136375427,
+    "a": "A beginner-friendly gentle yoga sequence for full-body stretching",
+    "bt": "For days when your muscles feel stiff and tight: a gentle full-body yoga sequence to stretch out soreness",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 36036,
+    "j": 55070,
+    "sim": 0.8504450917243958,
+    "a": "Troubleshooting the lateral raise: common movement mistakes that limit shoulder growth",
+    "bt": "Why shrugging on the lateral raise kills your side delt activation: a common beginner mistake and its simple fix",
+    "l1": "力量训练",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 1026,
+    "j": 102108,
+    "sim": 0.8439651727676392,
+    "a": "A yoga teacher's foundation for the frog pose: maximizing the deep stretch in the hips and inner thighs",
+    "bt": "Why the frog pose is a yoga coach's go-to for unlocking stubborn hip tightness",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 34228,
+    "j": 28034,
+    "sim": 0.8421943187713623,
+    "a": "Why you might not be training your lats during pulldowns: how grip choice shifts the muscle focus",
+    "bt": "A coach's breakdown of the lat pulldown: how grip width and form setup dictate back growth",
+    "l1": "力量训练",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 5609,
+    "j": 5942,
+    "sim": 0.8482096195220947,
+    "a": "Rebuilding after a rotator cuff injury: how targeted yoga helps restore shoulder strength and mobility",
+    "bt": "A yoga instructor's foundation for tight shoulders: targeting the rotator cuff to unlock active mobility",
+    "l1": "瑜伽",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 52801,
+    "j": 80083,
+    "sim": 0.8555026054382324,
+    "a": "One routine for multiple pain points: a daily yoga flow to ease period cramps and digestive discomfort",
+    "bt": "A gentle yoga flow built around easing period cramps: slow poses that target the lower abdomen and lower back",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 98286,
+    "j": 63231,
+    "sim": 0.841018557548523,
+    "a": "A recovery-focused yoga flow for athletes and beginners: restoring mobility and strength on active rest days",
+    "bt": "A gentle full-body stretch flow designed for athletes to ease muscle soreness and speed up recovery on rest days",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 87411,
+    "j": 29028,
+    "sim": 0.8462061882019043,
+    "a": "A hip-opening yoga flow designed to release the tension that builds up after a busy day",
+    "bt": "Releasing morning tension: a fluid yoga sequence focused on hip mobility and flexibility",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 4463,
+    "j": 44855,
+    "sim": 0.8550023436546326,
+    "a": "A sprint coach's 2 pacing adjustments to fix a flawed 400m dash strategy",
+    "bt": "Why the 400m isn't a pure sprint: a 4-phase pacing strategy to stop dying at the 250-meter mark",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.84-0.86",
+    "i": 51732,
+    "j": 90662,
+    "sim": 0.8432168960571289,
+    "a": "From morning stiffness to daily energy: a gentle yoga flow to wake up the back",
+    "bt": "A morning yoga flow for people who wake up stiff: targeting the tightness that builds overnight and carries into your posture",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 21663,
+    "j": 77049,
+    "sim": 0.8773593306541443,
+    "a": "Why you can't simply punch your way to faster hands: the dedicated conditioning required for boxing speed",
+    "bt": "Why raw power training won't make your punches faster: what actually drives hand speed in boxing",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 99991,
+    "j": 59693,
+    "sim": 0.877495288848877,
+    "a": "Beyond the basic bounce: a jump rope footwork variation to build boxing agility",
+    "bt": "The boxer skip: how shifting your weight on the jump rope builds boxing footwork",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 50750,
+    "j": 50872,
+    "sim": 0.8612257838249207,
+    "a": "Building the shoulder roll reflex: a boxing drill to automate defensive deflection",
+    "bt": "A boxing coach's fundamentals for the shoulder roll defensive technique",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 46678,
+    "j": 46663,
+    "sim": 0.8731624484062195,
+    "a": "The fundamentals of the boxing slip: a trainer's breakdown of evasive head movement",
+    "bt": "A boxing coach's foundation for the slip: building essential jab defense for beginners",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 37853,
+    "j": 39033,
+    "sim": 0.8703881502151489,
+    "a": "Targeting PCOD and PCOS: a daily yoga sequence to balance hormones and regulate periods",
+    "bt": "Targeting pelvic circulation for PCOS and irregular periods: a gentle yoga routine to naturally balance hormones",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 102910,
+    "j": 85447,
+    "sim": 0.8630179762840271,
+    "a": "A foundational boxing handwrap sequence for wrist stability and knuckle protection",
+    "bt": "How to wrap your hands for boxing with a 4.5m bandage: the step-by-step method that actually protects your knuckles and wrist",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 10609,
+    "j": 7524,
+    "sim": 0.8619776964187622,
+    "a": "A boxing coach's breakdown of the pro-level shoulder roll: emulating the defensive mechanics of elite fighters",
+    "bt": "Blocking vs. the shoulder roll: a boxing coach on how to let the impact slide off",
+    "l1": "拳击/搏击",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 32866,
+    "j": 91768,
+    "sim": 0.8726376891136169,
+    "a": "A boxing coach's jump rope warm-up: 3 drills to sync your rhythm and sharpen footwork agility",
+    "bt": "Beyond the basic bounce: jump rope variations that actually transfer to boxing footwork and rhythm",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 51290,
+    "j": 39033,
+    "sim": 0.8753408789634705,
+    "a": "A daily yoga foundation for PCOS relief: supporting hormonal balance and natural cycle regulation",
+    "bt": "Targeting pelvic circulation for PCOS and irregular periods: a gentle yoga routine to naturally balance hormones",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 7322,
+    "j": 6567,
+    "sim": 0.8770917654037476,
+    "a": "A calming yoga flow to release tension and open up a tight chest and back",
+    "bt": "A grounding deep stretch flow built to release built-up tension in the chest and back",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 80245,
+    "j": 20329,
+    "sim": 0.8648668527603149,
+    "a": "Why most people set up the Bulgarian split squat wrong before they even start the movement: 3 positioning fixes that actually stick",
+    "bt": "Why your Bulgarian split squat feels awkward: essential setup and balance adjustments",
+    "l1": "力量训练",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 89306,
+    "j": 103004,
+    "sim": 0.8636590838432312,
+    "a": "Why defending in boxing means thinking counter first, not just blocking the punch",
+    "bt": "The mechanics of a correct boxing block: how proper defense sets up the counter",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 68174,
+    "j": 66018,
+    "sim": 0.8630310297012329,
+    "a": "Why padwork isn't just drilling combos: how to string beginner boxing combinations into a continuous flow",
+    "bt": "The first boxing combos beginners should drill in shadowboxing: building flow before adding power",
+    "l1": "拳击/搏击",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 73517,
+    "j": 70876,
+    "sim": 0.8622117042541504,
+    "a": "A whole-body yoga flow designed to feel like a complete practice when you only have a few minutes a day",
+    "bt": "A full-body yoga flow built to re-energize and reactivate when you don't have much time",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 67863,
+    "j": 63231,
+    "sim": 0.8726593255996704,
+    "a": "A gentle yoga stretch flow that targets both flexibility and post-workout muscle soreness at the same time",
+    "bt": "A gentle full-body stretch flow designed for athletes to ease muscle soreness and speed up recovery on rest days",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 74868,
+    "j": 67419,
+    "sim": 0.8799802660942078,
+    "a": "Why runners need two different stretching approaches: dynamic before, static after",
+    "bt": "Static stretches before a run don't just fail to help — they can actually hurt your performance: why dynamic stretches belong before, not after",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 99586,
+    "j": 32331,
+    "sim": 0.8673194050788879,
+    "a": "Essential head movement drills to stop being a stationary target during shadowboxing",
+    "bt": "4 essential drills to develop boxing head movement technique",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 8657,
+    "j": 10922,
+    "sim": 0.8674927949905396,
+    "a": "A boxing coach's breakdown of the shoulder roll: the mechanics of executing the defense correctly",
+    "bt": "A boxing coach's breakdown of the roll: step-by-step mechanics from novice to elite",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 5634,
+    "j": 26756,
+    "sim": 0.8751354217529297,
+    "a": "A no-equipment cool-down sequence to kickstart recovery the moment your run ends",
+    "bt": "A foundational cool down routine for runners to kickstart post-workout recovery",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 85169,
+    "j": 24785,
+    "sim": 0.8642382025718689,
+    "a": "How to actually start hitting the speed bag: the rhythm and timing basics most beginners get wrong",
+    "bt": "Speedbag 101: breaking down the absolute basics for boxing beginners",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 6796,
+    "j": 1724,
+    "sim": 0.8692424893379211,
+    "a": "Releasing upper body tension: how a targeted Yin Yoga practice opens the chest and shoulders",
+    "bt": "Slowing down to release deep tension: a Yin Yoga practice targeting the hips and shoulders",
+    "l1": "瑜伽",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 101331,
+    "j": 25089,
+    "sim": 0.8681292533874512,
+    "a": "Building a solid boxing stance: a coach's foundational setup for absolute beginners",
+    "bt": "The basics of the orthodox boxing stance: setting up your foundation",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 64954,
+    "j": 52887,
+    "sim": 0.860702633857727,
+    "a": "A bolster-based yin yoga flow for winding down at night: long holds to release full-body tension before sleep",
+    "bt": "A yoga sequencing expert's prop-supported Yin routine: using bolsters to deepen belly-down resting postures and supine twists",
+    "l1": "瑜伽",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 85042,
+    "j": 69235,
+    "sim": 0.869580864906311,
+    "a": "How to wrap your hands for boxing: the correct technique most beginners get wrong",
+    "bt": "How to wrap your hands for boxing: the foundation most beginners skip before their first session",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 45573,
+    "j": 6576,
+    "sim": 0.8658209443092346,
+    "a": "Releasing morning tightness: a beginner yoga foundation to improve daily posture",
+    "bt": "How to shake off morning fatigue: a beginner-friendly yoga foundation to gently activate the body",
+    "l1": "瑜伽",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 1725,
+    "j": 28072,
+    "sim": 0.8670899868011475,
+    "a": "Conquering your first pull-up: a step-by-step progression for absolute beginners",
+    "bt": "A beginner's progression to unlocking your first chin-up from scratch",
+    "l1": "力量训练",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 103237,
+    "j": 101959,
+    "sim": 0.8652713298797607,
+    "a": "A boxing team's foundational warm-up sequence before a training session",
+    "bt": "Prepping for the heavy bag: a boxing coach's essential warm-up sequence",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 68884,
+    "j": 79415,
+    "sim": 0.8663678765296936,
+    "a": "Why the cross-hook combo works better than a single strike to set up a Muay Thai head kick",
+    "bt": "Why the head kick doesn't always have to set up the punch: using the kick first to open up power punches in Muay Thai combinations",
+    "l1": "拳击/搏击",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 71720,
+    "j": 69450,
+    "sim": 0.8781298995018005,
+    "a": "Why the same bunker technique fails in hard sand: adjusting your setup and swing for different sand conditions",
+    "bt": "Why the same bunker swing doesn't work in hard and soft sand: 3 adjustments that actually change your contact",
+    "l1": "其他",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.86-0.88",
+    "i": 87729,
+    "j": 87148,
+    "sim": 0.8639943599700928,
+    "a": "What to look for in a running hydration vest: fit and on-the-run drinkability explained",
+    "bt": "How to choose a running hydration vest: the fit, capacity, and pocket layout differences that actually matter on the trail",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 5387,
+    "j": 37813,
+    "sim": 0.8843417763710022,
+    "a": "The spot reduction myth: why you can't target fat loss in specific areas",
+    "bt": "The spot reduction myth: why targeting specific areas for fat loss isn't backed by science",
+    "l1": "健身综合",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 22562,
+    "j": 41046,
+    "sim": 0.8917017579078674,
+    "a": "Beyond backbend flexibility: using a wall to build the forearm balance and strength required for the Scorpion Pose",
+    "bt": "How wall support safely builds the shoulder stability and spinal articulation required for the forearm stand scorpion",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 95648,
+    "j": 94476,
+    "sim": 0.8857388496398926,
+    "a": "The foundation of a between-the-legs dribble: why footwork and weight shift are the real keys to ball control for beginners",
+    "bt": "Why your between-the-legs dribble keeps hitting your legs: a coach's fix for beginner footwork and body angle",
+    "l1": "篮球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 68097,
+    "j": 100502,
+    "sim": 0.8828951120376587,
+    "a": "Shadow boxing as a skill-building tool, not just cardio: what to focus on when there's no bag or partner",
+    "bt": "A boxing coach's approach to maximizing shadow boxing for actual skill elevation",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 15801,
+    "j": 32866,
+    "sim": 0.8915421962738037,
+    "a": "A boxing coach's essential jump rope drills for your next boxing workout",
+    "bt": "A boxing coach's jump rope warm-up: 3 drills to sync your rhythm and sharpen footwork agility",
+    "l1": "拳击/搏击",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 91948,
+    "j": 95449,
+    "sim": 0.893524169921875,
+    "a": "Why returners can't hide from the kick serve: a tennis coach's reality check on second serves",
+    "bt": "A tennis coach's foundation for a pro-level kick serve: how to protect your second serve from aggressive returns",
+    "l1": "网球",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 93795,
+    "j": 27435,
+    "sim": 0.8882878422737122,
+    "a": "3 shooting form adjustments to fix an inconsistent jumper and build a repeatable release",
+    "bt": "3 hand placement adjustments to fix an inconsistent jumpshot release",
+    "l1": "篮球",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 35077,
+    "j": 100258,
+    "sim": 0.8902091979980469,
+    "a": "Building skipping rhythm from scratch: a trainer's jump rope foundation for boxing beginners",
+    "bt": "A boxer's jump rope tutorial: mastering the foundational rhythm and technique",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 32342,
+    "j": 99991,
+    "sim": 0.8819291591644287,
+    "a": "From the standard bounce to the boxer skip: the footwork mechanics of jumping rope like a fighter",
+    "bt": "Beyond the basic bounce: a jump rope footwork variation to build boxing agility",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 2648,
+    "j": 29609,
+    "sim": 0.8806231021881104,
+    "a": "Maximizing intensity with zero equipment: a pure Tabata sequence for a killer home sweat",
+    "bt": "A no-equipment Tabata sequence for full-body HIIT at home",
+    "l1": "健身综合",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 44101,
+    "j": 44489,
+    "sim": 0.8966586589813232,
+    "a": "High-intensity cardio without the impact: a no-jumping HIIT circuit for home workouts",
+    "bt": "Why you don't need to jump for high intensity: a low-impact home HIIT routine",
+    "l1": "健身综合",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 60924,
+    "j": 94782,
+    "sim": 0.8869930505752563,
+    "a": "Why you keep missing easy layups: a coach's guide to mastering soft touch at the rim",
+    "bt": "Why beginners keep blowing easy layups in live games: foundational adjustments for consistent finishing at the rim",
+    "l1": "篮球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 15113,
+    "j": 15061,
+    "sim": 0.88726806640625,
+    "a": "A wrestler's step-by-step breakdown of fundamental Greco-Roman techniques",
+    "bt": "A wrestler's 3-step progression for executing fundamental Greco-Roman techniques",
+    "l1": "武术/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 9792,
+    "j": 2737,
+    "sim": 0.8956429958343506,
+    "a": "A high-intensity Tabata protocol: how a no-repeat structure maximizes full-body burn without equipment",
+    "bt": "A no-repeat Tabata sequence for full-body cardio: hitting high intensity without equipment",
+    "l1": "健身综合",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 6796,
+    "j": 6587,
+    "sim": 0.8951626420021057,
+    "a": "Releasing upper body tension: how a targeted Yin Yoga practice opens the chest and shoulders",
+    "bt": "A Yin yoga approach to upper body tension: gently moving energy through the neck, shoulders, wrists, and upper spine",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 50822,
+    "j": 92974,
+    "sim": 0.8890306353569031,
+    "a": "A yoga teacher's gentle morning flow to wake up the body and build flexibility for beginners",
+    "bt": "A gentle morning yoga flow designed to stretch and wake up the body for beginners",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 95137,
+    "j": 77340,
+    "sim": 0.8909296989440918,
+    "a": "Beyond the basic crossover: how to execute NBA-level ankle breakers that actually drop your defender",
+    "bt": "5 crossover moves that actually break ankles: from the basic cross to advanced combo dribbles",
+    "l1": "篮球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 39145,
+    "j": 9981,
+    "sim": 0.8877940773963928,
+    "a": "Addressing high blood pressure on the mat: yoga practices focused on hypertension control",
+    "bt": "Navigating yoga with high blood pressure: a heart-focused practice to support cardiovascular health",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 32473,
+    "j": 34909,
+    "sim": 0.8859160542488098,
+    "a": "A Muay Thai camp's approach to the clinch: the foundational control for the knee-heavy Muay Khao style",
+    "bt": "Essential clinch mechanics from a Thai gym: foundational control for Muay Thai and MMA",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 63846,
+    "j": 66989,
+    "sim": 0.8953401446342468,
+    "a": "Why catching waves on a longboard SUP demands different timing and positioning than regular surfing",
+    "bt": "Why longboard SUP surfing demands a different wave-reading approach than standard paddleboarding",
+    "l1": "骑行",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 94682,
+    "j": 21852,
+    "sim": 0.8962894082069397,
+    "a": "Breaking the closed guard without stalling: a BJJ coach's fundamentals for fast passing",
+    "bt": "A BJJ coach's fundamental sequence: breaking the closed guard and securing a dominant pass",
+    "l1": "武术/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 97072,
+    "j": 100792,
+    "sim": 0.8857170939445496,
+    "a": "Why building arch strength is the foundation for fixing a runner's plantar fasciitis",
+    "bt": "A physical therapy protocol for runner's plantar fasciitis: targeting the arch to rebuild foot strength",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 30218,
+    "j": 57099,
+    "sim": 0.8970483541488647,
+    "a": "Wim Hof breathing: what makes the practice so physically intense",
+    "bt": "Why Wim Hof breathing feels so intense: the physiological shift that primes your body for a workout",
+    "l1": "冥想/呼吸",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 11645,
+    "j": 94077,
+    "sim": 0.8883880376815796,
+    "a": "From the shuffle to the kick step: 3 boxer-style jump rope variations to build footwork and rhythm",
+    "bt": "Beyond basic cardio: 3 jump rope drills to build boxing-specific rhythm and footwork",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 21836,
+    "j": 21486,
+    "sim": 0.8963518738746643,
+    "a": "A treadmill interval strategy for people who hate cardio: breaking the session down to make time fly during a fat-loss cut",
+    "bt": "An interval incline walking strategy to help cardio haters get through long sessions during a cutting phase",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 50907,
+    "j": 26097,
+    "sim": 0.8881377577781677,
+    "a": "Shoulder roll vs. Philly Shell: the technical differences between two distinct boxing defenses",
+    "bt": "The foundation of the Philly shell: understanding Mayweather's signature shoulder roll defense",
+    "l1": "拳击/搏击",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 77374,
+    "j": 74843,
+    "sim": 0.8943467140197754,
+    "a": "Why generating forehand power is about acceleration through contact, not swinging harder",
+    "bt": "Why hitting harder forehands isn't about swinging faster: the body mechanics that actually generate power",
+    "l1": "网球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 67213,
+    "j": 82538,
+    "sim": 0.8842576146125793,
+    "a": "Back kick vs. turning side kick: why two kicks that look similar hit from completely different mechanics",
+    "bt": "Why the back kick isn't just a reversed side kick: the pivot direction that changes how power is generated",
+    "l1": "武术/太极",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 4644,
+    "j": 30854,
+    "sim": 0.8918099403381348,
+    "a": "Breaking down the soccer rainbow flick: a step-by-step progression to master the trick",
+    "bt": "Simplifying the rainbow flick: a 3-step breakdown to master the flashy football skill",
+    "l1": "足球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.88-0.9",
+    "i": 97625,
+    "j": 56363,
+    "sim": 0.8930320739746094,
+    "a": "Why a reverse spine angle could be the real cause of your lower back pain in golf",
+    "bt": "The #1 cause of back pain in your golf swing: how to fix reverse spine angle and load properly",
+    "l1": "高尔夫",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 8260,
+    "j": 87246,
+    "sim": 0.9023128151893616,
+    "a": "How to effectively execute the freestyle catch-up drill: a swim coach's breakdown",
+    "bt": "Why the catch-up drill is one of freestyle swimming's most-used training tools: what it actually trains",
+    "l1": "游泳",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 71998,
+    "j": 85339,
+    "sim": 0.9025440812110901,
+    "a": "Why beach volleyball passing demands different fundamentals than indoor: the serve receive adjustments that actually matter",
+    "bt": "What changes about passing technique when you move from indoor to beach volleyball",
+    "l1": "排球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 92210,
+    "j": 18135,
+    "sim": 0.906764030456543,
+    "a": "The hidden value of swimming smooth, slow, and silent: how a peaceful stroke naturally reduces drag",
+    "bt": "Why swimming faster is about doing less: how a silent body eliminates drag for sustainable speed",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 29339,
+    "j": 102110,
+    "sim": 0.9144704341888428,
+    "a": "Building volleyball serving accuracy off the court: a practical at-home drill",
+    "bt": "Refining volleyball serve mechanics without a court: an easy at-home drill for better contact",
+    "l1": "排球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 86551,
+    "j": 78717,
+    "sim": 0.9187040328979492,
+    "a": "Why combination passing drills train your first touch better than isolated touch reps",
+    "bt": "Chaining passing and first touch into combination drills: why training them together builds sharper decision-making than isolated reps",
+    "l1": "足球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 47984,
+    "j": 46702,
+    "sim": 0.9041554927825928,
+    "a": "A boxer's foundation for slipping punches: the basics of pro-level head movement",
+    "bt": "The mechanics of a proper boxing slip: foundational head movement for defense",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 91324,
+    "j": 65258,
+    "sim": 0.9063806533813477,
+    "a": "Why landing your foot and your punch at the same time is the key to generating power while moving in boxing",
+    "bt": "Why your punches lose power when you're moving: the foot-punch timing principle behind every hard-landing shot",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 97072,
+    "j": 93197,
+    "sim": 0.9164457321166992,
+    "a": "Why building arch strength is the foundation for fixing a runner's plantar fasciitis",
+    "bt": "Why building arch strength is the real fix for runners dealing with plantar fasciitis",
+    "l1": "跑步",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 30760,
+    "j": 9768,
+    "sim": 0.9094462990760803,
+    "a": "A table tennis player's breakdown of the pendulum serve: the foundation for spin",
+    "bt": "The basics of the table tennis pendulum serve for beginners",
+    "l1": "网球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 39853,
+    "j": 74658,
+    "sim": 0.9039448499679565,
+    "a": "Freestyle open turn vs. flip turn: the trade-off between breath control and race speed at the wall",
+    "bt": "Open turns vs. flip turns in freestyle: which one actually costs you less time at the wall",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 41820,
+    "j": 41779,
+    "sim": 0.9105568528175354,
+    "a": "Why traditional BJJ mount escapes might be overcomplicated: a deceptively simple mechanic to escape mount control",
+    "bt": "Why escaping the BJJ mount doesn't have to be complicated: a simplified approach",
+    "l1": "武术/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 78367,
+    "j": 71383,
+    "sim": 0.9070979952812195,
+    "a": "4 drills to smooth out and speed up your flip turn",
+    "bt": "Why watching flip turn tutorials isn't enough: 4 drills to make the movement feel fast in the water",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 38785,
+    "j": 93104,
+    "sim": 0.9051446914672852,
+    "a": "A hip hop instructor's focus on the bounce as the essential foundation of the dance",
+    "bt": "A hip-hop dance teacher's foundation for the bounce groove",
+    "l1": "舞蹈",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 100455,
+    "j": 92174,
+    "sim": 0.909405529499054,
+    "a": "Rebuilding court stamina: a basketball conditioning routine for out-of-shape hoopers",
+    "bt": "A basketball-specific cardio baseline for out-of-shape hoopers rebuilding their court stamina",
+    "l1": "篮球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 30136,
+    "j": 32190,
+    "sim": 0.9063814282417297,
+    "a": "Waking up the full body without high-intensity dread: a minimal-effort morning Pilates approach for beginners",
+    "bt": "A low-effort morning Pilates routine to wake up the full body on lazy days",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 51484,
+    "j": 41941,
+    "sim": 0.9117318391799927,
+    "a": "A professional dancer's foundational hip hop moves for absolute beginners",
+    "bt": "A dance coach's foundation for absolute beginners: the easiest hip-hop moves to learn first",
+    "l1": "舞蹈",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 29623,
+    "j": 102689,
+    "sim": 0.9062337279319763,
+    "a": "A foundational guide to the volleyball underhand serve for beginners",
+    "bt": "A volleyball coach's foundation for the underhand serve: starting basics for absolute beginners",
+    "l1": "排球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 66375,
+    "j": 91972,
+    "sim": 0.9043670892715454,
+    "a": "A 3-step progression for swimmers struggling to nail a clean open turn",
+    "bt": "A swim coach's 3-step progression for a clean open turn in butterfly and breaststroke",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 93795,
+    "j": 61592,
+    "sim": 0.9090297222137451,
+    "a": "3 shooting form adjustments to fix an inconsistent jumper and build a repeatable release",
+    "bt": "Why your jumpshot feels inconsistent: 3 simple adjustments for a smoother release",
+    "l1": "篮球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 9905,
+    "j": 9736,
+    "sim": 0.9101955890655518,
+    "a": "Targeting the body's largest organ: 5 yoga poses to support liver detoxification",
+    "bt": "5 targeted yoga asanas to support healthy liver function and natural detoxification",
+    "l1": "瑜伽",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 87165,
+    "j": 87213,
+    "sim": 0.900918185710907,
+    "a": "A mat Pilates flow built for pregnancy: strengthening and toning without putting the body at risk",
+    "bt": "A prenatal Pilates flow built for toning and staying active through the second and third trimesters",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 37100,
+    "j": 81156,
+    "sim": 0.9026055335998535,
+    "a": "From €1 to €400: how massive price jumps actually affect a table tennis racket's performance",
+    "bt": "Does the most expensive table tennis racket actually outperform the cheapest one?",
+    "l1": "网球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 100258,
+    "j": 24549,
+    "sim": 0.9028932452201843,
+    "a": "A boxer's jump rope tutorial: mastering the foundational rhythm and technique",
+    "bt": "From beginner basics to pro-level boxing cardio: foundational jump rope mechanics",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 8397,
+    "j": 9372,
+    "sim": 0.9182580709457397,
+    "a": "A Pilates instructor's toning ring sequence for mat workouts",
+    "bt": "A Pilates instructor's full-body sequence built around the Pilates ring",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 20314,
+    "j": 8906,
+    "sim": 0.9071637392044067,
+    "a": "A Pilates pro's ring routine for adding resistance and deepening muscle engagement",
+    "bt": "A Pilates instructor's ring routine designed to tone and strengthen through added resistance",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 24628,
+    "j": 24283,
+    "sim": 0.9071885943412781,
+    "a": "A Pilates instructor on weekly frequency: why even one session a week is enough to build deep core strength",
+    "bt": "Why once-a-week Pilates is actually enough to build deep core support and make your strength training more efficient",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 46098,
+    "j": 45843,
+    "sim": 0.9081792235374451,
+    "a": "The case for at-home Pilates: why skipping the expensive reformer studio actually builds better consistency",
+    "bt": "Why at-home Pilates can beat the reformer: an instructor's case for consistency over equipment",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 43820,
+    "j": 29349,
+    "sim": 0.9190543293952942,
+    "a": "A Pilates instructor's breakdown of the Teaser: how to finally nail the highly requested movement",
+    "bt": "Why the Pilates teaser feels impossible: an instructor's breakdown to finally nail the movement",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 82867,
+    "j": 67794,
+    "sim": 0.90086829662323,
+    "a": "Why most swimmers lose speed on flip turns: the timing and push-off mechanics that actually matter",
+    "bt": "Why most freestyle flip turns lose speed off the wall: 4 technique fixes for a faster push-off",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.9-0.92",
+    "i": 30854,
+    "j": 40382,
+    "sim": 0.9146386384963989,
+    "a": "Simplifying the rainbow flick: a 3-step breakdown to master the flashy football skill",
+    "bt": "A footballer's breakdown of the rainbow flick for players learning the move",
+    "l1": "足球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 40131,
+    "j": 34759,
+    "sim": 0.9283475875854492,
+    "a": "The 5-5-5 breathing technique: a quick nervous system reset to stabilize heart rate on busy days",
+    "bt": "Resetting the nervous system on a busy day: how the 5-5-5 breathing rhythm stabilizes the heart rate",
+    "l1": "冥想/呼吸",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 10477,
+    "j": 9243,
+    "sim": 0.9291180372238159,
+    "a": "The essential progression for landing your first backflip on a trampoline",
+    "bt": "From the first bounce to a full rotation: a beginner's progression for landing the trampoline backflip",
+    "l1": "体操/技巧",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 75796,
+    "j": 80258,
+    "sim": 0.9324119091033936,
+    "a": "Why the heel flip trips up skaters who already land kickflips: the foot placement difference that makes it click",
+    "bt": "Why the heelflip trips up beginners more than the kickflip — and the foot placement fix that makes it click",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 76123,
+    "j": 76895,
+    "sim": 0.9288682341575623,
+    "a": "The 6-step footwork pattern that every bboy builds their floor game on",
+    "bt": "Breaking down the 6-step footwork pattern: the foundational move every beginner needs before anything else in breakdancing",
+    "l1": "舞蹈",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 17882,
+    "j": 75802,
+    "sim": 0.9255268573760986,
+    "a": "Muay Thai shin conditioning: how controlled impact stimulates bone density and desensitizes nerves",
+    "bt": "Why shin conditioning in Muay Thai is really about nerve adaptation, not just toughening bone",
+    "l1": "拳击/搏击",
+    "verdict": "DIFFERENT"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 13711,
+    "j": 13786,
+    "sim": 0.9362695217132568,
+    "a": "A boxing coach's fundamentals for the right straight cross",
+    "bt": "A boxing coach's fundamentals for throwing a solid right cross",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 42373,
+    "j": 53002,
+    "sim": 0.920744776725769,
+    "a": "Why stretching alone won't fix plantar fasciitis: strengthening the foot muscles to accept load",
+    "bt": "Why stretching alone won't fix plantar fasciitis: building load capacity in the supporting muscles",
+    "l1": "运动健康",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 7587,
+    "j": 28049,
+    "sim": 0.9270113110542297,
+    "a": "Breaking down the muscle up: a step-by-step progression for calisthenics beginners",
+    "bt": "Breaking down the calisthenics muscle-up: a step-by-step progression to get over the bar",
+    "l1": "体操/技巧",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 45713,
+    "j": 45871,
+    "sim": 0.9378578066825867,
+    "a": "A Pilates instructor's blueprint for beginner reformer classes: mapping out the flow and the cool down",
+    "bt": "Sequencing a beginner reformer class: a Pilates instructor's blueprint for a foundational flow",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 8789,
+    "j": 38615,
+    "sim": 0.9296330213546753,
+    "a": "A pro skater's approach to the inward heelflip: breaking down the trick to make it easy",
+    "bt": "Skateboard theory: the fundamentals of the inward heelflip",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 9823,
+    "j": 10573,
+    "sim": 0.923545777797699,
+    "a": "A coach's breakdown of the band pull apart: getting the setup and execution right",
+    "bt": "A coach's foundation for the band pull-apart: dialing in the execution for your warm-up",
+    "l1": "其他",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 75796,
+    "j": 80032,
+    "sim": 0.9284078478813171,
+    "a": "Why the heel flip trips up skaters who already land kickflips: the foot placement difference that makes it click",
+    "bt": "Why the heelflip trips up beginners more than the kickflip: the foot placement difference that actually matters",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 53018,
+    "j": 53099,
+    "sim": 0.9367527961730957,
+    "a": "Goblet vs. sumo squats: how stance width and torso angle shift the focus from quads to glutes",
+    "bt": "Sumo vs. goblet squats: how stance width and weight placement shift the load between the glutes and quads",
+    "l1": "壶铃",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 72368,
+    "j": 80698,
+    "sim": 0.9213217496871948,
+    "a": "The 2 details most badminton coaches miss when teaching the split step — and why they matter for speed and movement flow",
+    "bt": "Why the split step is the overlooked foundation most badminton players skip on the way to better footwork",
+    "l1": "羽毛球",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 10609,
+    "j": 50872,
+    "sim": 0.9209452867507935,
+    "a": "A boxing coach's breakdown of the pro-level shoulder roll: emulating the defensive mechanics of elite fighters",
+    "bt": "A boxing coach's fundamentals for the shoulder roll defensive technique",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 65539,
+    "j": 83773,
+    "sim": 0.9232783913612366,
+    "a": "Why arm swing mechanics matter more than raw strength for hitting a volleyball harder",
+    "bt": "Why arm swing and approach mechanics matter more than raw strength for a powerful volleyball spike",
+    "l1": "排球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 103656,
+    "j": 25176,
+    "sim": 0.9261096119880676,
+    "a": "Level up your house dance: a tricky footwork variation to break out of basic patterns",
+    "bt": "A house dance step variation to expand your footwork vocabulary",
+    "l1": "舞蹈",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 98802,
+    "j": 16608,
+    "sim": 0.9292777180671692,
+    "a": "Building a consistent badminton backhand serve: a coach's tutorial",
+    "bt": "A badminton coach's fundamentals for a proper backhand serve",
+    "l1": "羽毛球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 3191,
+    "j": 3153,
+    "sim": 0.9267375469207764,
+    "a": "Building the kettlebell foundation: a coach's introductory sequence for absolute beginners",
+    "bt": "Getting started with kettlebells: a coach's introductory routine for absolute beginners",
+    "l1": "壶铃",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 51332,
+    "j": 11768,
+    "sim": 0.9215021133422852,
+    "a": "How to safely land your first frontflip: a freerunner's progression for absolute beginners",
+    "bt": "A freerunner's foundation for beginners learning the frontflip",
+    "l1": "体操/技巧",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 96002,
+    "j": 94442,
+    "sim": 0.9232012629508972,
+    "a": "Why the Ollie doesn't have to be complicated: a 5-step breakdown for beginner skateboarders",
+    "bt": "Simplifying the ollie: the easiest method for beginner skateboarders",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 18199,
+    "j": 32190,
+    "sim": 0.9256707429885864,
+    "a": "How to wake up the full body on low-energy mornings: a beginner-friendly Pilates flow",
+    "bt": "A low-effort morning Pilates routine to wake up the full body on lazy days",
+    "l1": "普拉提",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 91522,
+    "j": 73589,
+    "sim": 0.9340608716011047,
+    "a": "Why freestyle swimmers run out of breath: the breathing timing mistake that exhausts beginners",
+    "bt": "Why freestyle swimmers keep running out of breath: the head position and timing mistakes beginners don't know they're making",
+    "l1": "冥想/呼吸",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 89599,
+    "j": 78367,
+    "sim": 0.926723062992096,
+    "a": "4 drills to fix a sloppy flip turn and actually pick up speed off the wall",
+    "bt": "4 drills to smooth out and speed up your flip turn",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 11669,
+    "j": 11962,
+    "sim": 0.9296317100524902,
+    "a": "A jump rope coach's breakdown of the boxer step basics",
+    "bt": "A jump rope coach's slow-motion breakdown of the boxer step: how to nail the footwork",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 8657,
+    "j": 10609,
+    "sim": 0.9366766214370728,
+    "a": "A boxing coach's breakdown of the shoulder roll: the mechanics of executing the defense correctly",
+    "bt": "A boxing coach's breakdown of the pro-level shoulder roll: emulating the defensive mechanics of elite fighters",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 33979,
+    "j": 53759,
+    "sim": 0.9260527491569519,
+    "a": "Why you barely feel seated leg curls: the single torso adjustment that shifts tension back to the hamstrings",
+    "bt": "Why sitting straight back ruins seated leg curls: the single hip adjustment to finally fire up your hamstrings",
+    "l1": "运动健康",
+    "verdict": "DIFF"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 130,
+    "j": 97,
+    "sim": 0.936711847782135,
+    "a": "Navigating the universal experience of shame: a guided meditation and exercise practice for emotional release",
+    "bt": "Processing universal feelings of shame: a guided meditation and exercise framework for active release",
+    "l1": "冥想/呼吸",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 81261,
+    "j": 71133,
+    "sim": 0.9241312146186829,
+    "a": "5 freestyle mistakes that quietly kill your efficiency: hand entry, head position, and arm timing errors most swimmers never notice",
+    "bt": "5 freestyle mistakes that are quietly costing you speed in the water",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.92-0.94",
+    "i": 67010,
+    "j": 96025,
+    "sim": 0.9387945532798767,
+    "a": "Why most breaststroke swimmers lose their glide before it pays off: maximizing distance per stroke",
+    "bt": "Why the glide is the secret to breaststroke speed: maximizing distance per stroke",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 88670,
+    "j": 91690,
+    "sim": 0.9459252953529358,
+    "a": "Why most beginner swimmers kick from the knee instead of the hip — and how to fix it with a kickboard",
+    "bt": "Why most beginner swimmers kick from the knee instead of the hip — and how to fix it",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 20408,
+    "j": 49395,
+    "sim": 0.9767534732818604,
+    "a": "Why supporting the body beats morning stimulation: how Qi Gong uses slow movement to rehydrate fascia and calm the nervous system",
+    "bt": "Morning stimulation vs. support: how Qi Gong uses slow movement to rehydrate fascia and calm the nervous system",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 29885,
+    "j": 52358,
+    "sim": 0.9923021197319031,
+    "a": "The pickleball ready position myth: why your setup needs to change for different spots on the court",
+    "bt": "The pickleball ready position myth: why your setup must adapt to different spots on the court",
+    "l1": "皮克球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 12248,
+    "j": 13342,
+    "sim": 0.9466120600700378,
+    "a": "Why specific exercises only treat symptoms: a Tai Chi practitioner's case for daily full-body movement to resolve root causes",
+    "bt": "Why isolated exercises only treat symptoms: a Tai Chi approach to removing root causes through daily full-body movement",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 12248,
+    "j": 26424,
+    "sim": 0.9424826502799988,
+    "a": "Why specific exercises only treat symptoms: a Tai Chi practitioner's case for daily full-body movement to resolve root causes",
+    "bt": "Why targeted exercises only manage symptoms: the case for daily full-body Tai Chi to remove root causes",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 68787,
+    "j": 64750,
+    "sim": 0.9466246366500854,
+    "a": "How to strike a knuckleball free kick: the contact point and follow-through that make the ball float unpredictably",
+    "bt": "Why the knuckleball free kick moves unpredictably in the air: the contact point and follow-through that create the wobble",
+    "l1": "足球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 84315,
+    "j": 84894,
+    "sim": 0.9914724826812744,
+    "a": "Why nose bar headgear protects more than standard boxing headgear",
+    "bt": "Why nose bar headgear offers more protection than standard boxing headgear",
+    "l1": "拳击/搏击",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 63222,
+    "j": 65178,
+    "sim": 0.9531745314598083,
+    "a": "Why the hardflip is one of the trickiest combo tricks to learn: breaking down the kickflip and frontside pop shove-it timing conflict",
+    "bt": "Why the hardflip trips up beginner skaters: breaking down the kickflip and frontside pop shove-it timing",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 13269,
+    "j": 26288,
+    "sim": 0.9682106375694275,
+    "a": "Symptom management vs. root causes: the Tai Chi philosophy of prioritizing daily full-body movement over targeted exercises",
+    "bt": "Managing symptoms vs. removing root causes: a Tai Chi perspective on why daily full-body movement beats targeted exercises",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 35528,
+    "j": 48799,
+    "sim": 0.9435358047485352,
+    "a": "The fundamentals of building a stable bridge hand for consistent cue control in pool",
+    "bt": "The foundation of cue control: setting up a stable hand bridge for consistent pool shots",
+    "l1": "台球/斯诺克",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 45309,
+    "j": 35263,
+    "sim": 0.9618375897407532,
+    "a": "Why pigeon pose doesn't have to be a passive stretch: 4 intentional transitions to turn a static posture into a sequencing launchpad",
+    "bt": "Why the pigeon pose doesn't have to be a passive stretch: 4 intentional transitions to use it as a movement launchpad",
+    "l1": "综合拉伸",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 65634,
+    "j": 73779,
+    "sim": 0.9477267265319824,
+    "a": "Why you should roll through a skateboard fall instead of bracing for impact: the physics behind avoiding serious injury",
+    "bt": "Why rolling out of a fall protects you more than bracing for impact: the physics behind safer skateboard bails",
+    "l1": "滑板",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 32227,
+    "j": 33493,
+    "sim": 0.9703291654586792,
+    "a": "Why jumping straight into morning stimulation keeps your body tight: how slow Qi Gong movements actually wake up the nervous system",
+    "bt": "Why immediate morning stimulation keeps your body tight: using slow Qi Gong movements to calm the nervous system first",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 16573,
+    "j": 25242,
+    "sim": 0.9634379744529724,
+    "a": "Why targeted exercises only treat symptoms: a Tai Chi approach to fixing root causes with daily full-body movement",
+    "bt": "Why specific exercises only treat symptoms: a Tai Chi approach to removing root causes through daily full-body movement",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 98709,
+    "j": 89991,
+    "sim": 0.9525817036628723,
+    "a": "Why most swimmers lose speed before the pull begins: the hand entry fix for a smoother freestyle",
+    "bt": "Why most freestyle swimmers lose speed before the pull even starts: what your hand entry is actually doing",
+    "l1": "游泳",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 94810,
+    "j": 81750,
+    "sim": 0.9453244805335999,
+    "a": "The badminton split step: why this single movement separates beginners from experienced players",
+    "bt": "Why the split step is the single footwork skill separating bad badminton players from great ones",
+    "l1": "羽毛球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 81862,
+    "j": 82350,
+    "sim": 0.9550907611846924,
+    "a": "Why learning Tai Chi 24 in mirror image helps beginners actually follow along without stopping to think left from right",
+    "bt": "Why learning Tai Chi 24 in mirror image makes the first two forms easier to follow for beginners",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 14870,
+    "j": 29548,
+    "sim": 0.9448950886726379,
+    "a": "Symptom relief vs. root cause removal: why daily full-body Tai Chi beats targeted exercises",
+    "bt": "Symptom relief vs. root causes: why daily full-body Tai Chi builds stronger immunity than specific targeted exercises",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 53018,
+    "j": 55009,
+    "sim": 0.9640642404556274,
+    "a": "Goblet vs. sumo squats: how stance width and torso angle shift the focus from quads to glutes",
+    "bt": "Dumbbell goblet vs. sumo squats: how stance and torso angle shift the tension from quads to glutes",
+    "l1": "壶铃",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 50574,
+    "j": 50537,
+    "sim": 0.9427860379219055,
+    "a": "A beginner's foundation for executing a bank shot in 8-ball pool",
+    "bt": "The foundational technique for executing bank shots in 8-ball pool",
+    "l1": "台球/斯诺克",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 38637,
+    "j": 38454,
+    "sim": 0.9613446593284607,
+    "a": "Why sheer effort isn't enough to improve your climbing: an Asian champion's case for focused training to build injury-free strength",
+    "bt": "Why simply training harder won't make you a better climber: an Asian champion's case for focused, injury-free progression",
+    "l1": "攀岩",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 12399,
+    "j": 16573,
+    "sim": 0.9424242973327637,
+    "a": "Why isolated exercises only treat symptoms: a Tai Chi practitioner's case for daily full-body movement to fix root causes",
+    "bt": "Why targeted exercises only treat symptoms: a Tai Chi approach to fixing root causes with daily full-body movement",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 79551,
+    "j": 74318,
+    "sim": 0.9499810934066772,
+    "a": "3 mistakes that give away a beginner soccer player immediately",
+    "bt": "The soccer mistakes that immediately give away a beginner on the pitch",
+    "l1": "足球",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 50114,
+    "j": 45934,
+    "sim": 0.9486780166625977,
+    "a": "A golf pro's fundamental mechanics for hitting a stinger",
+    "bt": "A pro golfer's fundamentals for hitting the stinger",
+    "l1": "高尔夫",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 82066,
+    "j": 82141,
+    "sim": 0.9616750478744507,
+    "a": "Why Tai Chi walking is the foundation beginners skip: how weight shifting and rooted stepping build every movement that follows",
+    "bt": "Why Tai Chi walking is the first thing beginners learn: how shifting weight and rooting the feet builds the foundation for every move",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 75106,
+    "j": 76224,
+    "sim": 0.9555105566978455,
+    "a": "Advanced gymnastics skills that don't require a gym: what you can actually train at home",
+    "bt": "5 advanced gymnastics skills you can actually train at home without a gym",
+    "l1": "体操/技巧",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 16573,
+    "j": 26288,
+    "sim": 0.9478500485420227,
+    "a": "Why targeted exercises only treat symptoms: a Tai Chi approach to fixing root causes with daily full-body movement",
+    "bt": "Managing symptoms vs. removing root causes: a Tai Chi perspective on why daily full-body movement beats targeted exercises",
+    "l1": "气功/太极",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 15367,
+    "j": 13761,
+    "sim": 0.946093738079071,
+    "a": "Why a neurosurgeon is talking about creatine: clearing up common misconceptions about its impact on brain health",
+    "bt": "Why creatine isn't just for muscles: a neurosurgeon's case for its brain benefits",
+    "l1": "运动营养",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 80056,
+    "j": 71274,
+    "sim": 0.9412372708320618,
+    "a": "Why drawing the cue ball feels harder than it is: the contact point mistake most beginners make",
+    "bt": "Why most beginners struggle to draw the cue ball: the cue contact point that actually pulls it back",
+    "l1": "台球/斯诺克",
+    "verdict": "SAME"
+  },
+  {
+    "band": "0.94-1.01",
+    "i": 79765,
+    "j": 77274,
+    "sim": 0.9912931323051453,
+    "a": "Why ollying up a curb feels harder than a flat-ground ollie — and the one adjustment that makes it click",
+    "bt": "Why ollying off a curb feels harder than a flat-ground ollie — and the one adjustment that makes it click",
+    "l1": "滑板",
+    "verdict": "DIFF"
+  }
+]

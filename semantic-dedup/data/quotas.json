@@ -1,0 +1,13 @@
+[
+ {"sport":"椭圆机","quota":200},{"sport":"踏步机","quota":200},{"sport":"壁球/手球","quota":250},
+ {"sport":"赛艇/皮划艇","quota":300},{"sport":"乒乓球","quota":300},{"sport":"曲棍球","quota":250},
+ {"sport":"长曲棍球","quota":250},{"sport":"跳绳","quota":250},
+ {"sport":"飞盘","quota":600},{"sport":"跑酷","quota":600},{"sport":"冰球","quota":600},
+ {"sport":"田径","quota":700},{"sport":"板球","quota":600},{"sport":"潜水","quota":700},
+ {"sport":"气功/太极","quota":600},{"sport":"台球/斯诺克","quota":600},{"sport":"举重竞技","quota":600},
+ {"sport":"壶铃","quota":600},{"sport":"综合拉伸","quota":600},{"sport":"体姿矫正/PT","quota":700},
+ {"sport":"睡眠/恢复","quota":600},{"sport":"心肺/HIIT","quota":600},{"sport":"柔韧/活动度","quota":600},
+ {"sport":"橄榄球","quota":800},{"sport":"户外/徒步","quota":900},{"sport":"皮克球","quota":900},
+ {"sport":"冲浪/水上","quota":800},{"sport":"攀岩","quota":900},{"sport":"滑板","quota":800},
+ {"sport":"运动营养","quota":800},{"sport":"羽毛球","quota":900},{"sport":"滑冰/滑雪","quota":800}
+]
