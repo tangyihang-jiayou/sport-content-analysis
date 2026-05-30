@@ -1,0 +1,15 @@
+{
+ "篮球":["basketball dunk tutorial","basketball defense drills","basketball passing drills","basketball footwork"],
+ "网球":["tennis volley technique","tennis strategy singles","tennis return of serve","tennis net play"],
+ "足球":["soccer free kick technique","soccer passing drills","soccer shooting drills","soccer tactics"],
+ "游泳":["open water swimming","swimming flip turn","swimming bilateral breathing","triathlon swim"],
+ "高尔夫":["golf chipping technique","golf course management","golf mental game","golf wedge"],
+ "力量训练":["women strength training","lifting form mistakes","beginner lifting","glute training women"],
+ "瑜伽":["prenatal yoga","advanced yoga poses","yoga inversions","morning yoga flow"],
+ "跑步":["trail running technique","running interval workout","speed training runners","fartlek"],
+ "体姿矫正/PT":["fix rounded shoulders","fix anterior pelvic tilt","posture correction exercises","physical therapy back"],
+ "柔韧/活动度":["hip mobility drills","shoulder mobility","splits stretching","thoracic mobility"],
+ "心肺/HIIT":["hiit workout no equipment","tabata workout","cardio conditioning","interval training home"],
+ "体重管理":["weight loss workout","belly fat workout","body recomposition","fat loss diet"],
+ "运动心理/动机":["sports psychology","mental toughness training","athlete mindset","performance anxiety"]
+}

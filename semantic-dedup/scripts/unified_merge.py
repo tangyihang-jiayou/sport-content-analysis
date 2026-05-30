@@ -39,7 +39,7 @@ print(f"Tier1 (real-deduped base): {len(tier1)}")
 # Tier2: real video-grounded (batch1 real_clean + batch2 harvest_clean)
 import glob as _g
 tier2=[]
-for f in ['/tmp/supp/real_clean.json','/tmp/supp/harvest_clean.json']:
+for f in ['/tmp/supp/real_clean.json','/tmp/supp/harvest_clean.json','/tmp/supp/l2gap_clean.json']:
     try: tier2+=json.load(open(f))
     except: pass
 # dedup by url (same video may appear in both batches)
