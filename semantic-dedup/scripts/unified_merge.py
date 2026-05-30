@@ -36,9 +36,21 @@ for p in pool_all:
         tier1.append(p['_orig']); t1_emb.append(emb_all[tid2idx[p['topic_id']]])
 print(f"Tier1 (real-deduped base): {len(tier1)}")
 
-# Tier2: real video-grounded
-tier2=json.load(open('/tmp/supp/real_clean.json'))
-print(f"Tier2 (real video-grounded): {len(tier2)}")
+# Tier2: real video-grounded (batch1 real_clean + batch2 harvest_clean)
+import glob as _g
+tier2=[]
+for f in ['/tmp/supp/real_clean.json','/tmp/supp/harvest_clean.json']:
+    try: tier2+=json.load(open(f))
+    except: pass
+# dedup by url (same video may appear in both batches)
+_seen=set(); _t2=[]
+for r in tier2:
+    u=r.get('url','')
+    if u and u in _seen: continue
+    if u: _seen.add(u)
+    _t2.append(r)
+tier2=_t2
+print(f"Tier2 (real video-grounded, 2 batches): {len(tier2)}")
 
 # Tier3: synthetic (raw clean, will be deduped)
 tier3=[]

@@ -1,0 +1,269 @@
+{
+  "analyzed": 6333,
+  "sport_distribution": {
+    "高尔夫": 226,
+    "篮球": 223,
+    "网球": 221,
+    "拳击/搏击": 220,
+    "骑行": 217,
+    "棒球/垒球": 215,
+    "冥想/呼吸": 206,
+    "舞蹈": 203,
+    "力量训练": 202,
+    "排球": 201,
+    "普拉提": 200,
+    "健身综合": 195,
+    "游泳": 194,
+    "瑜伽": 193,
+    "体操/技巧": 193,
+    "武术/太极": 191,
+    "运动健康": 182,
+    "跑步": 176,
+    "足球": 174,
+    "柔韧性/康复": 164,
+    "户外/徒步": 111,
+    "田径": 109,
+    "综合拉伸": 107,
+    "运动营养": 107,
+    "赛艇/皮划艇": 104,
+    "举重竞技": 104,
+    "橄榄球": 103,
+    "冲浪/水上": 102,
+    "气功/太极": 96,
+    "柔韧/活动度": 96,
+    "潜水": 95,
+    "睡眠/恢复": 95,
+    "滑冰/滑雪": 93,
+    "攀岩": 88,
+    "踏步机": 81,
+    "体姿矫正/PT": 75,
+    "台球/斯诺克": 70,
+    "心肺/HIIT": 70,
+    "滑板": 65,
+    "跑酷": 64,
+    "飞盘": 60,
+    "跳绳": 59,
+    "壁球/手球": 57,
+    "乒乓球": 50,
+    "椭圆机": 45,
+    "冰球": 40,
+    "长曲棍球": 36,
+    "皮克球": 34,
+    "曲棍球": 31,
+    "板球": 31,
+    "羽毛球": 31,
+    "壶铃": 28
+  },
+  "hot_top30": [
+    {
+      "sport": "舞蹈",
+      "platform": "yt",
+      "views": 595881086,
+      "likes": 0,
+      "title": "DaBaby - BOP On Broadway (Hip Hop Musical)"
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 507750563,
+      "likes": 18665668,
+      "title": "bro can’t keep getting away with this #billiards #averagebilliards #pool #thepoi"
+    },
+    {
+      "sport": "足球",
+      "platform": "ig",
+      "views": 382516573,
+      "likes": 11648321,
+      "title": "FASTEST UNSTOPPABLE MESSI footwork🔥to improve dribbling #soccer #football #skill"
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 296012147,
+      "likes": 12164917,
+      "title": "Whoops 🫣 #reel #viral #billiards"
+    },
+    {
+      "sport": "足球",
+      "platform": "ig",
+      "views": 241592843,
+      "likes": 9212124,
+      "title": "FASTEST UNSTOPPABLE MESSI footwork🔥to improve dribbling #soccer #football #skill"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 229159537,
+      "likes": 2395777,
+      "title": "How many attempts??\nFULL VIDEO on YouTube 👀 #storror #parkour"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 214260778,
+      "likes": 7797767,
+      "title": "Two hours of attempts and countless drops. Couldn’t have done it without the sup"
+    },
+    {
+      "sport": "排球",
+      "platform": "ig",
+      "views": 201680636,
+      "likes": 13084017,
+      "title": "@louis._.luong ➡️ @lucas.ineichen ➡️ @samburgi 🧨\n\nBack-row business from Sam🔥🕺\n\n"
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 199210438,
+      "likes": 7820190,
+      "title": "A game of nanometers \n\n#billiards #snooker #trickshots #trick #spin #8ball #9bal"
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 199210438,
+      "likes": 7820190,
+      "title": "A game of nanometers \n\n#billiards #snooker #trickshots #trick #spin #8ball #9bal"
+    },
+    {
+      "sport": "足球",
+      "platform": "ig",
+      "views": 190956920,
+      "likes": 5911779,
+      "title": "CRAZIEST FAST footwork drill🔥to improve dribbling #soccer #football #skills #foo"
+    },
+    {
+      "sport": "攀岩",
+      "platform": "ig",
+      "views": 183588316,
+      "likes": 8150952,
+      "title": "Full commit! \n#fullsend #bigmanclimbs #parkour #climbing #movementgyms #boulderi"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 177551224,
+      "likes": 9502698,
+      "title": "Sometimes we used to spend our time like this with @aghaa_fr I really miss those"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 177548734,
+      "likes": 9502683,
+      "title": "Sometimes we used to spend our time like this with @aghaa_fr I really miss those"
+    },
+    {
+      "sport": "足球",
+      "platform": "ig",
+      "views": 177072675,
+      "likes": 852728,
+      "title": "“Top bins” practice🎯\n\n@haydenkicks for more⚽️\n\n#football #soccer #topbins #upper"
+    },
+    {
+      "sport": "田径",
+      "platform": "ig",
+      "views": 172756632,
+      "likes": 8188294,
+      "title": "This kind of friendship… 😍\n\n🎥 : @olympics \n\n#running #runningmotivation #usainbo"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 157372172,
+      "likes": 8080335,
+      "title": "Simon Says get the fu*k up! Shout-out to the bro @dylanpawson for spotting this "
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 149524481,
+      "likes": 2215640,
+      "title": "This trickshot will SHOCK you! 😱 #billiards #8ballpool #trickshot #fyp"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "ig",
+      "views": 140310954,
+      "likes": 4148709,
+      "title": "Goodbye 🫡👋🏻 пока 👋🏻 \nA bail from previous years...\n.\n#parkourfail #акробатика #p"
+    },
+    {
+      "sport": "跑酷",
+      "platform": "yt",
+      "views": 131677751,
+      "likes": 0,
+      "title": "PARKOUR 2022 VS CLOWN CIRCUS!"
+    },
+    {
+      "sport": "体姿矫正/PT",
+      "platform": "ig",
+      "views": 130243910,
+      "likes": 843009,
+      "title": "🫵🏻 Write down what symptoms you already have with hyperlordosis? \n\n☝🏻Exercise «C"
+    },
+    {
+      "sport": "睡眠/恢复",
+      "platform": "ig",
+      "views": 129481359,
+      "likes": 1618408,
+      "title": "@youngplayspadel To up my stamina on the court I attended @cayadxb for my 2nd 5k"
+    },
+    {
+      "sport": "台球/斯诺克",
+      "platform": "ig",
+      "views": 122582913,
+      "likes": 10061277,
+      "title": "Billiards is not just a game — it’s an art 🎱\nAn art built on focus, patience, an"
+    },
+    {
+      "sport": "冥想/呼吸",
+      "platform": "ig",
+      "views": 116479616,
+      "likes": 1158947,
+      "title": "This is Box Breathing—the most effective breathwork protocol used by operators i"
+    },
+    {
+      "sport": "冥想/呼吸",
+      "platform": "ig",
+      "views": 116479616,
+      "likes": 1158947,
+      "title": "This is Box Breathing—the most effective breathwork protocol used by operators i"
+    },
+    {
+      "sport": "滑板",
+      "platform": "ig",
+      "views": 115701169,
+      "likes": 5168855,
+      "title": "the only wobble was in our stomachs 😳\n\n🛹: @diassandro\n📍: Porto Alegre, Brazil \n🤝"
+    },
+    {
+      "sport": "冥想/呼吸",
+      "platform": "yt",
+      "views": 113825892,
+      "likes": 0,
+      "title": "Guided Wim Hof Method Breathing"
+    },
+    {
+      "sport": "游泳",
+      "platform": "ig",
+      "views": 106690407,
+      "likes": 4238838,
+      "title": "Master your Freestyle in 12 seconds 🏊‍♂️\n\nStop guessing and start gliding. Most "
+    },
+    {
+      "sport": "游泳",
+      "platform": "ig",
+      "views": 106690291,
+      "likes": 4238839,
+      "title": "Master your Freestyle in 12 seconds 🏊‍♂️\n\nStop guessing and start gliding. Most "
+    },
+    {
+      "sport": "健身综合",
+      "platform": "yt",
+      "views": 106029392,
+      "likes": 0,
+      "title": "LOSE BELLY FAT IN 7 DAYS Challenge | Lose Belly Fat In 1 Week At Home | Cult Fit"
+    }
+  ]
+}
