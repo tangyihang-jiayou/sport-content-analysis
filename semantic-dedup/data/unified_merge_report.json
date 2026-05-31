@@ -1,10 +1,10 @@
 {
   "tier1": 81273,
-  "tier2_added": 7444,
+  "tier2_added": 6109,
   "tier2_dropped": 2978,
   "tier3_added": 21334,
   "tier3_dropped": 15473,
-  "final": 110051,
+  "final": 108716,
   "real_grounded_per_sport": {
     "乒乓球": 71,
     "壁球/手球": 106,
@@ -60,5 +60,6 @@
     "柔韧性/康复": 147,
     "体重管理": 162,
     "运动心理/动机": 156
-  }
+  },
+  "quality_filtered_junk": 1335
 }
