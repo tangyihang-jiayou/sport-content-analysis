@@ -226,12 +226,13 @@ python3 gen_topics_sport_v0.5.1.py \
 ### 2. CometAPI 配额会突然耗尽 → 403
 跑到 **86%（59,034/68,197）时三个 key 同时返回 `403 insufficient_user_quota`**（`remaining quota: $-9.41`）。教训：**长任务必须预备 fallback provider**，且**断点续跑**让切换零成本——切到 Gemini 官方后从 59k 直接续到 100%。
 
-### 3. devbox 直连 Google 被墙 → 必须走代理
-`generativelanguage.googleapis.com` 在 devbox 上直连 `HTTP=000`。解决：挂内网代理
+### 3. Gemini 官方 API 走内网代理（既定网络环境，已配好）
+devbox 出公网经内网代理 `192.168.1.222:1081`（这是固定网络环境，**已配置好、非待解决问题**）。代理已永久写入 `~/.config/fish/config.fish`，交互式登录后执行 `proxy_on` 即可；脚本 / 非交互场景直接把变量喂给进程最稳：
 ```bash
 export http_proxy=http://192.168.1.222:1081 https_proxy=http://192.168.1.222:1081
+python3 gen_topics_sport_v0.5.1.py ...
 ```
-**注意**：devbox 默认 shell 是 fish，`~/.bashrc` 里的 `proxy_on` 函数不生效（fish 不读 bashrc + bashrc 有 non-interactive early-return）。最稳的做法是**非交互场景直接 `env http_proxy=... python3 ...` 把变量喂给进程**，不依赖任何 shell rc。
+> 小提示：devbox 默认 shell 是 **fish**，写在 `~/.bashrc` 的 bash 版 `proxy_on` 不生效（fish 不读 bashrc）——fish 版已配好，直接用即可。
 
 ### 4. 断点续跑是长任务的生命线
 全量 68k 历经「换 provider × 调并发 × 配额爆 × 进程被 kill」多次中断，全靠按 `topic_id` 去重的 resume 续上，没有一次从头重跑。
