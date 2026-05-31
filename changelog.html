@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运动内容池 · 变更总结</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, 'PingFang SC', sans-serif; background: #f4f6fa; color: #1a1a2e; font-size: 14px; line-height: 1.65; }
+  .hero { background: linear-gradient(135deg, #0f172a 0%, #16213e 55%, #0f3460 100%); color: #fff; padding: 52px 40px 44px; }
+  .hero h1 { font-size: 30px; font-weight: 700; letter-spacing: -.4px; }
+  .hero .sub { opacity: .72; margin-top: 8px; font-size: 14px; }
+  .hg { display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
+  .hs { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: 16px 22px; min-width: 150px; }
+  .hs .v { font-size: 28px; font-weight: 700; }
+  .hs .l { font-size: 11px; opacity: .72; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px; }
+  .hs .s { font-size: 11px; opacity: .6; margin-top: 4px; }
+  .c { max-width: 1080px; margin: 28px auto; padding: 0 22px; }
+  .card { background: #fff; border-radius: 14px; padding: 26px 28px; margin-bottom: 22px; box-shadow: 0 1px 6px rgba(0,0,0,.06); }
+  h2 { font-size: 20px; font-weight: 700; border-left: 4px solid #0f3460; padding-left: 12px; margin-bottom: 6px; }
+  h2 .num { color: #94a3b8; font-weight: 600; margin-right: 6px; }
+  .ph-tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 99px; margin-left: 8px; vertical-align: middle; }
+  .done { background: #dcfce7; color: #16a34a; }
+  .sub2 { color: #64748b; font-size: 13px; margin: 4px 0 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  th { background: #f0f4f8; padding: 9px 12px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: .3px; color: #555; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  code { background: #f1f5f9; border-radius: 4px; padding: 1px 6px; font-size: 12px; font-family: 'SF Mono', monospace; color: #0f3460; }
+  .box { border-radius: 9px; padding: 14px 18px; margin: 12px 0; font-size: 13px; line-height: 1.7; }
+  .bg { background: #f0fdf4; border-left: 4px solid #22c55e; }
+  .bw { background: #fff7ed; border-left: 4px solid #f97316; }
+  .bb { background: #eff6ff; border-left: 4px solid #3b82f6; }
+  .br { background: #fef2f2; border-left: 4px solid #ef4444; }
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 13px; margin: 10px 0; }
+  .flow .step { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 7px 13px; font-weight: 600; }
+  .flow .arr { color: #94a3b8; font-weight: 700; }
+  .timeline { font-size: 12px; }
+  .timeline .row { display: flex; gap: 12px; padding: 5px 0; border-bottom: 1px solid #f4f6fa; }
+  .timeline .t { color: #94a3b8; white-space: nowrap; font-variant-numeric: tabular-nums; min-width: 88px; }
+  .timeline .m { color: #334155; }
+  .pill { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; }
+  .p-red{background:#fee2e2;color:#c0392b;} .p-grn{background:#dcfce7;color:#16a34a;}
+  ul.tight { margin: 6px 0 6px 20px; } ul.tight li { padding: 2px 0; }
+  .toc { background:#fafbfc; border:1px solid #e5e7eb; border-radius:10px; padding:16px 20px; margin-bottom:22px; }
+  .toc a { color:#2563eb; text-decoration:none; font-size:13px; } .toc a:hover { text-decoration:underline; }
+  .toc li { padding:3px 0; }
+  .files a { color:#2563eb; text-decoration:none; }
+  a.link { color:#2563eb; text-decoration:none; } a.link:hover { text-decoration:underline; }
+  @media(max-width:640px){ .hero{padding:30px 20px;} }
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>运动内容池 · 本次变更总结</h1>
+  <div class="sub">2026-05-27 → 05-31 · 词库扩充 + 三平台投放 + 语义去重 + 缺口补充 + 真源闭环 + 质量过滤</div>
+  <div class="hg">
+    <div class="hs"><div class="l">最终内容池</div><div class="v">108,716</div><div class="s">0重复 · 56运动全覆盖</div></div>
+    <div class="hs"><div class="l">语义去重</div><div class="v">−22.2%</div><div class="s">104,407→81,273</div></div>
+    <div class="hs"><div class="l">真源video-grounded</div><div class="v">6,109</div><div class="s">真实爬取视频生成</div></div>
+    <div class="hs"><div class="l">爬虫投放</div><div class="v">18,853</div><div class="s">seeds × YT/TK/IG</div></div>
+    <div class="hs"><div class="l">词库 L1/L2</div><div class="v">55 / 147</div><div class="s">+4 L1 · +50 L2</div></div>
+  </div>
+</div>
+
+<div class="c">
+
+  <div class="toc">
+    <strong style="font-size:12px;color:#64748b;text-transform:uppercase;letter-spacing:.5px;">目录</strong>
+    <ul style="list-style:none;margin-top:8px;">
+      <li><a href="#p1">① 词库 + 维度树扩充 (V6)</a></li>
+      <li><a href="#p2">② P0/P1/P2 query 创建 + 三平台投放</a></li>
+      <li><a href="#p3">③ 入库分析 + 缺口 + 热门</a></li>
+      <li><a href="#dedup">④ 语义去重（阈值校准纠错）</a></li>
+      <li><a href="#supp">⑤ 缺口补充：合成 + 真源闭环</a></li>
+      <li><a href="#quality">⑥ 质量过滤 + 反思教训</a></li>
+      <li><a href="#deliver">⑦ 最终交付物 + 位置</a></li>
+      <li><a href="#timeline">⑧ commit 时间线</a></li>
+    </ul>
+  </div>
+
+  <!-- Phase 1 -->
+  <a id="p1"></a>
+  <div class="card">
+    <h2><span class="num">①</span>词库 + 维度树扩充 <span class="ph-tag done">完成</span></h2>
+    <div class="sub2">桌面表格 <code>运动数据筛选分类逻辑词库_V6.xlsx</code> + GitHub <code>vocab/</code></div>
+    <table>
+      <tr><th>层级</th><th class="n">变更前</th><th class="n">变更后</th><th>说明</th></tr>
+      <tr><td>L1 运动识别</td><td class="n">47</td><td class="n">55</td><td>新增 柔韧/活动度、体姿矫正/PT、睡眠/恢复、心肺/HIIT；扩充 22 个现有 L1 关键词</td></tr>
+      <tr><td>L2 子话题</td><td class="n">97</td><td class="n">147</td><td>给高尔夫/网球/骑行/运动健康/健身综合 5 个大类补 L2 维度</td></tr>
+    </table>
+    <div class="box bg"><b>实测效果：</b>65k 池未分类率从 14,564 → 5,710（<b>−60.8%</b>）。词库 + 机器可读正则 <code>rules_v6.json</code> 已 commit 到 GitHub 维护。</div>
+  </div>
+
+  <!-- Phase 2 -->
+  <a id="p2"></a>
+  <div class="card">
+    <h2><span class="num">②</span>P0/P1/P2 query 创建 + 三平台投放 <span class="ph-tag done">完成</span></h2>
+    <div class="sub2">基于内容缺口创建 query，提交 hermit 爬虫到 YouTube / TikTok / Instagram</div>
+    <table>
+      <tr><th>轮次</th><th>内容</th><th class="n">queries</th><th class="n">seeds(×3平台)</th></tr>
+      <tr><td>R7</td><td>P0/P1/P2 缺口运动</td><td class="n">1,581</td><td class="n">4,741</td></tr>
+      <tr><td>R8</td><td>viral pattern（13 角度 × 全运动）</td><td class="n">4,148</td><td class="n">12,444</td></tr>
+      <tr><td>R9</td><td>hot neighborhood（招式/明星/品牌名）</td><td class="n">556</td><td class="n">1,668</td></tr>
+      <tr style="background:#f0fdf4;"><td><b>合计</b></td><td></td><td class="n"><b>6,285</b></td><td class="n"><b>18,853</b></td></tr>
+    </table>
+    <div class="box bb"><b>三平台爬回真实内容证据：</b>asset-store 5.29=148k / 5.30=118k / 5.31 持续增长；后续从中拉回的真源视频含 YouTube 1,205 + TikTok 1,437 + Instagram 1,457，三平台均验证爬回内容。</div>
+  </div>
+
+  <!-- Phase 3 -->
+  <a id="p3"></a>
+  <div class="card">
+    <h2><span class="num">③</span>入库分析 + 缺口 + 热门 <span class="ph-tag done">完成</span></h2>
+    <div class="sub2">分析入库内容、内容缺口、热门内容，驱动后续创建</div>
+    <ul class="tight">
+      <li><b>入库分析：</b>68k 优质池分类（V6），未分类降至 12.9%；后续 harvest 拉回真实视频分析运动分布（高尔夫/篮球/网球领先）</li>
+      <li><b>缺口分析：</b>108k 池 38 个运动低于健康线 1500；大运动 L2 细分缺口（篮球扣篮 8 / 网球战术 14 / 足球传球战术 23 / 高尔夫心理 14）</li>
+      <li><b>热门分析：</b>平台中位数 YT 65k / TK 108k / IG 236k；热门 pattern（台球 trickshot 507M、Messi footwork 382M、7-day challenge、kpop dance）</li>
+    </ul>
+    <div class="box bg">缺口分析直接驱动了第 3 轮真源采集（针对 L2 缺口 search 真实视频生成），形成<b>「缺口分析 → 针对性采集 → 生成 → 合并」闭环</b>。</div>
+  </div>
+
+  <!-- Semantic dedup -->
+  <a id="dedup"></a>
+  <div class="card">
+    <h2><span class="num">④</span>语义去重（核心：阈值校准纠错）<span class="ph-tag done">完成</span></h2>
+    <div class="sub2">表达不同但问同一件事的 topic 只保留一条，提升多样性</div>
+    <div class="box br"><b>纠错过程（关键）：</b>初版用 cosine <code>τ=0.92</code> 只删了 3.2%，被质疑过于保守。用 <b>Gemini 独立裁判</b>判 240 对 pair「是否问同一件事」做校准，发现拐点在 <b>0.84</b>，肉眼校准有确认偏误。</div>
+    <table>
+      <tr><th>相似度 band</th><th class="n">同问题率（Gemini裁判）</th><th>判定</th></tr>
+      <tr><td>0.78–0.82</td><td class="n">40–50%</td><td><span class="pill p-red">留（真不同）</span></td></tr>
+      <tr><td>0.82–0.84</td><td class="n">70%</td><td>混合</td></tr>
+      <tr><td>0.84–0.86</td><td class="n">100%</td><td><span class="pill p-grn">删（真冗余）</span></td></tr>
+      <tr><td>0.86–0.94</td><td class="n">86–100%</td><td><span class="pill p-grn">删</span></td></tr>
+    </table>
+    <div class="box bg">
+      <b>最终方案：</b><code>τ=0.85</code> + <b>贪心代表法</b>（按播放量留代表，删≥τ于代表的；不用 union-find 避免单链 A~B~C 传递误并）。
+      结果 <b>104,407 → 81,273（删 23,134 = 22.2%）</b>，精度 ~90%+。
+    </div>
+  </div>
+
+  <!-- Supplement -->
+  <a id="supp"></a>
+  <div class="card">
+    <h2><span class="num">⑤</span>缺口补充：合成 + 真源闭环 <span class="ph-tag done">完成</span></h2>
+    <div class="sub2">去重腾出空间后，按缺口补充长尾运动，用 dynamic workflow 并行</div>
+    <h3 style="font-size:15px;margin:8px 0;">A. 合成补充（taxonomy-driven）</h3>
+    <p style="font-size:13px;color:#475569;">主池视频已全部生成过 topic、无未用源 → 用 Gemini 按 <code>L1+L2维度 × 6技能层 × 8热门角度</code> 合成生成。2 轮 dynamic workflow 并行 32 运动 生成→QC，净入 <b>21,334</b> 条。</p>
+    <h3 style="font-size:15px;margin:14px 0 8px;">B. 真源 video-grounded 闭环（3 轮）</h3>
+    <div class="flow">
+      <span class="step">hermit search 拉真实爬取视频</span><span class="arr">→</span>
+      <span class="step">v0.5.1 prompt 生成</span><span class="arr">→</span>
+      <span class="step">规则 QC</span><span class="arr">→</span>
+      <span class="step">娱乐 junk 过滤</span><span class="arr">→</span>
+      <span class="step">三层优先级去重合并</span>
+    </div>
+    <table>
+      <tr><th>真源轮次</th><th>来源</th><th class="n">真实视频</th></tr>
+      <tr><td>r1 基础</td><td>32 gap 运动</td><td class="n">4,099</td></tr>
+      <tr><td>r2 全运动 harvest</td><td>52 运动 + 今日入库热门</td><td class="n">8,077</td></tr>
+      <tr><td>r3 缺口驱动</td><td>L2 细分缺口定向</td><td class="n">2,873</td></tr>
+    </table>
+    <div class="box bb"><b>三层优先级合并：</b>真实(有播放量) &gt; 真源 video-grounded &gt; 合成。真源覆盖到的地方取代合成，合成仅填真源未覆盖的缺口。</div>
+  </div>
+
+  <!-- Quality + reflection -->
+  <a id="quality"></a>
+  <div class="card">
+    <h2><span class="num">⑥</span>质量过滤 + 反思教训 <span class="ph-tag done">完成</span></h2>
+    <div class="box bg"><b>✓ 找到真实质量问题：</b>抽检发现真源里 <b>18.5% 是娱乐衍生 junk</b>（集锦/trickshot/POV特技/赛事recap/旅行vlog）——过了规则 QC 但无教学价值。用 Gemini GOOD/JUNK 全量审计，删 <b>1,335 条</b>，并把 <code>quality_filter.py</code> 固化为真源 pipeline 标准第 3 步。</div>
+    <div class="box bw"><b>⚠ 抓住并回滚自己的过度纠正：</b>试图清理「其他/未分类」的跑题内容，但 strict filter <b>误删了 372 条合法运动</b>（台球术语 inside English / cushion shots / safety shot / cue 把判别器骗了，游泳/高尔夫也误伤）。<b>立即回滚</b>（重跑 unified_merge 恢复 + 只保留正确的娱乐过滤）。<b>教训：</b>「其他」按 V6 词库 scope（含营养/恢复/体姿矫正/户外）大多合法，不该大删；原始 81k 池 junk 仅 2%（源视频研发预筛过）无需动。</div>
+  </div>
+
+  <!-- Deliverables -->
+  <a id="deliver"></a>
+  <div class="card">
+    <h2><span class="num">⑦</span>最终交付物 + 位置</h2>
+    <h3 style="font-size:14px;margin:6px 0;color:#475569;">📁 桌面</h3>
+    <table>
+      <tr><th>文件</th><th>内容</th></tr>
+      <tr><td><code>sport_pool_final_100k.json</code> (96M)</td><td>⭐ 最终内容池 <b>108,716 条</b></td></tr>
+      <tr><td><code>sport_pool_dedup.json</code> (78M)</td><td>语义去重后纯真实池 81,273（中间产物）</td></tr>
+      <tr><td><code>内容池_去重与缺口补充_最终报告.html</code></td><td>完整方法+数据报告</td></tr>
+      <tr><td><code>运动数据筛选分类逻辑词库_V6.xlsx</code></td><td>V6 词库+维度树</td></tr>
+    </table>
+    <h3 style="font-size:14px;margin:14px 0 6px;color:#475569;">🌐 GitHub <a class="link" href="https://github.com/tangyihang-jiayou/sport-content-analysis">tangyihang-jiayou/sport-content-analysis</a></h3>
+    <ul class="tight">
+      <li><code>semantic-dedup/</code> — 全部脚本（去重/生成/质检/真源/质量过滤）+ 校准数据 + README</li>
+      <li><code>vocab/</code> — V6 词库 xlsx + rules_v6.json</li>
+      <li><code>reports/</code> — 最终报告 HTML</li>
+      <li><code>content-gap/</code> — R7/R8/R9 query 清单 + 投放脚本</li>
+    </ul>
+    <div class="box bb" style="margin-top:14px;">
+      <b>最终池构成（108,716，0重复0空）：</b><br>
+      原始真实（语义去重）<b>81,273</b> &nbsp;+&nbsp; 真源 video-grounded（已去娱乐junk）<b>6,109</b> &nbsp;+&nbsp; 合成 gap 填充 <b>21,334</b>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <a id="timeline"></a>
+  <div class="card">
+    <h2><span class="num">⑧</span>commit 时间线</h2>
+    <div class="timeline">
+      <div class="row"><span class="t">05-28 20:19</span><span class="m">R7 P0/P1/P2 query + V6 词库扩充 + V4 分析报告</span></div>
+      <div class="row"><span class="t">05-29 10:55</span><span class="m">R8 viral+gap (4,148) + R9 hot neighborhood (556)</span></div>
+      <div class="row"><span class="t">05-29 10:58</span><span class="m">Phase 3 入库分析报告（68k 缺口+热门）</span></div>
+      <div class="row"><span class="t">05-31 01:17</span><span class="m">语义去重（阈值校准纠错 0.92→0.85）+ 32运动 gap 补充 → 102,822</span></div>
+      <div class="row"><span class="t">05-31 02:02</span><span class="m">real-ingest 闭环：真实爬取视频 → video-grounded → 105,021</span></div>
+      <div class="row"><span class="t">05-31 02:40</span><span class="m">real-ingest 第2轮 harvest 全运动 → 108,347</span></div>
+      <div class="row"><span class="t">05-31 03:03</span><span class="m">缺口驱动真源第3轮 → 110,051</span></div>
+      <div class="row"><span class="t">05-31 09:59</span><span class="m">质量过滤：剔除真源娱乐 junk → 108,674</span></div>
+      <div class="row"><span class="t">05-31 10:25</span><span class="m">最终定稿 108,716 + 反思教训记录（回滚误删）</span></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#94a3b8;font-size:12px;padding:20px 0;">
+    运动内容池 变更总结 · 最终池 108,716 条 · 2026-05-31
+  </div>
+</div>
+</body>
+</html>
