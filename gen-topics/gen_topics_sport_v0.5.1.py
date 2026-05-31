@@ -17,17 +17,19 @@ from pathlib import Path
 from collections import Counter
 import requests
 
-MODEL    = os.environ.get("LLM_MODEL", "gemini-3.1-pro-preview")
-BASE_URL = "https://api.cometapi.com/v1"
-
-# 支持多 key 轮询，环境变量逗号分隔：COMET_API_KEYS=key1,key2,...
-_raw_keys = os.environ.get("COMET_API_KEYS", os.environ.get("COMET_API_KEY", "")).strip()
-_API_KEYS = [k.strip() for k in _raw_keys.split(",") if k.strip()]
-if not _API_KEYS:
-    raise RuntimeError("请设置 COMET_API_KEYS 环境变量")
+MODEL      = os.environ.get("LLM_MODEL", "gemini-2.5-flash")
+# --- Gemini 官方 API ---
+GEMINI_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
+GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
+# --- CometAPI fallback (OpenAI-compatible) ---
+BASE_URL   = "https://api.cometapi.com/v1"
+_raw_keys  = os.environ.get("COMET_API_KEYS", os.environ.get("COMET_API_KEY", "")).strip()
+_API_KEYS  = [k.strip() for k in _raw_keys.split(",") if k.strip()]
+if not GEMINI_KEY and not _API_KEYS:
+    raise RuntimeError("请设置 GEMINI_API_KEY 或 COMET_API_KEYS 环境变量")
 
 import itertools, threading
-_key_cycle = itertools.cycle(_API_KEYS)
+_key_cycle = itertools.cycle(_API_KEYS) if _API_KEYS else itertools.cycle([""])
 _key_lock  = threading.Lock()
 
 def _next_key() -> str:
@@ -83,31 +85,45 @@ def detect_fewshot_copy(topic: str, source_text: str) -> str | None:
 # ============================================================
 
 def _call_gemini(user_text: str, system_prompt: str = SYSTEM_PROMPT, temperature: float = 0.7) -> dict:
-    # body built inside retry loop below
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {_next_key()}",
-    }
-    openai_body = {
-        "model": MODEL,
-        "messages": [
-            {"role": "system", "content": system_prompt},
-            {"role": "user",   "content": user_text.strip()},
-        ],
-        "temperature": temperature,
-        "response_format": {"type": "json_object"},
-    }
     last_exc = None
     for attempt in range(1, 4):
         try:
-            # 每次重试换一个 key（轮询）
-            openai_body["messages"][0]["role"]  # warmup access
-            cur_headers = dict(headers)
-            cur_headers["Authorization"] = f"Bearer {_next_key()}"
-            resp = requests.post(f"{BASE_URL}/chat/completions",
-                                 headers=cur_headers, json=openai_body, timeout=180)
-            resp.raise_for_status()
-            text = resp.json()["choices"][0]["message"]["content"]
+            if GEMINI_KEY:
+                # Gemini 官方 API
+                body = {
+                    "contents": [{"role": "user", "parts": [{"text": user_text.strip()}]}],
+                    "systemInstruction": {"parts": [{"text": system_prompt}]},
+                    "generationConfig": {
+                        "temperature": temperature,
+                        "responseMimeType": "application/json",
+                    },
+                }
+                resp = requests.post(
+                    f"{GEMINI_URL}?key={GEMINI_KEY}",
+                    headers={"Content-Type": "application/json"},
+                    json=body, timeout=60,
+                )
+                resp.raise_for_status()
+                text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+            else:
+                # CometAPI (OpenAI-compatible)
+                cur_headers = {
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {_next_key()}",
+                }
+                openai_body = {
+                    "model": MODEL,
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user",   "content": user_text.strip()},
+                    ],
+                    "temperature": temperature,
+                    "response_format": {"type": "json_object"},
+                }
+                resp = requests.post(f"{BASE_URL}/chat/completions",
+                                     headers=cur_headers, json=openai_body, timeout=180)
+                resp.raise_for_status()
+                text = resp.json()["choices"][0]["message"]["content"]
             obj = _parse_json_loose(text)
             if obj is None:
                 raise ValueError(f"json parse fail: {text[:300]}")

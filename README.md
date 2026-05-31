@@ -120,20 +120,29 @@ LLM 输出两个字段：
 | `gen_topics_sport_v0.5.1.py` | 主脚本，并发调用 LLM 为每条视频生成 topic |
 | `gen_topic_prompt_运动_v0.5.1.md` | System prompt，包含完整规则和 few-shot 示例 |
 
-**运行方式：**
+**运行方式（脚本支持双 provider，按环境变量自动切换）：**
+
 ```bash
-# 支持多 key 轮询（逗号分隔）
+# 方式 A — CometAPI（OpenAI-compatible），支持多 key 逗号轮询
 export COMET_API_KEYS=sk-key1,sk-key2,sk-key3
 export LLM_MODEL=gemini-3.1-pro-preview
+
+# 方式 B — Gemini 官方 API（设了 GEMINI_API_KEY 即优先走官方）
+export GEMINI_API_KEY=AQ.xxx
+export LLM_MODEL=gemini-3.5-flash
+# devbox 直连 google 被墙时需挂代理：
+export http_proxy=http://192.168.1.222:1081 https_proxy=http://192.168.1.222:1081
 
 python3 gen_topics_sport_v0.5.1.py \
     --metadata metadata.json \
     --input input.json \
     --output topics_output.json \
-    --workers 300
+    --workers 300        # ⚠️ 见下方「运维经验」，不要盲目调到 1000
 ```
 
-支持断点续跑：中途中断后重启会自动跳过已完成的条目。
+> **切换逻辑**：脚本里 `GEMINI_API_KEY` 非空 → 走 Gemini 官方 endpoint；否则 fallback 到 `COMET_API_KEYS` 轮询。CometAPI 配额耗尽时切官方即可无缝续跑。
+
+**断点续跑（重要）**：输出按 `topic_id` 去重，重启自动跳过已完成条目。全量 68k 跑了 5+ 个小时、中途换过 provider / 改过并发 / 配额爆过，全靠它续上——长任务务必依赖这个机制，别从头重跑。
 
 ---
 
@@ -153,10 +162,10 @@ python3 gen_topics_sport_v0.5.1.py \
 | **W2** | 临床医疗内容 → null |
 | **C1** | Few-shot 复制检测，与样例相似度过高自动重写 |
 
-**输出字段：**
+**输出字段（枚举值取自 68k 全量实跑结果）：**
 - `topic`：生成的 topic 字符串（或 null）
-- `video_type`：`instructional_demo` / `science_explainer` / `coaching_breakdown` / ...
-- `narrative_intent`：`challenge_assumption` / `framework` / `insider_knowledge` / ...
+- `video_type`：`single_skill` / `knowledge` / `multi_skill` / `follow_along` / `highlight` / `teach_method` / `other`
+- `narrative_intent`：`teach_method` / `build_cognition` / `explore_principle` / `take_stance` / `answer_question` / `other`
 - `names_used`：使用到的人名列表（用于后处理校验）
 - `_rewrite_triggered`：是否触发了重写
 
@@ -170,27 +179,62 @@ python3 gen_topics_sport_v0.5.1.py \
 | Step 1 通过 | ~96,000 | 基础语言/质量过滤 |
 | Step 2 通过 | ~89,000 | 信号词过滤 |
 | Step 3 LLM 通过 | **68,197** | 最终高质量教学视频 (66% pass rate) |
-| Topic 生成 | 68,197 | 每条视频生成创意 topic |
+| Topic 生成 | **68,193** | 成功 68,193 / 失败 4 |
+
+**Topic 生成实跑统计（68,193 条）：**
+
+| 维度 | 分布 |
+|------|------|
+| `video_type` | single_skill 36.8% · knowledge 31.5% · multi_skill 18.5% · follow_along 8.8% · other 3.3% · highlight 0.4% |
+| `narrative_intent` | teach_method 58.1% · build_cognition 32.0% · explore_principle 5.0% · take_stance 2.4% · answer_question 1.7% |
+| `topic = null` | 2,818 / 68,193（4.1%，多为临床医疗内容主动判 null）|
+| 人名重写触发 | 113（0.2%）|
+| 审计硬规则违规 | 1,419（2.1%，主要 W1 空升华动词 815 / B1 人名残留 151）|
 
 ---
 
 ## LLM 配置
 
-使用 [CometAPI](https://api.cometapi.com)（OpenAI-compatible 代理）：
+两路 provider，脚本按环境变量自动选：
 
+| Provider | Endpoint | 鉴权 | 何时用 |
+|----------|----------|------|--------|
+| **CometAPI**（OpenAI-compatible）| `https://api.cometapi.com/v1` | `COMET_API_KEYS`（逗号多 key 轮询）| 默认，国内直连可用 |
+| **Gemini 官方** | `generativelanguage.googleapis.com/v1beta` | `GEMINI_API_KEY` | CometAPI 配额爆掉时 fallback，devbox 需挂代理 |
+
+| 阶段 | 模型 | 实测吞吐 | 原因 |
+|------|------|----------|------|
+| 内容筛选（Step 3）| `gemini-3.1-flash-lite` | **~373 条/s**（batch 10/call）| 速度优先 |
+| Topic 生成 | `gemini-3.1-pro-preview` | ~11 条/s | 质量优先 |
+| Topic 生成（fallback）| `gemini-3.5-flash` | ~17 条/s | 配额/速度兼顾 |
+
+---
+
+## ⚠️ 运维经验与踩坑（全量跑 68k 的实战教训）
+
+> 这一节是 Topic 生成阶段真实跑出来的坑，比配置本身更重要。
+
+### 1. 并发不是越大越好 —— 1000 workers 把 API 打死
+试过 `--workers 1000`：进程起了 1001 个线程、内存 2GB+，但**连接全部卡在 in-flight，6 分钟 0 条完成**（API 端扛不住瞬时千级并发）。退回 **300 workers（每 key ~100 并发）稳定无错**。经验值：
+
+| workers | 结果 |
+|---------|------|
+| 1000 | ❌ 全卡死，0 完成 |
+| 300 | ✅ 稳定，~11–17 条/s，0 error |
+| 50 | ✅ 稳但偏慢（~3.4 条/s）|
+
+### 2. CometAPI 配额会突然耗尽 → 403
+跑到 **86%（59,034/68,197）时三个 key 同时返回 `403 insufficient_user_quota`**（`remaining quota: $-9.41`）。教训：**长任务必须预备 fallback provider**，且**断点续跑**让切换零成本——切到 Gemini 官方后从 59k 直接续到 100%。
+
+### 3. devbox 直连 Google 被墙 → 必须走代理
+`generativelanguage.googleapis.com` 在 devbox 上直连 `HTTP=000`。解决：挂内网代理
 ```bash
-BASE_URL = "https://api.cometapi.com/v1"
+export http_proxy=http://192.168.1.222:1081 https_proxy=http://192.168.1.222:1081
 ```
+**注意**：devbox 默认 shell 是 fish，`~/.bashrc` 里的 `proxy_on` 函数不生效（fish 不读 bashrc + bashrc 有 non-interactive early-return）。最稳的做法是**非交互场景直接 `env http_proxy=... python3 ...` 把变量喂给进程**，不依赖任何 shell rc。
 
-| 阶段 | 模型 | 原因 |
-|------|------|------|
-| 内容筛选（Step 3）| `gemini-3.1-flash-lite` | 速度优先，~373条/s |
-| Topic 生成 | `gemini-3.1-pro-preview` | 质量优先，创意输出 |
-
-多 key 轮询（线程安全）：
-```python
-export COMET_API_KEYS=sk-key1,sk-key2,sk-key3
-```
+### 4. 断点续跑是长任务的生命线
+全量 68k 历经「换 provider × 调并发 × 配额爆 × 进程被 kill」多次中断，全靠按 `topic_id` 去重的 resume 续上，没有一次从头重跑。
 
 ---
 
